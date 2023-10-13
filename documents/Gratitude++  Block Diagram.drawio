@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" modified="2023-09-28T18:07:31.456Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36" etag="l0U0YyyWQFw8Pz7EncGs" version="22.0.0" type="google">
+  <diagram name="Page-1" id="dZ4l9VqXhK1LTUbsNuGg">
+    <mxGraphModel grid="0" page="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="1">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-1" value="SERVER&lt;br&gt;&amp;lt;Replit&amp;gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="470" y="105" width="140" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-2" value="" style="rounded=1;absoluteArcSize=1;html=1;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="170" y="80" width="185" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-3" value="Gratitude++ Application&lt;br&gt;&lt;br&gt;Node.js&lt;br&gt;React&lt;br&gt;" style="html=1;shape=mxgraph.er.anchor;whiteSpace=wrap;" vertex="1" parent="pcEsp_YM1gdW-x6-lk8u-2">
+          <mxGeometry width="92.5" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-4" value="Web Browser&lt;br&gt;(Chrome)" style="rounded=1;absoluteArcSize=1;html=1;arcSize=10;whiteSpace=wrap;points=[];strokeColor=inherit;fillColor=inherit;" vertex="1" parent="pcEsp_YM1gdW-x6-lk8u-2">
+          <mxGeometry x="92.5" y="7.5" width="83.25" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-5" value="" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="485" y="310" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-6" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="pcEsp_YM1gdW-x6-lk8u-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="240" as="sourcePoint" />
+            <mxPoint x="470" y="155" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pcEsp_YM1gdW-x6-lk8u-7" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;" edge="1" parent="1" target="pcEsp_YM1gdW-x6-lk8u-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="YcqDLl7CBsujX3zAUbZz-2" value="DATABASE&lt;br&gt;&amp;lt;FireBase&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="510" y="350" width="60" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
