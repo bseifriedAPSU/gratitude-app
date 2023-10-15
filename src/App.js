@@ -5,6 +5,9 @@ import Settings from "./pages/settings/Settings";
 import Resources from "./pages/resources/Resources";
 import History from "./pages/history/History";
 import Login from "./pages/login/Login";
+import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreation";
+import FilteredResults from "./pages/filteredResults/FilteredResults";
+import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
 
 import {
     BrowserRouter as Router,
@@ -23,6 +26,9 @@ function App() {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/resources" element={<Resources/>} />
                 <Route path="/history" element={<History />} />
+                <Route path="/journalEntryCreation" element={<JournalEntryCreation />} />
+                <Route path="/journalEntryView" element={<JournalEntryView />} />
+                <Route path="/filteredResults" element={<FilteredResults />} />
 
                
  

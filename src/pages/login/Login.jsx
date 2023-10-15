@@ -4,8 +4,11 @@ export default function Login() {
 
     return (
         <div className="login">
-            Gratitude++ Journal
-            <button className="loginButton">Google Login Button</button>
+        <h1>Gratitude++ Journal</h1>
+        
+            <button className="login-with-google-btn" /* on Click Here*/>
+                Sign in with Google
+            </button>
         </div>
 
     )
