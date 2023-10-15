@@ -1,15 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
-    "\\src\\header",
-    "\\src\\pages",
-    "\\src\\pages\\home",
-    "\\src\\pages\\Login",
-    "\\src\\pages\\settings",
     "\\src\\topbar"
   ],
-  "SelectedNode": "\\src\\header\\header.css",
+  "SelectedNode": "\\src\\topbar\\TopBar.jsx",
   "PreviewInSolutionExplorer": false
 }

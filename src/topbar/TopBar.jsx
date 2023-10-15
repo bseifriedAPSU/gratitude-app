@@ -23,8 +23,10 @@ export default function TopBar() {
 
                     <li className="topListItem">
                         <Link to="/resources">Resources</Link></li>
+
                     <li className="topListItem">
                         <Link to="/settings">Settings</Link></li>
+
                     <li className="topListItem">Logout</li>
                 </ul>
             </div>
