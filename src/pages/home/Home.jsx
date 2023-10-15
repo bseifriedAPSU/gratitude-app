@@ -18,10 +18,17 @@ export default function Home() {
             <button /* On CLick HERE*/>
                 Create New Journal Entry Button 
             </button>
-            <ul >
-                
-                <li><input></input></li>
-                <li><div>User Recent Articles</div></li>
+            <input className="homeSearchBar"
+                placeholder="Home Page Search Bar..."
+                    /*on change HERE*/ />
+            <ul>
+
+                <li>DATE : HEADLINE </li>
+                <li>DATE : HEADLINE </li>
+                <li>DATE : HEADLINE </li>
+                <li>DATE : HEADLINE </li>
+                <li>DATE : HEADLINE </li>
+
             </ul>
         </div>
 

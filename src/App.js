@@ -8,6 +8,7 @@ import Login from "./pages/login/Login";
 import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreation";
 import FilteredResults from "./pages/filteredResults/FilteredResults";
 import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
+import NewUser from "./pages/newUser/NewUser";
 
 import {
     BrowserRouter as Router,
@@ -17,6 +18,9 @@ import {
 } from "react-router-dom";
 function App() {
     return (
+
+        /*MAY create Routes component to clean this up */
+
       <Router>
             <TopBar />
             <Routes>
@@ -29,6 +33,7 @@ function App() {
                 <Route path="/journalEntryCreation" element={<JournalEntryCreation />} />
                 <Route path="/journalEntryView" element={<JournalEntryView />} />
                 <Route path="/filteredResults" element={<FilteredResults />} />
+                <Route path="/newUser" element={<NewUser />} />
 
                
  
