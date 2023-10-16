@@ -1,5 +1,5 @@
 import Home from "./pages/home/Home";
-import TopBar from "./topbar/TopBar";
+import TopBar from "./components/TopBar"
 import Community from "./pages/community/Community";
 import Settings from "./pages/settings/Settings";
 import Resources from "./pages/resources/Resources";
@@ -15,7 +15,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    Link
+  //  Link
 } from "react-router-dom";
 
 function App() {

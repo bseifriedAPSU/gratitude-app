@@ -1,4 +1,4 @@
-import Header from "../../header/Header"
+import Header from "../../components/Header"
 import "./home.css"
 import Wordcloud from "../../components/Wordcloud"
 
