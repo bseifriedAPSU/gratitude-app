@@ -10,12 +10,14 @@ import FilteredResults from "./pages/filteredResults/FilteredResults";
 import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
 import NewUser from "./pages/newUser/NewUser";
 
+
 import {
     BrowserRouter as Router,
     Routes,
     Route,
     Link
 } from "react-router-dom";
+
 function App() {
     return (
 

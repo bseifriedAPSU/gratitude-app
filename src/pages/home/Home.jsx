@@ -4,9 +4,6 @@ import Wordcloud from "../../components/Wordcloud"
 
 
 
-
-
-
 export default function Home() {
  
 
@@ -30,6 +27,8 @@ export default function Home() {
                 <li>DATE : HEADLINE </li>
 
             </ul>
+
+       
         </div>
 
     )
