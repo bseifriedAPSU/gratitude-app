@@ -57,3 +57,5 @@ function handleCredentialResponse(response) {
         // ...
     });
 }
+
+var id_Token = googleUser.getAuthResponse().id_Token;
