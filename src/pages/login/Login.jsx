@@ -1,12 +1,13 @@
 import "./login.css"
-import Header from "../../components/Header"
+import { firebaseAuthentication } from "./../../firebase/database.js"
+
 export default function Login() {
 
     return (
         <div className="login">
-        <Header />
+        <h1>Gratitude++ Journal</h1>
         
-            <button className="button" /* on Click Here*/>
+            <button className="login-with-google-btn" onClick={firebaseAuthentication}>
                 Sign in with Google
             </button>
         </div>
