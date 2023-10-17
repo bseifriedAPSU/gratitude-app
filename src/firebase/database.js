@@ -15,30 +15,35 @@ const firebaseConfig = {
     appId: "1:521254194277:web:4b1f24147456d8e1e3ca8c",
 };
 
-const app = initializeApp(firebaseConfig);//initialization of the firebase database 
-const auth = getAuth();//initialization of the firebase authentication
+const app = initializeApp(firebaseConfig);//initialization of the firebase app 
+const auth = getAuth(app);//initialization of the firebase authentication
+const database = getDatabase(app);//initialize the firebase database
+const provider = new GoogleAuthProvider(app);
+function signIn() {
+    signInWithRedirect(auth, provider);
+}
 
-signInWithRedirect(auth, GoogleAuthProvider);
+function redirectResult() {
+    getRedirectResult(auth)
+        .then((result) => {
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
 
-getRedirectResult(auth)
-    .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-
-        // The signed-in user info.
-        const user = result.user;
-        // IdP data available using getAdditionalUserInfo(result)
-        // ...
-    }).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-    });
+            // The signed-in user info.
+            const user = result.user;
+            // IdP data available using getAdditionalUserInfo(result)
+            // ...
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+}
 
 function handleCredentialResponse(response) {
     // Build Firebase credential with the Google ID token.
@@ -58,4 +63,8 @@ function handleCredentialResponse(response) {
     });
 }
 
-var id_Token = googleUser.getAuthResponse().id_Token;
+export function firebaseAuthentication() {
+    signIn();
+    //redirectResult();
+    //handleCredentialResponse();
+}
