@@ -1,5 +1,5 @@
 import Home from "./pages/home/Home";
-import TopBar from "./components/TopBar"
+//import TopBar from "./components/TopBar"
 import Community from "./pages/community/Community";
 import Settings from "./pages/settings/Settings";
 import Resources from "./pages/resources/Resources";
@@ -9,6 +9,7 @@ import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreat
 import FilteredResults from "./pages/filteredResults/FilteredResults";
 import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
 import NewUser from "./pages/newUser/NewUser";
+import Nav from "./components/Nav";
 
 
 import {
@@ -17,6 +18,8 @@ import {
     Route,
   //  Link
 } from "react-router-dom";
+import TopBar from "./components/TopBar";
+
 
 function App() {
     return (

@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\src\\components",
+    "\\src\\pages",
+    "\\src\\pages\\newUser"
   ],
-  "SelectedNode": "\\C:\\Users\\Joel\\Source\\Repos\\gratitude-app",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

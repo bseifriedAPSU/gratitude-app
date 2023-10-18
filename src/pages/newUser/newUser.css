@@ -1,7 +1,11 @@
 .newUser {
+    width: fit-content;
+    height: auto;
+    padding: 20px;
+    border: outset;
+    border-radius: 12px;
+    border-color: black;
+    color: black;
     display: flex;
-flex-direction: column;
-align-items: center;
-margin-top: 60px;
-list-style: none;
+    flex-direction: column;
 }

@@ -1,7 +1,52 @@
 .journalEntryView {
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    border: outset;
+    border-radius: 12px;
+    border-color: black;
+    color: black;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-top: 60px;
-    list-style: none;
+}
+
+
+.journalEntryViewContainer {
+    width: 500px;
+    height: auto;
+    padding: 20px;
+    border: outset;
+    border-radius: 12px;
+    border-color: black;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.post .postHeader {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.postHeader .title {
+  
+}
+
+.postHeader  {
+ 
+    display: flex;
+    flex-direction: column;
+ 
+}
+
+
+
+.post .postTextContainer {
+    word-wrap: break-word;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
 }
