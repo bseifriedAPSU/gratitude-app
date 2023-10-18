@@ -1,5 +1,6 @@
 import "./newUser.css"
 
+
 import UserSettings from "../../components/UserSettings"
 
 export default function NewUser() {

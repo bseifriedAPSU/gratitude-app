@@ -9,8 +9,8 @@ function ToggleSwitch() {
     }
 
     return (
-        <div className="toggleSwitch" style={{ textAlign: "center" }}>
-            <h4>Visible?</h4>
+        <div className="toggleSwitch" style={{ textAlign: "right" }}>
+            <h4>Public?</h4>
             <ReactSwitch
                 checked={checked}
                 onChange={handleChange}
