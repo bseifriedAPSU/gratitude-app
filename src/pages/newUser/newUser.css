@@ -10,3 +10,9 @@
     flex-direction: column;
     margin: 60px auto;
 }
+
+.newUser{
+    margin:auto;
+    flex-direction: column;
+
+}

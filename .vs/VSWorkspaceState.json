@@ -1,11 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\empty",
     "\\src",
-    "\\src\\firebase",
-    "\\src\\pages"
+    "\\src\\pages",
+    "\\src\\pages\\settings"
   ],
-  "SelectedNode": "\\src\\firebase\\database.js",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
