@@ -1,16 +1,26 @@
 import "./journalEntryView.css"
 
-export default function JournalEntryView() {
+export default function JournalEntryView( ) {
+
 
     return (
+        <>
         <div className="journalEntryView">
-            <h1>Journal Entry View Page</h1>
-            <h2>DATE : TITLE</h2>
-            <body>content here content here content here  content here
-                content here  content here  content here  content here 
-                content here  content here  content here  content here </body>
-        </div>
-
-
-    )
+            
+              <div classname="journalEntryViewContainter">
+                    
+                        <div className="postHeader">
+                            <div className="title">
+                                <h1>Title Goes Here</h1>
+                            </div>
+                            
+                        </div>
+                        <div className="postTextContainer"> "Content will go here" </div>
+                        <h3>Author Name will go here</h3>
+                    
+                
+                </div>
+            </div>
+        </>
+    );
 }
