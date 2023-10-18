@@ -14,7 +14,8 @@
 
 }
 .topCenter {
-    flex: 6;
+    flex: auto;
+    margin:auto;
 }
 
 .leftList {
