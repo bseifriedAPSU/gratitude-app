@@ -19,18 +19,16 @@ const app = initializeApp(firebaseConfig);//initialization of the firebase app
 const auth = getAuth(app);//initialization of the firebase authentication
 const database = getDatabase(app);//initialize the firebase database
 const provider = new GoogleAuthProvider(app);
-function signIn() {
-    signInWithRedirect(auth, provider);
-}
 
 function redirectResult() {
-    getRedirectResult(auth)
+    signInWithRedirect(auth, provider)
         .then((result) => {
             const credential = GoogleAuthProvider.credentialFromResult(result);
             const token = credential.accessToken;
 
             // The signed-in user info.
             const user = result.user;
+            const email = user.email;
             // IdP data available using getAdditionalUserInfo(result)
             // ...
         }).catch((error) => {
@@ -64,7 +62,5 @@ function handleCredentialResponse(response) {
 }
 
 export function firebaseAuthentication() {
-    signIn();
-    //redirectResult();
-    //handleCredentialResponse();
+    signIn(redirectResult);
 }
