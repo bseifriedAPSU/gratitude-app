@@ -11,7 +11,6 @@ import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
 import NewUser from "./pages/newUser/NewUser";
 import Nav from "./components/Nav";
 
-
 import {
     BrowserRouter as Router,
     Routes,

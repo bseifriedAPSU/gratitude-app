@@ -1,6 +1,7 @@
 import Hamburger from "./Hamburger";
 import { useState } from 'react';
 import { Link } from "react-router-dom";
+import { signOutOfAccount } from "./../firebase/database.js";
 export default function Nav() {
 
     const [hamburgerOpen, setHamburgerOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function Nav() {
                     <li className="topListItem">
                         <Link to="/settings">Settings</Link></li>
 
-                    <li className="topListItem">Logout</li>
+                    <li className="topListItem" onClick={signOutOfAccount}>Logout</li>
 
 
                 </ul>

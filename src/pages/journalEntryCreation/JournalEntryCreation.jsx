@@ -1,5 +1,5 @@
 import "./journalEntryCreation.css";
-
+import { createNewEntry } from "./../../firebase/database.js";
 import ToggleSwitch from "../../components/ToggleSwitch";
 export default function JournalEntryCreation() {
 
@@ -19,7 +19,7 @@ export default function JournalEntryCreation() {
                         placeholder="Entry..."
                         /*on change HERE*/ />
                 </div>
-                <button /* On CLick here */>Submit Post</button>
+                <button onClick={createNewEntry("jscott72", "Headline", "Content", true)}>Submit Post</button>
                 <div classname="toggleSwitch">
                 <ToggleSwitch />
                 </div>
