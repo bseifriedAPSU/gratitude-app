@@ -3,8 +3,8 @@
     "",
     "\\src",
     "\\src\\pages",
-    "\\src\\pages\\settings"
+    "\\src\\pages\\journalEntryCreation"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\src\\pages\\journalEntryCreation\\JournalEntryCreation.jsx",
   "PreviewInSolutionExplorer": false
 }
