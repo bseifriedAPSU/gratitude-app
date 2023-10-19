@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src\\components",
+    "\\src",
     "\\src\\pages",
-    "\\src\\pages\\community"
+    "\\src\\pages\\journalEntryCreation"
   ],
-  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
