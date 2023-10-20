@@ -2,10 +2,16 @@
   "ExpandedNodes": [
     "",
     "\\src",
+<<<<<<< HEAD
     "\\src\\components",
     "\\src\\pages",
     "\\src\\pages\\journalEntryCreation"
   ],
   "SelectedNode": "\\src\\pages\\journalEntryCreation\\JournalEntryCreation.jsx",
+=======
+    "\\src\\pages",
+    "\\src\\pages\\journalEntryCreation"
+  ],
+>>>>>>> c201c391f965c79385a95995e3070fac601b34c1
   "PreviewInSolutionExplorer": false
 }

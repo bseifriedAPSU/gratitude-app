@@ -1,4 +1,5 @@
-import "./journalEntryCreation.css";
+import React from 'react';
+import './journalEntryCreation.css';
 import { createNewEntry } from "./../../firebase/database.js";
 import ToggleSwitch from "../../components/ToggleSwitch";
 import React, { useState } from 'react';
@@ -22,6 +23,7 @@ export default function JournalEntryCreation() {
         setToggleValue(event.target.checked);
     };
 
+export default function JournalEntryCreation() {
     return (
         <div className="journalEntryCreation">
             <div className="journalEntryContainer">
@@ -29,7 +31,9 @@ export default function JournalEntryCreation() {
                 <div className="entryInput">
                     <label> Title:</label>
                     <input
+                        type="text"
                         placeholder="Title..."
+                    />
                         value={headlineContent}
                         onChange={handleHeadlineChange}
                     /> 
@@ -38,10 +42,14 @@ export default function JournalEntryCreation() {
                     <label> Entry:</label>
                     <textarea
                         placeholder="Entry..."
+                    />
                         value={textAreaContent}
                         onChange={handleTextAreaChange}
                     />
                 </div>
+                <button onClick={createNewEntry("jscott72", "Headline", "Content", true)}>Submit Post</button>
+                <div className="toggleSwitch">
+                    <ToggleSwitch />
                 <button onClick={() => createNewEntry(headlineContent, textAreaContent, toggleValue)}>Submit Post</button>
                 <div classname="toggleSwitch">
                     <ToggleSwitch
@@ -51,9 +59,5 @@ export default function JournalEntryCreation() {
                 </div>
             </div>
         </div>
-
-    )
+    );
 }
-
-       
-   

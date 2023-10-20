@@ -1,73 +1,58 @@
+
 .journalEntryCreation {
-  width: 100%;
-  height: calc(100vh - 80px);
-  display: grid;
-  place-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
 }
 
 .journalEntryContainer {
-    width: 500px;
-    height: auto;
+    background-color: #fff;
     padding: 20px;
-   
-    border: outset;
-    border-radius: 12px;
-    border-color: black;
-    color: black;
-    display: flex;
-    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    width: 100%;
 }
 
-.journalEntryContainer h1 {
-  text-align: center;
+    .journalEntryContainer h1 {
+        color: #333;
+        font-size: 1.5rem;
+    }
+
+.entryInput {
+    margin: 10px 0;
 }
 
-.journalEntryContainer label {
-  font-size: 25px;
-}
-.journalEntryContainer .entryInput {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
+label {
+    color: #333;
 }
 
-.entryInput input,
-.entryInput textarea {
-  font-size: 18px;
-  border: inset;
-  border-radius: 2px;
-  padding: 5px;
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-size: 1rem;
 }
 
-.entryInput input {
-  height: 40px;
-}
-.entryInput textarea {
-  height: 150px;
-}
-.visabilitySwitch {
-    justify-content: flex-end;
-    margin-top: 20px;
-    width: 150px;
-    height: 40px;
-    border: outset;
+button {
+    background-color: #666;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
-}
-.journalEntryContainer button {
-    margin-top: 20px;
-    width: 150px;
-    height: 40px;
-    border: outset;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    justify-content: flex-start;
+    font-size: 1rem;
 }
 
+    button:hover {
+        background-color: #444;
+    }
 
-input,
-textarea {
-  margin-top: 5px;
+.toggleSwitch {
+    margin-top: 10px;
 }
