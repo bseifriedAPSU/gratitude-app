@@ -21,31 +21,20 @@ const db = getDatabase(app);//initialize the firebase database
 const provider = new GoogleAuthProvider(app);
 const user = undefined;
 
-function signIn() {
-    signInWithRedirect(auth, provider).then((result) => {
-        user = result.user;
-        
-    });
-}
-
-
-function handleCredentialResponse(response) {
-    // Build Firebase credential with the Google ID token.
-    const idToken = response.credential;
-    const credential = GoogleAuthProvider.credential(idToken);
-    alert("TEST");
-
-    // Sign in with credential from the Google user.
-    signInWithCredential(auth, credential).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The credential that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-    });
+export function signIn() {
+    signInWithRedirect(auth, provider);
+    getRedirectResult(auth)
+        .then((result) => {
+            if (result.user) {
+                window.location = "/home";
+                const user = result.user;
+                alert(`user is signed in ${user.email}`);
+            } else {
+                alert(`no user signed in`);
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
 }
 
 function time() {
@@ -124,7 +113,7 @@ function time() {
         case 12:
             Month = "December"
             break;
-        default: 
+        default:
             Month = "unknown month"
     }
 
@@ -161,8 +150,4 @@ export function signOutOfAccount() {
     }).catch((error) => {
         alert("There was an error signing out");
     });
-}
-
-export function firebaseAuthentication() {
-    signIn();
 }
