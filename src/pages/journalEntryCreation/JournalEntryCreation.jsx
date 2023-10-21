@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './journalEntryCreation.css';
 import { createNewEntry } from "./../../firebase/database.js";
 import ToggleSwitch from "../../components/ToggleSwitch";
-import React, { useState } from 'react';
 
 export default function JournalEntryCreation() {
     const [textAreaContent, setTextAreaContent] = useState('');
@@ -17,13 +16,22 @@ export default function JournalEntryCreation() {
         setHeadlineContent(event.target.value);
     };
 
-    const [toggleValue, setToggleValue] = useState(false);
+    const [toggleState, setToggleState] = useState(false);
 
-    const handleToggleChange = (event) => {
-        setToggleValue(event.target.checked);
+    const handleToggle = (isChecked) => {
+        setToggleState(isChecked);
     };
 
-export default function JournalEntryCreation() {
+    const handleButtonClick = () => {
+        if (toggleState) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var visibility = handleButtonClick();
+
     return (
         <div className="journalEntryCreation">
             <div className="journalEntryContainer">
@@ -33,30 +41,24 @@ export default function JournalEntryCreation() {
                     <input
                         type="text"
                         placeholder="Title..."
-                    />
                         value={headlineContent}
                         onChange={handleHeadlineChange}
-                    /> 
+                        maxLength={100}
+                    />
                 </div>
                 <div className="entryInput">
                     <label> Entry:</label>
                     <textarea
                         placeholder="Entry..."
-                    />
                         value={textAreaContent}
                         onChange={handleTextAreaChange}
+                        maxLength={1000}
                     />
                 </div>
-                <button onClick={createNewEntry("jscott72", "Headline", "Content", true)}>Submit Post</button>
-                <div className="toggleSwitch">
-                    <ToggleSwitch />
-                <button onClick={() => createNewEntry(headlineContent, textAreaContent, toggleValue)}>Submit Post</button>
                 <div classname="toggleSwitch">
-                    <ToggleSwitch
-                        value={toggleValue}
-                        onChange={handleToggleChange}
-                    />
+                    <ToggleSwitch onToggle={handleToggle}/>
                 </div>
+                <button onClick={() => createNewEntry(headlineContent, textAreaContent, visibility)}>Submit Post</button>
             </div>
         </div>
     );

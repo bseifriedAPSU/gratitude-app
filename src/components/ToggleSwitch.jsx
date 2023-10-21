@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import ReactSwitch from 'react-switch';
 
-function ToggleSwitch() {
-    const [checked, setChecked] = useState(true);
+function ToggleSwitch({ onToggle }) {
+    const [checked, setChecked] = useState(false);
 
-    const handleChange = val => {
-        setChecked(val)
-    }
+    const handleToggle = () => {
+        setChecked(!checked)
+    };
+
+    onToggle(checked);
 
     return (
         <div className="toggleSwitch" style={{ textAlign: "right" }}>
             <h4>Public?</h4>
             <ReactSwitch
+                type="checkbox"
                 checked={checked}
-                onChange={handleChange}
+                onChange={handleToggle}
             />
         </div>
     );
