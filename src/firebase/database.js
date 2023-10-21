@@ -54,7 +54,7 @@ function time() {
     const month = now.getMonth() + 1;
     const dayOfMonth = now.getDate();
     const dayOfWeek = now.getDay();
-    const hour = now.getHours();
+    var hour = now.getHours();
     const minutes = now.getMinutes();
     const seconds = now.getSeconds();
 
@@ -128,15 +128,30 @@ function time() {
             Month = "unknown month"
     }
 
-    return `${day}, ${Month} ${dayOfMonth}, ${hour}:${minutes}, ${year}`
+    var ampm = hour >= 12 ? 'pm' : 'am';
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+
+    return `${day}, ${Month} ${dayOfMonth}, ${hour}:${minutes} ${ampm}, ${year}`
 }
-export function createNewEntry(email, headline, content, visibility) {
+
+export function createNewEntry(headline, content, visibility) {
     var date = time();
-    set(ref(db, "users/" + email + "/posts/" + date), {
+    set(ref(db, "users/" + "jscott72" + "/posts/" + date), {
         Headline: headline,
         content: content,
         visibility: visibility
-    });
+    })
+        .then(() => {
+            alert("Journal entry successfully created.");
+        })
+        .catch((error) => {
+            alert("Error creating the journal entry.");
+        })
+}
+
+export function deleteJournalEntry(email, date) {
+    remove(ref(db, "users/" + email + "/posts/" + date));
 }
 
 export function signOutOfAccount() {
