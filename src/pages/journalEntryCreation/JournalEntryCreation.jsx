@@ -16,11 +16,21 @@ export default function JournalEntryCreation() {
         setHeadlineContent(event.target.value);
     };
 
-    const [toggleValue, setToggleValue] = useState(false);
+    const [toggleState, setToggleState] = useState(false);
 
-    const handleToggleChange = (event) => {
-        setToggleValue(event.target.checked);
+    const handleToggle = (isChecked) => {
+        setToggleState(isChecked);
     };
+
+    const handleButtonClick = () => {
+        if (toggleState) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    var visibility = handleButtonClick();
 
     return (
         <div className="journalEntryCreation">
@@ -33,6 +43,7 @@ export default function JournalEntryCreation() {
                         placeholder="Title..."
                         value={headlineContent}
                         onChange={handleHeadlineChange}
+                        maxLength={100}
                     />
                 </div>
                 <div className="entryInput">
@@ -41,15 +52,13 @@ export default function JournalEntryCreation() {
                         placeholder="Entry..."
                         value={textAreaContent}
                         onChange={handleTextAreaChange}
+                        maxLength={1000}
                     />
                 </div>
-                <button onClick={() => createNewEntry(headlineContent, textAreaContent, toggleValue)}>Submit Post</button>
                 <div classname="toggleSwitch">
-                    <ToggleSwitch
-                        value={toggleValue}
-                        onChange={handleToggleChange}
-                    />
+                    <ToggleSwitch onToggle={handleToggle}/>
                 </div>
+                <button onClick={() => createNewEntry(headlineContent, textAreaContent, visibility)}>Submit Post</button>
             </div>
         </div>
     );

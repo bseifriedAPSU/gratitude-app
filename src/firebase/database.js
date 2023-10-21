@@ -55,7 +55,7 @@ function time() {
     const dayOfMonth = now.getDate();
     const dayOfWeek = now.getDay();
     var hour = now.getHours();
-    const minutes = now.getMinutes();
+    const minutes = String(now.getMinutes()).padStart(2, "0");;
     const seconds = now.getSeconds();
 
     var day;
@@ -143,10 +143,10 @@ export function createNewEntry(headline, content, visibility) {
         visibility: visibility
     })
         .then(() => {
-            alert("Journal entry successfully created.");
+
         })
         .catch((error) => {
-            alert("Error creating the journal entry.");
+
         })
 }
 
