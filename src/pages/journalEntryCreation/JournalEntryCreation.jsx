@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './journalEntryCreation.css';
 import { createNewEntry } from "./../../firebase/database.js";
 import ToggleSwitch from "../../components/ToggleSwitch";
+import JournalPrompts from '../../components/JournalPrompts';
 
 export default function JournalEntryCreation() {
     const [textAreaContent, setTextAreaContent] = useState('');
@@ -35,7 +36,9 @@ export default function JournalEntryCreation() {
     return (
         <div className="journalEntryCreation">
             <div className="journalEntryContainer">
+            
                 <h1>Create A Journal Entry</h1>
+                <JournalPrompts />
                 <div className="entryInput">
                     <label> Title:</label>
                     <input

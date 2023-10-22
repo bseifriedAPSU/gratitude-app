@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\src",
-    "\\src\\pages"
+    "\\src\\pages",
+    "\\src\\pages\\community",
+    "\\src\\pages\\home"
   ],
   "PreviewInSolutionExplorer": false
 }

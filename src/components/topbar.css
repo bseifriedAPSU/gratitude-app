@@ -11,18 +11,20 @@
     margin:auto;
 }
 
-.leftList {
-    display: flex;
-    justify-content: left;
-    margin-left: 10px;
-    padding: 0;
-    list-style: none;
+.userInfo {
+    display: flex; 
+    align-items: center; 
+    padding: 10px; 
 }
-.leftListItem {
-    margin-right: 20px;
-    font-size: 18px;
-    font-weight: 300;
-    cursor: pointer;
+
+.userBannerImage {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px; 
+}
+
+.userInfoUsername {
+    font-size: 24px;
 }
 
 .topList{
@@ -38,23 +40,5 @@
     font-size: 18px;
     font-weight:300;
     cursor: pointer;
-
-
-
-}
-.avatarImage{
-    font-size: 30px;
-    margin-left: 10px;
-    
 }
 
-.userName {
-  
-    margin-left: 60px;
-   
-}
-
-.userInfo{
-    border: 5px solid black;
-    background-color: whitesmoke;
-}

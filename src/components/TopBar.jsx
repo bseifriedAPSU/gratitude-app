@@ -6,18 +6,15 @@ export default function TopBar() {
     return (
         <div className="top">
             <div className="topLeft">
-                {/*Place Holder for User Avatart Images*/}
-                <div classname="UserInfo">
-                <ul className="leftList">
-                   
-                    <li className="leftListItem"><i className="avatarImage fa-solid fa-user-astronaut"></i></li>
-                    <li className="leftListItem">Username</li>
-            
-                    </ul>
+              
+                <div className="userInfo">
+                   <img className="userBannerImage" src="images/manAvatar1.png" alt="Dude" />
+                    <div className="userInfoUsername">Username</div>
                 </div>
             </div>
             
             <div className="topCenter">  
+            
            
 
             </div>
