@@ -6,7 +6,7 @@ export default function UserSettings() {
             <label>Choose an Avatar Image</label>
 
             <div className="UserImage">
-                <img src="images/manAvatar1.png" alt="Dude" />
+                <img src="images/avatarImage1.png" alt="UserImage" />
             </div>
 
             <label>Choose User Name</label>

@@ -1,5 +1,4 @@
 import Home from "./pages/home/Home";
-//import TopBar from "./components/TopBar"
 import Community from "./pages/community/Community";
 import Settings from "./pages/settings/Settings";
 import Resources from "./pages/resources/Resources";

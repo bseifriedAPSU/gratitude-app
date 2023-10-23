@@ -1,0 +1,11 @@
+.promptContainer {
+    display: flex;
+    align-items: center;
+    margin:25px
+}
+
+.currentPrompt {
+    flex: 1; /* Allow the currentPrompt to expand to fill available space */
+    font-size: 18px;
+}
+

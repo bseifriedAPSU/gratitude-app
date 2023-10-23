@@ -2,7 +2,6 @@
 .home {
     text-align: center;
     padding: 20px;
-    background-color: #f5f5f5; 
 }
 
 button {
@@ -21,7 +20,7 @@ button {
     }
 
 .homeSearchBar {
-    width: 100%;
+    width: 80%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -39,8 +38,7 @@ li {
     color: #333; 
     font-size: 1rem;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+   
     padding: 10px;
     background-color: #fff; 
 }
