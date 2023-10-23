@@ -29,6 +29,7 @@ export function signIn() {
                 window.location = "/home";
                 const user = result.user;
                 alert(`user is signed in ${user.email}`);
+                 
             } else {
                 alert(`no user signed in`);
             }
@@ -121,7 +122,7 @@ function time() {
     hour = hour % 12;
     hour = hour ? hour : 12;
 
-    return `${day}, ${Month} ${dayOfMonth}, ${hour}:${minutes} ${ampm}, ${year}`
+    return `${day}, ${Month} ${dayOfMonth}, ${hour}:${minutes} ${ampm}, ${year}`;
 }
 
 export function createNewEntry(headline, content, visibility) {
@@ -132,11 +133,23 @@ export function createNewEntry(headline, content, visibility) {
         visibility: visibility
     })
         .then(() => {
-
+            alert("Entry successfully created");
         })
         .catch((error) => {
 
         })
+}
+
+function getEntryDates() {
+    var dates = [];
+    const databaseRef = ref(db, "users/jscott72/posts");
+    databaseRef.once('value').then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            dates.push(childData);
+        });
+    });
+    return dates;
 }
 
 export function deleteJournalEntry(email, date) {
