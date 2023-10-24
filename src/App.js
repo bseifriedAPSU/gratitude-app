@@ -5,7 +5,7 @@ import Resources from "./pages/resources/Resources";
 import History from "./pages/history/History";
 import Login from "./pages/login/Login";
 import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreation";
-import FilteredResults from "./pages/filteredResults/FilteredResults";
+import SearchResults from "./pages/searchResults/SearchResults";
 import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
 import NewUser from "./pages/newUser/NewUser";
 import Nav from "./components/Nav";
@@ -35,7 +35,7 @@ function App() {
                 <Route path="/history" element={<History />} />
                 <Route path="/journalEntryCreation" element={<JournalEntryCreation />} />
                 <Route path="/journalEntryView" element={<JournalEntryView />} />
-                <Route path="/filteredResults" element={<FilteredResults />} />
+                <Route path="/searchResults" element={<SearchResults />} />
                 <Route path="/newUser" element={<NewUser />} />
 
                
