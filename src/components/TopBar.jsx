@@ -13,7 +13,10 @@ export default function TopBar() {
                 </div>
             </div>
             
-            <div className="topCenter">  
+            <div className="topCenter"> 
+            <div className="topCenter-flex-container">
+                    <h2>Gratitude++</h2>
+                </div>
             </div>
             <div className="topRight"><Nav /></div>
           

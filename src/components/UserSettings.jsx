@@ -1,4 +1,4 @@
-import "./userSettings.css"
+import "./userSettings.css";
 
 export default function UserSettings() {
     return (

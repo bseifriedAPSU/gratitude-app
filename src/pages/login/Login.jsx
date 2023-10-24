@@ -1,12 +1,13 @@
 import "./login.css"
 import { firebaseAuthentication } from "./../../firebase/database.js"
 
+import Header from "../../components/Header"
 export default function Login() {
 
     return (
         <div className="login">
 
-            <h1>Gratitude++ Journal</h1>
+            <Header />
         
             <button className="login-with-google-btn" onClick={firebaseAuthentication}>
                 Sign in with Google
