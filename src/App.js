@@ -29,7 +29,7 @@ function App() {
     return (
 
         
-        // using isAuth to control visiblity of routes
+       
         <Router>
                  <TopBar />
             <Routes>

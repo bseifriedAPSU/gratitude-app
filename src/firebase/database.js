@@ -156,7 +156,7 @@ export function deleteJournalEntry(email, date) {
 export function signOutOfAccount() {
     signOut(auth).then(() => {
         alert("Sign out successful");
-        window.location = "/login";
+        window.location = "/";
         
     }).catch((error) => {
         alert("There was an error signing out");
