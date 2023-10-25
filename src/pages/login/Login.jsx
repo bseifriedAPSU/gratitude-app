@@ -1,23 +1,24 @@
 import "./login.css"
-import React, { useState } from 'react'
-import { signIn } from "./../../firebase/database.js"
+import React, { useState, useEffect } from 'react'
+import { signIn, auth } from "./../../firebase/database.js"
 import Header from "../../components/Header"
 export default function Login() {
 
-    //const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
 
-    /*useEffect(() => {
+    useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
+            if (auth.currentUser !== null) {
                 setUser(user);
-                window.location.href = '/home';
+                window.location.href = "/home";
+
             } else {
                 setUser(null);
             }
         });
 
         return () => unsubscribe();
-    }, []);*/
+    }, []);
     
     return (
         <div className="login">
