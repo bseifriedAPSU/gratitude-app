@@ -1,9 +1,9 @@
 //import firebase app for database initialization 
 import { initializeApp } from "firebase/app";
 //import firebase database for database usage
-import { getDatabase, ref, set, remove, serverTimestamp, child } from "firebase/database";
+import { getDatabase, ref, set, remove, onValue } from "firebase/database";
 //import firebase authentication 
-import { GoogleAuthProvider, getAuth, signInWithRedirect, signInWithCredential, getRedirectResult, onAuthStateChanged, signOut } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult, signOut } from "firebase/auth";
 
 //Configure the firebase database
 const firebaseConfig = {
@@ -21,41 +21,38 @@ const db = getDatabase(app);//initialize the firebase database
 const provider = new GoogleAuthProvider(app);
 const user = undefined;
 
-function signIn() {
-    signInWithRedirect(auth, provider).then((result) => {
-        user = result.user;
-        
-    });
+export function signIn() {
+    signInWithRedirect(auth, provider);
+    getRedirectResult(auth)
+        .then((result) => {
+            if (result.user) {
+                const user = result.user;
+                console.log(`user is signed in ${user.email}`);
+                window.location = "/home";
+            } else {
+                alert(`no user signed in`);
+            }
+        }).catch((error) => {
+            console.log(error);
+        });
 }
 
-
-function handleCredentialResponse(response) {
-    // Build Firebase credential with the Google ID token.
-    const idToken = response.credential;
-    const credential = GoogleAuthProvider.credential(idToken);
-    alert("TEST");
-
-    // Sign in with credential from the Google user.
-    signInWithCredential(auth, credential).catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.email;
-        // The credential that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-    });
+function databaseEmail() {
+    var email = auth.currentUser.email;
+    var index = email.indexOf('@');
+    email = email.substring(0, index);
+    var emailLocation = email.replace(/[^A-Z0-9]/ig, "");
+    return emailLocation;
 }
 
 function time() {
     const now = new Date();
     const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const dayOfMonth = now.getDate();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const dayOfMonth = String(now.getDate()).padStart(2, "0");
     const dayOfWeek = now.getDay();
     var hour = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2, "0");;
+    const minutes = String(now.getMinutes()).padStart(2, "0");
     const seconds = now.getSeconds();
 
     var day;
@@ -124,7 +121,7 @@ function time() {
         case 12:
             Month = "December"
             break;
-        default: 
+        default:
             Month = "unknown month"
     }
 
@@ -132,23 +129,25 @@ function time() {
     hour = hour % 12;
     hour = hour ? hour : 12;
 
-    return `${day}, ${Month} ${dayOfMonth}, ${hour}:${minutes} ${ampm}, ${year}`
+    return `${month}|${dayOfMonth}|${year}, ${hour}:${minutes} ${ampm}`
 }
 
 export function createNewEntry(headline, content, visibility) {
     var date = time();
-    set(ref(db, "users/" + "jscott72" + "/posts/" + date), {
+    const userEmail = databaseEmail();
+    set(ref(db, "users/" + userEmail + "/posts/ " + date), {
         Headline: headline,
         content: content,
         visibility: visibility
     })
         .then(() => {
-
+            alert("Entry successfully created");
         })
         .catch((error) => {
 
         })
 }
+
 
 export function deleteJournalEntry(email, date) {
     remove(ref(db, "users/" + email + "/posts/" + date));

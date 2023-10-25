@@ -10,6 +10,7 @@ export default function Home() {
     return (
         <div className="home">  
             <Wordcloud />
+
             <button onClick={() => navigate('/journalEntryCreation')}>Create New Journal Entry Button</button>
             <HomeArticlesSearch />     
         </div>
