@@ -1,6 +1,6 @@
 
 .header{
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
 .headerAppTitle{
@@ -8,4 +8,5 @@
     flex-direction: column;
     align-items: center;
     font-size: 30px;
+    margin: 30px;
 }
