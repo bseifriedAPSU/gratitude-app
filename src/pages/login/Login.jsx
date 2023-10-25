@@ -1,12 +1,8 @@
 import "./login.css"
 import React, { useState } from 'react'
-import { firebaseAuthentication } from "./../../firebase/database.js"
+import { signIn } from "./../../firebase/database.js"
 import Header from "../../components/Header"
 export default function Login() {
-
-    const googleSignIn = () => {
-        signInWithRedirect(auth, provider);
-    };
 
     //const [user, setUser] = useState(null);
 
@@ -28,7 +24,7 @@ export default function Login() {
 
             <Header />
         
-            <button className="login-with-google-btn" onClick={googleSignIn}>
+            <button className="login-with-google-btn" onClick={signIn}>
                 Sign in with Google
             </button>
 
