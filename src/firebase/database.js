@@ -48,7 +48,7 @@ function databaseEmail() {
 function time() {
     const now = new Date();
     const year = now.getFullYear();
-    const month = String(now.getMonth() + 1);
+    const month = now.getMonth() + 1;
     const dayOfMonth = String(now.getDate()).padStart(2, "0");
     const dayOfWeek = now.getDay();
     var hour = now.getHours();
