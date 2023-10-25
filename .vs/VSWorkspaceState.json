@@ -1,11 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\components",
-    "\\src\\pages",
-    "\\src\\pages\\home"
+    "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\components\\wordcloud.css",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }
