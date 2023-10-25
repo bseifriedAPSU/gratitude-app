@@ -1,8 +1,6 @@
 import "./login.css"
-import React, { useEffect, useState } from 'react'
-import { signIn, auth, provider } from "./../../firebase/database.js"
-import { onAuthStateChanged, signInWithRedirect } from 'firebase/auth'
-
+import React, { useState } from 'react'
+import { firebaseAuthentication } from "./../../firebase/database.js"
 import Header from "../../components/Header"
 export default function Login() {
 

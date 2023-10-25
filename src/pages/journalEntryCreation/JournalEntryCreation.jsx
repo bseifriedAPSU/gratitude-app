@@ -58,7 +58,7 @@ export default function JournalEntryCreation() {
                         maxLength={1000}
                     />
                 </div>
-                <div classname="toggleSwitch">
+                <div className="toggleSwitch">
                     <ToggleSwitch onToggle={handleToggle}/>
                 </div>
                 <button onClick={() => createNewEntry(headlineContent, textAreaContent, visibility)}>Submit Post</button>

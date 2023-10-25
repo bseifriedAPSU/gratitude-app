@@ -157,9 +157,13 @@ export function signOutOfAccount() {
     signOut(auth).then(() => {
         alert("Sign out successful");
         window.location = "/login";
-        //localStorage.setIsAuth(false);
+        
     }).catch((error) => {
         alert("There was an error signing out");
     });
 }
 
+export function firebaseAuthentication() {
+    signIn();
+    
+}
