@@ -9,9 +9,10 @@ export default function Login() {
 
             <Header />
         
-            <button className="login-with-google-btn" onClick={firebaseAuthentication}>
+            <button className="login-with-google-btn" onClick={firebaseAuthentication() }>
                 Sign in with Google
             </button>
+
         </div>
 
     )

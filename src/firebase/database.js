@@ -157,7 +157,8 @@ export function deleteJournalEntry(email, date) {
 export function signOutOfAccount() {
     signOut(auth).then(() => {
         alert("Sign out successful");
-        window.location = "/";
+        window.location = "/login";
+        //localStorage.setIsAuth(false);
     }).catch((error) => {
         alert("There was an error signing out");
     });
@@ -165,4 +166,5 @@ export function signOutOfAccount() {
 
 export function firebaseAuthentication() {
     signIn();
+    localStorage.setIsAuth(true);
 }
