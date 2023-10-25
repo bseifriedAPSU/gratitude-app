@@ -16,9 +16,9 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);//initialization of the firebase app 
-const auth = getAuth(app);//initialization of the firebase authentication
+export const auth = getAuth(app);//initialization of the firebase authentication
 const db = getDatabase(app);//initialize the firebase database
-const provider = new GoogleAuthProvider(app);
+export const provider = new GoogleAuthProvider(app);
 const user = undefined;
 
 export function signIn() {
@@ -163,7 +163,3 @@ export function signOutOfAccount() {
     });
 }
 
-export function firebaseAuthentication() {
-    signIn();
-    localStorage.setIsAuth(true);
-}
