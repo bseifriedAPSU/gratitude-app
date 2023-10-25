@@ -1,9 +1,9 @@
 //import firebase app for database initialization 
 import { initializeApp } from "firebase/app";
 //import firebase database for database usage
-import { getDatabase, ref, set, remove, serverTimestamp, child } from "firebase/database";
+import { getDatabase, ref, set, remove, onValue } from "firebase/database";
 //import firebase authentication 
-import { GoogleAuthProvider, getAuth, signInWithRedirect, signInWithCredential, getRedirectResult, onAuthStateChanged, signOut } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult, signOut } from "firebase/auth";
 
 //Configure the firebase database
 const firebaseConfig = {
@@ -26,10 +26,9 @@ export function signIn() {
     getRedirectResult(auth)
         .then((result) => {
             if (result.user) {
-                window.location = "/home";
                 const user = result.user;
-                alert(`user is signed in ${user.email}`);
-                 
+                console.log(`user is signed in ${user.email}`);
+                window.location = "/home";
             } else {
                 alert(`no user signed in`);
             }
@@ -38,14 +37,22 @@ export function signIn() {
         });
 }
 
+function databaseEmail() {
+    var email = auth.currentUser.email;
+    var index = email.indexOf('@');
+    email = email.substring(0, index);
+    var emailLocation = email.replace(/[^A-Z0-9]/ig, "");
+    return emailLocation;
+}
+
 function time() {
     const now = new Date();
     const year = now.getFullYear();
-    const month = now.getMonth() + 1;
-    const dayOfMonth = now.getDate();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const dayOfMonth = String(now.getDate()).padStart(2, "0");
     const dayOfWeek = now.getDay();
     var hour = now.getHours();
-    const minutes = String(now.getMinutes()).padStart(2, "0");;
+    const minutes = String(now.getMinutes()).padStart(2, "0");
     const seconds = now.getSeconds();
 
     var day;
@@ -122,12 +129,13 @@ function time() {
     hour = hour % 12;
     hour = hour ? hour : 12;
 
-    return `${day}, ${Month} ${dayOfMonth}, ${hour}:${minutes} ${ampm}, ${year}`;
+    return `${month}|${dayOfMonth}|${year}, ${hour}:${minutes} ${ampm}`
 }
 
 export function createNewEntry(headline, content, visibility) {
     var date = time();
-    set(ref(db, "users/" + "jscott72" + "/posts/" + date), {
+    const userEmail = databaseEmail();
+    set(ref(db, "users/" + userEmail + "/posts/ " + date), {
         Headline: headline,
         content: content,
         visibility: visibility
@@ -140,17 +148,6 @@ export function createNewEntry(headline, content, visibility) {
         })
 }
 
-function getEntryDates() {
-    var dates = [];
-    const databaseRef = ref(db, "users/jscott72/posts");
-    databaseRef.once('value').then((snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-            dates.push(childData);
-        });
-    });
-    return dates;
-}
 
 export function deleteJournalEntry(email, date) {
     remove(ref(db, "users/" + email + "/posts/" + date));
