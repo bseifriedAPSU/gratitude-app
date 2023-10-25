@@ -1,7 +1,7 @@
 //import firebase app for database initialization 
 import { initializeApp } from "firebase/app";
 //import firebase database for database usage
-import { getDatabase, ref, set, remove, onValue } from "firebase/database";
+import { getDatabase, ref, push, remove, onValue } from "firebase/database";
 //import firebase authentication 
 import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult, signOut } from "firebase/auth";
 
@@ -16,9 +16,9 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);//initialization of the firebase app 
-const auth = getAuth(app);//initialization of the firebase authentication
+export const auth = getAuth(app);//initialization of the firebase authentication
 const db = getDatabase(app);//initialize the firebase database
-const provider = new GoogleAuthProvider(app);
+export const provider = new GoogleAuthProvider(app);
 const user = undefined;
 
 export function signIn() {
@@ -48,7 +48,7 @@ function databaseEmail() {
 function time() {
     const now = new Date();
     const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const month = now.getMonth() + 1;
     const dayOfMonth = String(now.getDate()).padStart(2, "0");
     const dayOfWeek = now.getDay();
     var hour = now.getHours();
@@ -128,14 +128,16 @@ function time() {
     var ampm = hour >= 12 ? 'pm' : 'am';
     hour = hour % 12;
     hour = hour ? hour : 12;
+    Month = Month.padStart(2, "0");
 
-    return `${month}|${dayOfMonth}|${year}, ${hour}:${minutes} ${ampm}`
+    return `${day}, ${Month} ${dayOfMonth}, ${year}, ${hour}:${minutes} ${ampm}`
 }
 
 export function createNewEntry(headline, content, visibility) {
     var date = time();
     const userEmail = databaseEmail();
-    set(ref(db, "users/" + userEmail + "/posts/ " + date), {
+    const newPost = push(ref(db, "users/" + userEmail + "/posts"), {
+        date: date,
         Headline: headline,
         content: content,
         visibility: visibility
@@ -146,6 +148,7 @@ export function createNewEntry(headline, content, visibility) {
         .catch((error) => {
 
         })
+    console.log(newPost.key)
 }
 
 
