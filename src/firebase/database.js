@@ -1,48 +1,12 @@
-//import firebase app for database initialization 
-import { initializeApp } from "firebase/app";
-//import firebase database for database usage
-import { getDatabase, ref, push, remove, onValue } from "firebase/database";
-//import firebase authentication 
-import { GoogleAuthProvider, getAuth, signInWithRedirect, getRedirectResult, signOut } from "firebase/auth";
+import { auth, provider, db } from "./firebaseConfig";
+import { signInWithRedirect, signOut } from 'firebase/auth';
+import { push, ref, query, limitToLast, remove, onValue, equalTo, endBefore, startAt, endAt } from 'firebase/database';
 
-//Configure the firebase database
-const firebaseConfig = {
-    apiKey: "AIzaSyD22sZN5BsAKhr966RjHkz_jH1w0gtGiJg",
-    authDomain: "database-test-626d7.firebaseapp.com",
-    projectId: "database-test-626d7",
-    storageBucket: "database-test-626d7.appspot.com",
-    messagingSenderId: "521254194277",
-    appId: "1:521254194277:web:4b1f24147456d8e1e3ca8c",
-};
 
-const app = initializeApp(firebaseConfig);//initialization of the firebase app 
-export const auth = getAuth(app);//initialization of the firebase authentication
-const db = getDatabase(app);//initialize the firebase database
-export const provider = new GoogleAuthProvider(app);
 const user = undefined;
 
 export function signIn() {
     signInWithRedirect(auth, provider);
-    getRedirectResult(auth)
-        .then((result) => {
-            if (result.user) {
-                const user = result.user;
-                console.log(`user is signed in ${user.email}`);
-                window.location = "/home";
-            } else {
-                alert(`no user signed in`);
-            }
-        }).catch((error) => {
-            console.log(error);
-        });
-}
-
-function databaseEmail() {
-    var email = auth.currentUser.email;
-    var index = email.indexOf('@');
-    email = email.substring(0, index);
-    var emailLocation = email.replace(/[^A-Z0-9]/ig, "");
-    return emailLocation;
 }
 
 function time() {
@@ -135,8 +99,8 @@ function time() {
 
 export function createNewEntry(headline, content, visibility) {
     var date = time();
-    const userEmail = databaseEmail();
-    const newPost = push(ref(db, "users/" + userEmail + "/posts"), {
+    const userId = auth.currentUser.uid;
+    const newPost = push(ref(db, "users/" + userId + "/posts"), {
         date: date,
         Headline: headline,
         content: content,
@@ -148,9 +112,24 @@ export function createNewEntry(headline, content, visibility) {
         .catch((error) => {
 
         })
-    console.log(newPost.key)
 }
 
+export function homepageJournalList(userId) {
+        var data = [];
+        const dbRef = query(ref(db, 'users/' + userId + '/posts'), limitToLast(5));
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+
+                if (childData && childData.Headline && childData.date) {
+                    const { Headline, date } = childData;
+                    data.push("Testing the Headline " + Headline + "   *****   Testing the date " + date);
+                }
+            })
+        })
+        return data;
+    
+}
 
 export function deleteJournalEntry(email, date) {
     remove(ref(db, "users/" + email + "/posts/" + date));
