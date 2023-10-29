@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { push, ref, query, limitToLast, remove, onValue, equalTo, endBefore, startAt, endAt } from 'firebase/database';
+import { push, ref, query, limitToLast, remove, onValue, orderByChild, equalTo } from 'firebase/database';
 
 
 const user = undefined;
@@ -17,7 +17,6 @@ function time() {
     const dayOfWeek = now.getDay();
     var hour = now.getHours();
     const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = now.getSeconds();
 
     var day;
     var Month;
@@ -97,10 +96,45 @@ function time() {
     return `${day}, ${Month} ${dayOfMonth}, ${year}, ${hour}:${minutes} ${ampm}`
 }
 
+function getUserReferenceLocation(username) {
+    const userRef = ref(db, 'users')
+
+    onValue(userRef, (snapshot) => {
+        if (snapshot.exists()) {
+            snapshot.forEach((userSnapshot) => {
+                const userData = userSnapshot.val();
+                if (userData && userData.Username === username) {
+                    const userKey = userSnapshot.key;
+                    return userKey;
+                }
+            })
+        } else {
+            console.log("username not found");
+        }
+    })  
+}
+
+function displayCommunityEntry(username, date){
+    const userLocation = getUserReferenceLocation(username);
+    const dbRef = ref(db, 'users/' + userLocation + '/posts');
+
+    onValue(dbRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+
+            if (childData && childData.date === date) {
+                const { content } = childData;
+                return content;
+            }
+        })
+    })
+}
+
 export function createNewEntry(headline, content, visibility) {
     var date = time();
     const userId = auth.currentUser.uid;
-    const newPost = push(ref(db, "users/" + userId + "/posts"), {
+    
+    push(ref(db, "users/" + userId + "/posts"), {
         date: date,
         Headline: headline,
         content: content,
@@ -108,6 +142,12 @@ export function createNewEntry(headline, content, visibility) {
     })
         .then(() => {
             alert("Entry successfully created");
+            if (visibility === true) {
+                push(ref(db, 'community/posts'), {
+                    date: date,
+                    Headline: headline
+                });
+            }
         })
         .catch((error) => {
 
@@ -127,12 +167,24 @@ export function homepageJournalList(userId) {
                 }
             })
         })
-        return data;
-    
+        return data;   
 }
 
-export function deleteJournalEntry(email, date) {
-    remove(ref(db, "users/" + email + "/posts/" + date));
+export function communityPageDisplay() {
+    var posts = [];
+    const dbRef = query(ref(db, 'community/posts'), limitToLast(5));
+    onValue(dbRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+
+            const { Headline, date } = childData;
+            posts.push("Headline: " + Headline + " | Username: Jscott" + " | Date: " + date);
+        })
+    });
+    return posts;
+};
+
+export function deleteJournalEntry() {
 }
 
 export function signOutOfAccount() {
@@ -145,7 +197,3 @@ export function signOutOfAccount() {
     });
 }
 
-export function firebaseAuthentication() {
-    signIn();
-    
-}

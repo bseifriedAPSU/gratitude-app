@@ -1,5 +1,8 @@
-
+import React from 'react'
+import { communityPageDisplay } from '../firebase/database'
 export default function CommunityArticlesSearch() { 
+
+    var list = communityPageDisplay().reverse();
 
     return (
     <>
@@ -7,12 +10,9 @@ export default function CommunityArticlesSearch() {
                 placeholder="Community Search Bar..."
                     /*on change HERE*/ />
             <ol>
-                <li>DATE : USERNAME : HEADLINE </li>
-                <li>DATE : USERNAME : HEADLINE </li>
-                <li>DATE : USERNAME : HEADLINE </li>
-                <li>DATE : USERNAME : HEADLINE </li>
-                <li>DATE : USERNAME : HEADLINE </li>
-
+                {list.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
             </ol>
         </>
 )
