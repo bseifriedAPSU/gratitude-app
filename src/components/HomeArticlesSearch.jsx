@@ -1,16 +1,24 @@
 import "./homeArticlesSearch.css";
-export default function HomeArticlesSearch() {
+import React, { useEffect, useState } from 'react'
+import { homepageJournalList } from '../firebase/database'
 
-    return (
-        <>
-        <input className="homeSearchBar" placeholder="Home Page Search Bar..." /*on change HERE*/ />
-            <ul>
-                <li>DATE : HEADLINE</li>
-                <li>DATE : HEADLINE</li>
-                <li>DATE : HEADLINE</li>
-                <li>DATE : HEADLINE</li>
-                <li>DATE : HEADLINE</li>
-            </ul>
-        </>
-    )
+export default function HomeArticlesSearch() {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+            const uid = localStorage.getItem('uid');
+            setItems(homepageJournalList(uid).reverse());
+    }, []);
+
+        return (
+            <>
+                <input className="homeSearchBar" placeholder="Home Page Search Bar..." /*on change HERE*/ />
+                <ul>
+                    {items.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+            </>
+        )
+    
 }

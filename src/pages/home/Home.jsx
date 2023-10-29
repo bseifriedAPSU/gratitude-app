@@ -7,11 +7,13 @@ import "./home.css";
 export default function Home() {
     const navigate = useNavigate();
 
+    
     return (
         <div className="home">  
             <Wordcloud />
 
             <button onClick={() => navigate('/journalEntryCreation')}>Create New Journal Entry Button</button>
+
             <HomeArticlesSearch />     
         </div>
     );

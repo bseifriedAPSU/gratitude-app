@@ -1,6 +1,7 @@
 import "./login.css"
 import React, { useState, useEffect } from 'react'
-import { signIn, auth } from "./../../firebase/database.js"
+import { signIn } from "./../../firebase/database.js"
+import { auth } from './../../firebase/firebaseConfig.js'
 import Header from "../../components/Header"
 export default function Login() {
 
@@ -8,8 +9,9 @@ export default function Login() {
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (auth.currentUser !== null) {
+            if (user) {
                 setUser(user);
+                localStorage.setItem('uid', auth.currentUser.uid);
                 window.location.href = "/home";
 
             } else {
@@ -17,19 +19,19 @@ export default function Login() {
             }
         });
 
-        return () => unsubscribe();
-    }, []);
-    
-    return (
-        <div className="login">
+    return () => unsubscribe();
+}, []);
 
-            <Header />
-        
-            <button className="login-with-google-btn" onClick={signIn}>
-                Sign in with Google
-            </button>
+return (
+    <div className="login">
 
-        </div>
+        <Header />
 
-    )
+        <button className="login-with-google-btn" onClick={signIn}>
+            Sign in with Google
+        </button>
+
+    </div>
+
+)
     }
