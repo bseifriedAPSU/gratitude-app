@@ -4,8 +4,10 @@
     margin:25px
 }
 
+
+
 .currentPrompt {
-    flex: 1; /* Allow the currentPrompt to expand to fill available space */
+    flex: 1; 
     font-size: 18px;
 }
 

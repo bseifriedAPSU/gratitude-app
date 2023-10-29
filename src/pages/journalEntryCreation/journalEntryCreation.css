@@ -59,3 +59,8 @@ button {
     margin-top: 10px;
 }
 
+.saveConfirmed {
+    display: flex;
+    align-items: center;
+    margin: 25px
+}
