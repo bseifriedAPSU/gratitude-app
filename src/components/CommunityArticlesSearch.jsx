@@ -3,6 +3,7 @@ import { communityPageDisplay } from '../firebase/database'
 export default function CommunityArticlesSearch() { 
 
     var list = communityPageDisplay().reverse();
+    console.log(list);
 
     return (
     <>

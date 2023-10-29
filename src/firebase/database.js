@@ -178,8 +178,8 @@ export function communityPageDisplay() {
             const childData = childSnapshot.val();
 
             const { Headline, date } = childData;
-            posts.push("Headline: " + Headline + " | Username: Jscott" + " | Date: " + date);
-        })
+            posts.push("Headline: " + Headline + " | Username: Jscott72 | Date: " + date);
+        });
     });
     return posts;
 };
