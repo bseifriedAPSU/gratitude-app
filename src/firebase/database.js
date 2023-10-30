@@ -1,9 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { push, ref, query, limitToLast, remove, onValue, orderByChild, equalTo } from 'firebase/database';
-
-
-const user = undefined;
+import { push, ref, query, limitToLast, onValue} from 'firebase/database';
 
 export function signIn() {
     signInWithRedirect(auth, provider);
@@ -195,5 +192,21 @@ export function signOutOfAccount() {
     }).catch((error) => {
         alert("There was an error signing out");
     });
+}
+
+export function userAccountCheck(userID) {
+    const dbRef = ref(db, 'users');
+
+    onValue(dbRef, (snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            if (userID === childData) {
+                return true;
+            } else {
+                return false;
+            }
+           
+        })
+    })
 }
 

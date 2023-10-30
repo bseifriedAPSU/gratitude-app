@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { communityPageDisplay } from '../firebase/database'
 export default function CommunityArticlesSearch() { 
 
-    var list = communityPageDisplay().reverse();
-    console.log(list);
+    const [communityList, setCommunityList] = useState([]);
+
+    useEffect(() => {
+        var list = communityPageDisplay().reverse();
+        setCommunityList(list);
+        console.log(list);
+    });
 
     return (
     <>
@@ -11,7 +16,7 @@ export default function CommunityArticlesSearch() {
                 placeholder="Community Search Bar..."
                     /*on change HERE*/ />
             <ol>
-                {list.map((item, index) => (
+                {communityList.map((item, index) => (
                     <li key={index}>{item}</li>
                 ))}
             </ol>
