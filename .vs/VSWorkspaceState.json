@@ -1,7 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src\\pages"
+    "\\public",
+    "\\src",
+    "\\src\\components",
+    "\\src\\pages",
+    "\\src\\pages\\journalEntryCreation",
+    "\\src\\pages\\newUser"
   ],
+  "SelectedNode": "\\src\\pages\\newUser\\NewUser.jsx",
   "PreviewInSolutionExplorer": false
 }

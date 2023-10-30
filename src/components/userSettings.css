@@ -7,15 +7,16 @@
 
 .UserImage {
     margin: 10px 0;
-    z-index: -10;
+    z-index: 0;
+    cursor: pointer;
 }
 
     .UserImage img {
-        filter: grayscale(0%); /* Full color for the image */
+        filter: grayscale(0%); 
     }
 
 label, input, button {
-    color: #333; /* Dark gray text color */
+    color: #333; 
 }
 
 .userNameInput {
@@ -24,11 +25,11 @@ label, input, button {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #f5f5f5; /* Light gray background */
+    background-color: #f5f5f5;
 }
 
 .acceptChanges {
-    background-color: #666; /* A medium gray for the button background */
+    background-color: #666;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -37,5 +38,5 @@ label, input, button {
 }
 
     .acceptChanges:hover {
-        background-color: #444; /* Darker gray on hover */
+        background-color: #444; 
     }

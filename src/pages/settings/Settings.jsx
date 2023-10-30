@@ -1,5 +1,5 @@
 import "./settings.css";
-
+import React, { useState } from 'react';
 import UserSettings from "../../components/UserSettings";
 export default function Settings() {
 
