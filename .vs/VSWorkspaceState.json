@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\src\\pages"
+    "\\public\\images",
+    "\\src",
+    "\\src\\pages",
+    "\\src\\pages\\journalEntryCreation",
+    "\\src\\pages\\newUser"
   ],
   "PreviewInSolutionExplorer": false
 }

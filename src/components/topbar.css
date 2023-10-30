@@ -1,9 +1,12 @@
 .top {
     width: 100%;
-    height: 50px;
+    height: 65px;
     position: sticky;
     top: 0;
     display: flex;
+    position: sticky;
+    background: white;
+    z-index: 50;
 }
 
 .topCenter {
