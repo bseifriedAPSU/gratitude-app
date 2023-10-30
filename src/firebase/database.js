@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { push, ref, query, limitToLast, onValue} from 'firebase/database';
+import { push, ref, query, limitToLast, onValue, set} from 'firebase/database';
 
 export function signIn() {
     signInWithRedirect(auth, provider);
@@ -194,13 +194,22 @@ export function signOutOfAccount() {
     });
 }
 
+export function createUserAccount(profile_pic, username, userID) {
+    const dbRef = ref(db, 'users/' + userID);
+
+    set(ref(db, 'users/' + userID), {
+        Username: username,
+        profilePicture: profile_pic
+    });
+}
+
 export function userAccountCheck(userID) {
     const dbRef = ref(db, 'users');
 
     onValue(dbRef, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
-            if (userID === childData) {
+            if (userID == childData) {
                 return true;
             } else {
                 return false;
