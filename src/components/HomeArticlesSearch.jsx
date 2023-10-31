@@ -6,9 +6,10 @@ export default function HomeArticlesSearch() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
-            const uid = localStorage.getItem('uid');
-            setItems(homepageJournalList(uid).reverse());
-    }, []);
+        const uid = localStorage.getItem('uid');
+        const list = homepageJournalList(uid).reverse();
+            setItems(list);
+    });
 
         return (
             <>

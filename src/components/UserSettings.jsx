@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './userSettings.css';
 import ConfirmationModal from './ConfirmationModal';
+import { createUserAccount } from '../firebase/database'
+
 export default function UserSettings() {
 
     //Cycle through Avatar images
@@ -19,8 +21,7 @@ export default function UserSettings() {
     };
 
     const handleConfirm = () => {
-        //setAvatarImage goes here
-        //setUserName goes Here
+        createUserAccount(currentImage, 'Username', localStorage.getItem('uid'));
         
         setIsModalOpen(false);
         //Message Dialgue
@@ -48,7 +49,7 @@ export default function UserSettings() {
             <label>Choose User Name</label>
 
             <input className="userNameInput" />
-            {/* Show confirmation dialogue here*/ }
+            
             {showMessage && (
                 <div className="saveConfirmed">Your Entry Has been Saved!</div>
             )}

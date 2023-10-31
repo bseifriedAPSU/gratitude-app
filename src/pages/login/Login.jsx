@@ -12,11 +12,11 @@ export default function Login() {
             if (user) {
                 setUser(user);
                 localStorage.setItem('uid', auth.currentUser.uid);
-                if (userAccountCheck(auth.currentUser.uid) === true) {
-                    window.location.href = "/home";
+                if (userAccountCheck(auth.currentUser.uid) == true) {
+                    window.location.href = "/newUser";
                 }
                 else {
-                    window.location.href = "/newUser";
+                    window.location.href = "/home";
                 }
             }
             else {
