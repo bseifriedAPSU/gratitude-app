@@ -12,7 +12,8 @@ export default function Login() {
             if (user) {
                 setUser(user);
                 localStorage.setItem('uid', auth.currentUser.uid);
-                if (userAccountCheck(auth.currentUser.uid) == true) {
+                console.log(userAccountCheck(auth.currentUser.uid));
+                if (userAccountCheck(auth.currentUser.uid) === true) {
                     window.location.href = "/newUser";
                 }
                 else {
