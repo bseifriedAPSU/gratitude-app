@@ -4,10 +4,10 @@ export default function Header() {
 
     return (
         <div className="header">
-            <div className="headerTitle">
-                <span className="headerAppTitle">
-                Gratitude++ Journal
-                </span>
+            <div className="headerImage">
+                <img className="headerImage" src="./images/gratitudeLogoLarge.svg" alt="GratitudeLog">
+               
+                </img>
             </div>
            
         </div>

@@ -4,6 +4,7 @@ import { push, ref, query, limitToLast, onValue, set} from 'firebase/database';
 
 export function signIn() {
     signInWithRedirect(auth, provider);
+
 }
 
 function time() {
