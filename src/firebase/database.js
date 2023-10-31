@@ -153,8 +153,10 @@ export function createNewEntry(headline, content, visibility) {
 }
 
 export function homepageJournalList(userId) {
-        var data = [];
+    return new Promise((resolve, reject) => {
+        const data = [];
         const dbRef = query(ref(db, 'users/' + userId + '/posts'), limitToLast(5));
+
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
@@ -163,23 +165,33 @@ export function homepageJournalList(userId) {
                     const { Headline, date } = childData;
                     data.push("Testing the Headline " + Headline + "   *****   Testing the date " + date);
                 }
-            })
-        })
-        return data;   
-}
-
-export function communityPageDisplay() {
-    var posts = [];
-    const dbRef = query(ref(db, 'community/posts'), limitToLast(5));
-    onValue(dbRef, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-
-            const { Headline, date } = childData;
-            posts.push("Headline: " + Headline + " | Username: Jscott72 | Date: " + date);
+            });
+            resolve(data); 
+        }, (error) => {
+            reject(error); 
         });
     });
-    return posts;
+}
+
+
+export function communityPageDisplay() {
+    return new Promise((resolve, reject) => {
+
+        var posts = [];
+        const dbRef = query(ref(db, 'community/posts'), limitToLast(5));
+
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+
+                const { Headline, date } = childData;
+                posts.push("Headline: " + Headline + " | Username: Jscott72 | Date: " + date);
+            });
+            resolve(posts);
+        }, (error) => {
+            reject(error);
+        });
+    });
 };
 
 export function deleteJournalEntry() {
@@ -210,7 +222,7 @@ export function userAccountCheck(userID) {
     onValue(dbRef, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
-            if (userID == childData) {
+            if (childData.exists(userID)) {
                 return true;
             } else {
                 return false;
