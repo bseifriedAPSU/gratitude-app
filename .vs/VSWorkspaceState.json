@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
-    "\\public\\images",
+    "",
     "\\src",
-    "\\src\\pages",
-    "\\src\\pages\\journalEntryCreation",
-    "\\src\\pages\\newUser"
+    "\\src\\pages"
   ],
+  "SelectedNode": "\\src\\pages\\newUser",
   "PreviewInSolutionExplorer": false
 }

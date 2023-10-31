@@ -4,8 +4,7 @@ import UserSettings from "../../components/UserSettings"
 export default function NewUser() {
 
     return (
-        <div className="newUser">
-          
+        <div className="newUser">       
             <UserSettings />
         </div>
 
