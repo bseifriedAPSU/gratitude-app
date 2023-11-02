@@ -243,7 +243,6 @@ export function userAccountCheck(userID) {
 
             snapshot.forEach((childSnapshot) => {
                 
-                console.log(childSnapshot.key, "|||",userID);
                 if (childSnapshot.key === userID) {
                     accountExists = true;
                     return; 
@@ -251,6 +250,21 @@ export function userAccountCheck(userID) {
             });
 
             resolve(accountExists);
+        });
+    });
+}
+
+export function getUsername() {
+    const dbRef = ref(db, 'users/' + auth.currentUser.uid);
+
+    return new Promise((resolve, reject) => {
+        onValue(dbRef, (snapshot) => {
+            const userData = snapshot.val();
+            const username = userData.Username;
+
+            resolve(username);
+        }, (error) => {
+            reject(error);
         });
     });
 }
