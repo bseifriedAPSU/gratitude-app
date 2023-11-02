@@ -1,5 +1,13 @@
-.wordcloud {
-    font-style: inherit;
-    color: darkmagenta;
-    margin: 30px;
+.wordcloud-container {
+    width: 100%;
+    max-width: 800px; /* Set maximum width as per your design */
+    height: 300px;
+    margin: 0 auto; /* Center the word cloud */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 600px) {
+    .wordcloud-container {
+        height: 200px;
+    }
 }
