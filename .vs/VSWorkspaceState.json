@@ -3,8 +3,9 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\pages"
+    "\\src\\pages",
+    "\\src\\pages\\settings"
   ],
-  "SelectedNode": "\\public\\index.html",
+  "SelectedNode": "\\src\\pages\\settings\\Settings.jsx",
   "PreviewInSolutionExplorer": false
 }
