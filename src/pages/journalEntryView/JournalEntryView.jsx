@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './journalEntryView.css';
 import TopBar from "../../components/TopBar";
+import { entryHeadline, entryDate, getUserEntryContent } from '../../firebase/database'
 
 export default function JournalEntryView() {
     const [content, setContent] = useState('');
