@@ -30,7 +30,7 @@ export default function CommunityArticlesSearch() {
                 communityList.length > 0 ? (
                     <ol>
                         {communityList.map((item, index) => (
-                            <Link to={`/home`} onClick={ getLinkValue(JSON.stringify(item)) }><li key={index}>{item}</li></Link>
+                            <Link to={`/CommunityJournalEntryView`} onClick={ getLinkValue(JSON.stringify(item)) }><li key={index}>{item}</li></Link>
                         ))}
                     </ol>
                 ) : (

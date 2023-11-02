@@ -1,6 +1,6 @@
 import "./login.css"
 import React, { useState, useEffect } from 'react'
-import { signIn, userAccountCheck } from "./../../firebase/database.js"
+import { signIn, userAccountCheck, getUsername } from "./../../firebase/database.js"
 import { auth } from './../../firebase/firebaseConfig.js'
 import Header from "../../components/Header"
 export default function Login() {
@@ -14,6 +14,9 @@ export default function Login() {
                 userAccountCheck(localStorage.getItem('uid'))
                     .then((accountExists) => {
                         if (accountExists) {
+                            getUsername().then((data) => {
+                                localStorage.setItem('Username', data);
+                            });
                             window.location.href = '/home'
                         } else {
                             window.location.href = '/newUser'

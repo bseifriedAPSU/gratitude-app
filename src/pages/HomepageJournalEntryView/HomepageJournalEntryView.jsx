@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './journalEntryView.css';
+import './homepageJournalEntryView.css';
 import TopBar from "../../components/TopBar";
-import { entryHeadline, entryDate, getUserEntryContent, getUsername } from '../../firebase/database'
+import { entryHeadline, entryDate, getUserEntryContent } from '../../firebase/database'
 
-export default function JournalEntryView() {
+export default function CommunityJournalEntryView() {
+
     const [content, setContent] = useState('');
     const [username, setUsername] = useState(null);
     const inputString = localStorage.getItem('inputString');
     var headline = entryHeadline(inputString);
     var date = entryDate(inputString);
     date = date.slice(0, -1);
-    
+    setUsername(localStorage.getItem('Username'));
 
     useEffect(() => {
         getUserEntryContent(headline, date)
@@ -19,15 +20,8 @@ export default function JournalEntryView() {
             }).catch((error) => {
                 console.log(error);
             });
-
-        getUsername()
-            .then((data) => {
-                setUsername(data);
-            }).catch((error) => {
-                console.log(error);
-            });
     });
-    console.log(username);
+
     return (
         <><TopBar />
         <div className="journalEntryView">

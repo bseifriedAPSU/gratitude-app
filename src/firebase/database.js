@@ -131,7 +131,9 @@ function displayCommunityEntry(username, date){
 export function createNewEntry(headline, content, visibility) {
     var date = time();
     const userId = auth.currentUser.uid;
-    
+
+    const username = localStorage.getItem('Username');
+
     push(ref(db, "users/" + userId + "/posts"), {
         date: date,
         Headline: headline,
@@ -139,11 +141,11 @@ export function createNewEntry(headline, content, visibility) {
         visibility: visibility
     })
         .then(() => {
-            alert("Entry successfully created");
             if (visibility === true) {
                 push(ref(db, 'community/posts'), {
                     date: date,
-                    Headline: headline
+                    Headline: headline,
+                    Username: username
                 });
             }
         })
@@ -203,8 +205,8 @@ export function communityPageDisplay() {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
 
-                const { Headline, date } = childData;
-                posts.push("Headline: " + Headline + " | Username: Jscott72 | Date: " + date);
+                const { Headline, date, Username } = childData;
+                posts.push("Headline: " + Headline + " | Username: " + Username + " | Date: " + date);
             });
             resolve(posts);
         }, (error) => {

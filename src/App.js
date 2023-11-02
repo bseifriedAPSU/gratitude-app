@@ -6,7 +6,8 @@ import History from "./pages/history/History";
 import Login from "./pages/login/Login";
 import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreation";
 import SearchResults from "./pages/searchResults/SearchResults";
-import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
+import HomepageJournalEntryView from "./pages/HomepageJournalEntryView/HomepageJournalEntryView";
+import CommunityJournalEntryView from './pages/CommunityJournalEntryView/CommunityJournalEntryView';
 import NewUser from "./pages/newUser/NewUser";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TopBar from "./components/TopBar";
@@ -30,7 +31,8 @@ function App() {
                 <Route path="/resources" element={<Resources isAuth={isAuth} />} />
                 <Route path="/history" element={<History isAuth={isAuth} />} />
                 <Route path="/journalEntryCreation" element={<JournalEntryCreation isAuth={isAuth} />} />
-                <Route path="/journalEntryView" element={<JournalEntryView isAuth={isAuth} />} />
+                <Route path="/homepageJournalEntryView" element={<HomepageJournalEntryView isAuth={isAuth} />} />
+                <Route path="/communityJournalEntryView" element={<CommunityJournalEntryView isAuth={isAuth} />} />
                 <Route path="/searchResults" element={<SearchResults isAuth={isAuth} />} />
                 <Route path="/newUser" element={<NewUser isAuth={isAuth} />} />
             </Routes>       
