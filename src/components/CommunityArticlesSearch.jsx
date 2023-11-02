@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { communityPageDisplay } from '../firebase/database'
 export default function CommunityArticlesSearch() { 
 
@@ -13,19 +14,28 @@ export default function CommunityArticlesSearch() {
             });
     }, []);
 
+
+    const getLinkValue = (item) => {
+        localStorage.setItem('inputString', item);
+    }
+
     return (
     <>
             <input className="communitySearchBar"
                 placeholder="Community Search Bar..."
                     /*on change HERE*/ />
-            {communityList.length === 5 ? (
-                <ol>
-                    {communityList.map((item, index) => (
-                        <li key={index}>{item}</li>
-                    ))}
-                </ol>
+            {communityList.length === 0 ? (
+                <p>No Community Entries</p>
             ) : (
-                <p>Loading...</p>
+                communityList.length > 0 ? (
+                    <ol>
+                        {communityList.map((item, index) => (
+                            <Link to={`/home`} onClick={ getLinkValue(JSON.stringify(item)) }><li key={index}>{item}</li></Link>
+                        ))}
+                    </ol>
+                ) : (
+                    <p>Loading...</p>
+                )
             )}
         </>
 )

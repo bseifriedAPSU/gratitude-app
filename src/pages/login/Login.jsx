@@ -10,34 +10,34 @@ export default function Login() {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
-                setUser(user);
                 localStorage.setItem('uid', auth.currentUser.uid);
-                console.log(userAccountCheck(auth.currentUser.uid));
-                if (userAccountCheck(auth.currentUser.uid) === true) {
-                    window.location.href = "/newUser";
-                }
-                else {
-                    window.location.href = "/home";
-                }
+                userAccountCheck(localStorage.getItem('uid'))
+                    .then((accountExists) => {
+                        if (accountExists) {
+                            window.location.href = '/home'
+                        } else {
+                            window.location.href = '/newUser'
+                        }
+                    })
             }
             else {
                 setUser(null);
             }
         });
 
-    return () => unsubscribe();
-}, []);
+        return () => unsubscribe();
+    }, []);
 
-return (
-    <div className="login">
+    return (
+        <div className="login">
 
-        <Header />
+            <Header />
 
-        <button className="login-with-google-btn" onClick={signIn}>
-            Sign in with Google
-        </button>
+            <button className="login-with-google-btn" onClick={signIn}>
+                Sign in with Google
+            </button>
 
-    </div>
+        </div>
 
-)
-    }
+    )
+}
