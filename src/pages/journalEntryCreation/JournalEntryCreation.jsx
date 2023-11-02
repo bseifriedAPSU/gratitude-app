@@ -4,7 +4,7 @@ import { createNewEntry } from "./../../firebase/database.js";
 import ToggleSwitch from "../../components/ToggleSwitch";
 import JournalPrompts from '../../components/JournalPrompts';
 import ConfirmationModal from '../../components/ConfirmationModal';
-
+import TopBar from "../../components/TopBar";
 export default function JournalEntryCreation() {
 
     //Confirmation Modal 
@@ -65,6 +65,8 @@ export default function JournalEntryCreation() {
 
 
     return (
+        <>
+        <TopBar />
         <div className="journalEntryCreation">
             <div className="journalEntryContainer">
             
@@ -108,6 +110,7 @@ export default function JournalEntryCreation() {
                 )}
                
             </div>
-        </div>
+            </div>
+        </>
     );
 }

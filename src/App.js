@@ -8,47 +8,32 @@ import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreat
 import SearchResults from "./pages/searchResults/SearchResults";
 import JournalEntryView from "./pages/journalEntryView/JournalEntryView";
 import NewUser from "./pages/newUser/NewUser";
-//import Nav from "./components/Nav";
-
-
-import {
-    BrowserRouter as Router,
-    Routes,
-    Route
-    
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TopBar from "./components/TopBar";
+//import Nav from "./components/Nav";
+import { useState } from 'react';
 
 
  
 
 function App() {
-  
-    //const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
+   
+    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
     
     return (
-
-        
-       
         <Router>
-                 <TopBar />
             <Routes>
-                <Route path="/" element={<Login  />} />
-                <Route path="/home" element={<Home  />} />
-                <Route path="/community" element={<Community  />} />
-                <Route path="/settings" element={<Settings  />} />
-                <Route path="/resources" element={<Resources  />} />
-                <Route path="/history" element={<History  />} />
-                <Route path="/journalEntryCreation" element={<JournalEntryCreation  />} />
-                <Route path="/journalEntryView" element={<JournalEntryView  />} />
-                <Route path="/searchResults" element={<SearchResults  />} />
-                <Route path="/newUser" element={<NewUser  />} />
-
-               
- 
-            </Routes>
-            
-            
+                <Route path="/" element={<Login setIsAuth={ setIsAuth } />} />
+                <Route path="/home" element={<Home isAuth={isAuth} />} />
+                <Route path="/community" element={<Community isAuth={isAuth} />} />
+                <Route path="/settings" element={<Settings isAuth={isAuth} />} />
+                <Route path="/resources" element={<Resources isAuth={isAuth} />} />
+                <Route path="/history" element={<History isAuth={isAuth} />} />
+                <Route path="/journalEntryCreation" element={<JournalEntryCreation isAuth={isAuth} />} />
+                <Route path="/journalEntryView" element={<JournalEntryView isAuth={isAuth} />} />
+                <Route path="/searchResults" element={<SearchResults isAuth={isAuth} />} />
+                <Route path="/newUser" element={<NewUser isAuth={isAuth} />} />
+            </Routes>       
     </Router>
   );
 }

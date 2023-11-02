@@ -1,9 +1,14 @@
 import './topbar.css'
 import { useNavigate } from 'react-router-dom';
-
 import Nav from './Nav';
+
+
+
 export default function TopBar() {
     const navigate = useNavigate();
+
+
+
     return (
         <div className="top">
             <div className="topLeft">
@@ -16,7 +21,7 @@ export default function TopBar() {
             
             <div className="topCenter"> 
                 <div className="topCenter-flex-container" onClick={() => navigate('/home')} >
-                    <h2>Gratitude++</h2>
+                    {/* /<img className="topBarLogo" src="/images/gratitudeLogoHorizontal.svg" alt="Gratitide Logo"></img> */}
                 </div>
             </div>
             <div className="topRight"><Nav /></div>

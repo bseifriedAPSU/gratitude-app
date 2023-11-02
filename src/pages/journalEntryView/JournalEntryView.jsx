@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './journalEntryView.css';
-import { entryDate, entryHeadline, getUserEntryContent } from '../../firebase/database'
+import TopBar from "../../components/TopBar";
 
 export default function JournalEntryView() {
     const [content, setContent] = useState('');
@@ -19,6 +19,7 @@ export default function JournalEntryView() {
     });
 
     return (
+        <><TopBar />
         <div className="journalEntryView">
             <div className="journalEntryViewContainer">
                 <div className="postHeader">
@@ -29,6 +30,7 @@ export default function JournalEntryView() {
                 <div className="postTextContainer">{content}</div>
                 <h3>Author Name will go here</h3>
             </div>
-        </div>
+            </div>
+        </>
     );
 }

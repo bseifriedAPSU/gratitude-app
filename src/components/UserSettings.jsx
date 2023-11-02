@@ -2,13 +2,20 @@ import React, { useState } from 'react';
 import './userSettings.css';
 import ConfirmationModal from './ConfirmationModal';
 import { createUserAccount } from '../firebase/database'
-
+import { useNavigate } from 'react-router-dom';
 export default function UserSettings() {
-
+    const navigate = useNavigate();
+    //Username 
+    const [currentUsername, setCurrentUsername] = useState("");
     //Cycle through Avatar images
     const [currentImage, setCurrentImage] = useState(1);
+
+    const handleUsernameChange = (event) => {
+        setCurrentUsername(event.target.value);
+    };
     const handleClick = () => {
         setCurrentImage(currentImage === 4 ? 1 : currentImage + 1);
+        setCurrentUsername(currentUsername);
     };
 
     //Confirmation Modal
@@ -21,7 +28,7 @@ export default function UserSettings() {
     };
 
     const handleConfirm = () => {
-        createUserAccount(currentImage, 'Username', localStorage.getItem('uid'));
+        createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
         
         setIsModalOpen(false);
         //Message Dialgue
@@ -30,10 +37,16 @@ export default function UserSettings() {
         setTimeout(() => {
             setShowMessage(false);
         }, 3000);
+
+        navigate("/home");
+
+
     };
     const handleCancel = () => {
         setIsModalOpen(false);
     };
+
+  
     return (
         <div className="flex-container">
             <label>Choose an Avatar Image</label>
@@ -48,7 +61,11 @@ export default function UserSettings() {
 
             <label>Choose User Name</label>
 
-            <input className="userNameInput" />
+            <input className="userNameInput"
+                type="text"
+                value={currentUsername}
+                onChange={handleUsernameChange}
+            />
             
             {showMessage && (
                 <div className="saveConfirmed">Your Entry Has been Saved!</div>

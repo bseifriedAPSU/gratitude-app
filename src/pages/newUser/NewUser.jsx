@@ -5,8 +5,7 @@ import { userAccountCheck } from "../../firebase/database"
 export default function NewUser() {
 
     return (
-        <div className="newUser">
-          
+        <div className="newUser">       
             <UserSettings />
         </div>
 
