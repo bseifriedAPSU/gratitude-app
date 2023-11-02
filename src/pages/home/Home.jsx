@@ -8,7 +8,6 @@ import TopBar from '../../components/TopBar';
 export default function Home() {
     const navigate = useNavigate();
 
-    
     return (
         <> <TopBar />
         <div className="home">  

@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { push, ref, query, limitToLast, onValue, set} from 'firebase/database';
+import { push, ref, query, limitToLast, onValue, set, get, child} from 'firebase/database';
 
 export function signIn() {
     signInWithRedirect(auth, provider);
@@ -162,8 +162,11 @@ export function homepageJournalList(userId) {
                 const childData = childSnapshot.val();
 
                 if (childData && childData.Headline && childData.date) {
-                    const { Headline, date } = childData;
-                    data.push("Testing the Headline " + Headline + "   *****   Testing the date " + date);
+                    var { Headline, date } = childData;
+                    Headline.trim();
+                    date.trim();
+                    var inputString = "Headline: " + Headline + "   *****   Date: " + date;
+                    data.push(inputString);
                 }
             });
             resolve(data); 
@@ -173,6 +176,22 @@ export function homepageJournalList(userId) {
     });
 }
 
+export function entryDate(inputString) {
+    
+    var splitArray = inputString.split("Date:");
+
+    var extractedText = splitArray[1].trim();
+
+    return extractedText;
+}
+
+export function entryHeadline(inputString) {
+    var splitArray = inputString.split(/Headline:|[*]/);
+
+    var extractedText = splitArray[1].trim();
+
+    return extractedText;
+}
 
 export function communityPageDisplay() {
     return new Promise((resolve, reject) => {
@@ -208,7 +227,6 @@ export function signOutOfAccount() {
 }
 
 export function createUserAccount(profile_pic, username, userID) {
-    const dbRef = ref(db, 'users/' + userID);
 
     set(ref(db, 'users/' + userID), {
         Username: username,
@@ -219,16 +237,57 @@ export function createUserAccount(profile_pic, username, userID) {
 export function userAccountCheck(userID) {
     const dbRef = ref(db, 'users');
 
-    onValue(dbRef, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-            if (childData.exists(userID)) {
-                return true;
-            } else {
-                return false;
-            }
-           
-        })
-    })
+    return new Promise((resolve, reject) => {
+        onValue(dbRef, (snapshot) => {
+            let accountExists = false; 
+
+            snapshot.forEach((childSnapshot) => {
+                
+                if (childSnapshot.key === userID) {
+                    accountExists = true;
+                    return; 
+                }
+            });
+
+            resolve(accountExists);
+        });
+    });
 }
 
+export function getUsername() {
+    const dbRef = ref(db, 'users/' + auth.currentUser.uid);
+
+    return new Promise((resolve, reject) => {
+        onValue(dbRef, (snapshot) => {
+            const userData = snapshot.val();
+            const username = userData.Username;
+
+            resolve(username);
+        }, (error) => {
+            reject(error);
+        });
+    });
+}
+
+
+export function getUserEntryContent(headline, date) {
+    return new Promise((resolve, reject) => {
+        const dbRef = ref(db, 'users/' + auth.currentUser.uid + "/posts");
+        var content;
+
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+                console.log(childData.date);
+                console.log(date);
+                if (childData.Headline === headline && childData.date === date) {
+                    content = childData.content;
+                    console.log(content);
+                }
+            });
+            resolve(content);
+        }, (error) => {
+            reject(error);
+        });
+    });
+}

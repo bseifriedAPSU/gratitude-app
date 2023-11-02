@@ -1,19 +1,48 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './journalEntryView.css';
 import TopBar from "../../components/TopBar";
+import { entryHeadline, entryDate, getUserEntryContent, getUsername } from '../../firebase/database'
 
 export default function JournalEntryView() {
+    const [content, setContent] = useState('');
+    const [username, setUsername] = useState(null);
+    const inputString = localStorage.getItem('inputString');
+    var headline = entryHeadline(inputString);
+    var date = entryDate(inputString);
+    date = date.slice(0, -1);
+    
+
+    useEffect(() => {
+        getUserEntryContent(headline, date)
+            .then((data) => {
+                setContent(data);
+            }).catch((error) => {
+                console.log(error);
+            });
+
+        getUsername()
+            .then((data) => {
+                setUsername(data);
+            }).catch((error) => {
+                console.log(error);
+            });
+    });
+    console.log(username);
     return (
         <><TopBar />
         <div className="journalEntryView">
             <div className="journalEntryViewContainer">
                 <div className="postHeader">
                     <div className="title">
-                        <h1>Title Goes Here</h1>
+                        <h1>{ headline }</h1>
                     </div>
                 </div>
-                <div className="postTextContainer">Content will go here</div>
-                <h3>Author Name will go here</h3>
+                <div className="postTextContainer">{content}</div>
+                    {username ? (
+                        <h3>Username: {username}</h3>
+                    ) : (
+                        <h3>Loading...</h3>
+                    )}
             </div>
             </div>
         </>
