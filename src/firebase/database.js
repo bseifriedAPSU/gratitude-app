@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { push, ref, query, limitToLast, onValue, set, get, child} from 'firebase/database';
+import { push, ref, query, limitToLast, onValue, set, get, child } from 'firebase/database';
 
 export function signIn() {
     signInWithRedirect(auth, provider);
@@ -103,7 +103,7 @@ export function getUserReferenceLocation(username) {
 }
 
 
-function displayCommunityEntry(username, date){
+function displayCommunityEntry(username, date) {
     const userLocation = getUserReferenceLocation(username);
     const dbRef = ref(db, 'users/' + userLocation + '/posts');
 
@@ -117,6 +117,21 @@ function displayCommunityEntry(username, date){
             }
         })
     })
+}
+
+export function getUsername() {
+    const dbRef = ref(db, 'users/' + auth.currentUser.uid);
+
+    return new Promise((resolve, reject) => {
+        onValue(dbRef, (snapshot) => {
+            const userData = snapshot.val();
+            const username = userData.Username;
+
+            resolve(username);
+        }, (error) => {
+            reject(error);
+        });
+    });
 }
 
 export function createNewEntry(headline, content, visibility) {
@@ -162,15 +177,15 @@ export function homepageJournalList(userId) {
                     data.push(inputString);
                 }
             });
-            resolve(data); 
+            resolve(data);
         }, (error) => {
-            reject(error); 
+            reject(error);
         });
     });
 }
 
 export function entryDate(inputString) {
-    
+
     var splitArray = inputString.split("Date:");
 
     var extractedText = splitArray[1].trim();
@@ -221,7 +236,7 @@ export function signOutOfAccount() {
     signOut(auth).then(() => {
         //localStorage.clear();
         window.location = "/";
-        
+
     }).catch((error) => {
         alert("There was an error signing out");
     });
@@ -240,14 +255,12 @@ export function userAccountCheck(userID) {
 
     return new Promise((resolve, reject) => {
         onValue(dbRef, (snapshot) => {
-            let accountExists = false; 
+            let accountExists = false;
 
             snapshot.forEach((childSnapshot) => {
-                
-                console.log(childSnapshot.key, "|||",userID);
                 if (childSnapshot.key === userID) {
                     accountExists = true;
-                    return; 
+                    return;
                 }
             });
 
