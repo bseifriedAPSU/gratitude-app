@@ -3,9 +3,10 @@
     "",
     "\\public",
     "\\src",
+    "\\src\\components",
     "\\src\\pages",
     "\\src\\pages\\settings"
   ],
-  "SelectedNode": "\\src\\pages\\settings\\Settings.jsx",
+  "SelectedNode": "\\src\\pages\\journalEntryView",
   "PreviewInSolutionExplorer": false
 }
