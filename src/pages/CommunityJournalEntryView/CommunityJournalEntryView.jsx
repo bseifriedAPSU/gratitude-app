@@ -4,7 +4,6 @@ import TopBar from "../../components/TopBar";
 import { entryHeadline, entryDate, getUserEntryContent } from '../../firebase/database'
 
 export default function CommunityJournalEntryView() {
-    const username = '';
 
     return (
         <><TopBar />
@@ -16,11 +15,6 @@ export default function CommunityJournalEntryView() {
                     </div>
                 </div>
                 <div className="postTextContainer"></div>
-                    {username ? (
-                        <h3>Username:</h3>
-                    ) : (
-                        <h3>Loading...</h3>
-                    )}
             </div>
             </div>
         </>

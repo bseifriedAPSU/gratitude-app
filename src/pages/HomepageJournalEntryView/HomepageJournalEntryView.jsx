@@ -3,7 +3,7 @@ import './homepageJournalEntryView.css';
 import TopBar from "../../components/TopBar";
 import { entryHeadline, entryDate, getUserEntryContent } from '../../firebase/database'
 
-export default function CommunityJournalEntryView() {
+export default function HomepageJournalEntryView() {
 
     const [content, setContent] = useState('');
     const [username, setUsername] = useState(null);
@@ -11,11 +11,11 @@ export default function CommunityJournalEntryView() {
     var headline = entryHeadline(inputString);
     var date = entryDate(inputString);
     date = date.slice(0, -1);
-    setUsername(localStorage.getItem('Username'));
 
     useEffect(() => {
         getUserEntryContent(headline, date)
             .then((data) => {
+                setUsername(localStorage.getItem('Username'));
                 setContent(data);
             }).catch((error) => {
                 console.log(error);

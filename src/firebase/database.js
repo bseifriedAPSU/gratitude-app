@@ -94,23 +94,14 @@ function time() {
     return `${day}, ${Month} ${dayOfMonth}, ${year}, ${hour}:${minutes} ${ampm}`
 }
 
-function getUserReferenceLocation(username) {
-    const userRef = ref(db, 'users')
+export function getUserReferenceLocation(username) {
+    return new Promise((resolve, reject) => {
+        const userRef = ref(db, 'users');
 
-    onValue(userRef, (snapshot) => {
-        if (snapshot.exists()) {
-            snapshot.forEach((userSnapshot) => {
-                const userData = userSnapshot.val();
-                if (userData && userData.Username === username) {
-                    const userKey = userSnapshot.key;
-                    return userKey;
-                }
-            })
-        } else {
-            console.log("username not found");
-        }
-    })  
+
+    })
 }
+
 
 function displayCommunityEntry(username, date){
     const userLocation = getUserReferenceLocation(username);
@@ -195,6 +186,14 @@ export function entryHeadline(inputString) {
     return extractedText;
 }
 
+export function getUsernameFromString(inputString) {
+    var splitArray = inputString.split(/Username:|[|]/);
+
+    var extractedText = splitArray[1].trim();
+
+    return extractedText;
+}
+
 export function communityPageDisplay() {
     return new Promise((resolve, reject) => {
 
@@ -220,7 +219,7 @@ export function deleteJournalEntry() {
 
 export function signOutOfAccount() {
     signOut(auth).then(() => {
-        alert("Sign out successful");
+        //localStorage.clear();
         window.location = "/";
         
     }).catch((error) => {
