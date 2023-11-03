@@ -126,7 +126,7 @@ export function getUsername() {
         onValue(dbRef, (snapshot) => {
             const userData = snapshot.val();
             const username = userData.Username;
-
+            localStorage.setItem('username', username);
             resolve(username);
         }, (error) => {
             reject(error);
