@@ -1,7 +1,7 @@
 import "./wordcloud.css"
 import React from 'react';
 import ReactWordcloud from 'react-wordcloud';
-import Cloud from "./cloud.svg";
+
 
 
 export default function Wordcloud() {
@@ -78,21 +78,10 @@ export default function Wordcloud() {
     };
     return (
         <div className="wordcloud-container">
-            <div className="cloud-mask">
+            <div className="circle-mask">
                 <ReactWordcloud words={words} options={options} />
-                </div>
-            <svg width="0" height="0" style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden'}}>
-                <defs>
-                    <mask id="Cloud">
-                        <image href={Cloud} width="100%" height="100%" />
-                    </mask>
-                </defs>
-            </svg>
-       
-               
             </div>
-       
+        </div>
     );
-
 };
 
