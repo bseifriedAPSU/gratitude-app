@@ -1,6 +1,7 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
 import { push, ref, query, limitToLast, onValue, set, get, child } from 'firebase/database';
+import { Profiler } from "react";
 
 export function signIn() {
     signInWithRedirect(auth, provider);
@@ -133,6 +134,26 @@ export function getUsername() {
         });
     });
 }
+
+//created function to retrieve user avatar image
+export function getUserImage() {
+    const dbRef = ref(db, 'users/' + auth.currentUser.uid);
+    return new Promise((resolve, reject) => {
+        onValue(dbRef, (snapshot) => {
+            const userData = snapshot.val();
+            const userImage = userData.profilePicture;
+            localStorage.setItem('userImage', userImage);
+            resolve(userImage);
+        }, (error) => {
+            reject(error);
+        });
+    });
+}
+
+
+
+
+
 
 export function createNewEntry(headline, content, visibility) {
     var date = time();

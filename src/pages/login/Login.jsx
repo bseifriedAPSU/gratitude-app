@@ -1,6 +1,6 @@
 import "./login.css"
 import React, { useState, useEffect } from 'react'
-import { signIn, userAccountCheck, getUsername } from "./../../firebase/database.js"
+import { signIn, userAccountCheck, getUsername, getUserImage } from "./../../firebase/database.js"
 import { auth } from './../../firebase/firebaseConfig.js'
 import Header from "../../components/Header"
 export default function Login() {
@@ -11,11 +11,16 @@ export default function Login() {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 localStorage.setItem('uid', auth.currentUser.uid);
+
                 userAccountCheck(localStorage.getItem('uid'))
                     .then((accountExists) => {
                         if (accountExists) {
                             getUsername().then((data) => {
-                                localStorage.setItem('Username', data);
+                            localStorage.setItem('Username', data); 
+                            });
+                            // getting user image # and setting to localstorage
+                            getUserImage().then((data) => {
+                                localStorage.setItem('UserImage', data);
                             });
                             window.location.href = '/home'
                         } else {

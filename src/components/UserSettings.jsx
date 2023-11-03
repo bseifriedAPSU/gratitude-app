@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './userSettings.css';
 import ConfirmationModal from './ConfirmationModal';
-import { createUserAccount } from '../firebase/database'
+import { createUserAccount } from '../firebase/database';
 import { useNavigate } from 'react-router-dom';
+import { getUsername, getUserImage } from "../firebase/database";
+
 export default function UserSettings() {
     const navigate = useNavigate();
     //Username 
@@ -28,8 +30,16 @@ export default function UserSettings() {
     };
 
     const handleConfirm = () => {
+
+
+        //THIS IS WHERE WE ARE RE_CREATING USERS I BELIEVE
         createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
-        
+
+       //DO NOT REMOVE 
+       //This sets localStorage for TopBar so user does NOT need to log out to see changes made
+        localStorage.setItem('Username', currentUsername);        
+        localStorage.setItem('UserImage', currentImage);
+       
         setIsModalOpen(false);
         //Message Dialgue
         setShowMessage(true);
