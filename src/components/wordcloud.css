@@ -5,9 +5,8 @@
     margin: 0 auto; /* Center the word cloud */
 }
 
-/* Media query for responsiveness */
-@media (max-width: 600px) {
-    .wordcloud-container {
-        height: 200px;
-    }
+.cloud-mask {
+    width: 100%;
+    height: 100%;
+    clip-path: url("");
 }

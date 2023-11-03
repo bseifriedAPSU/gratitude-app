@@ -28,7 +28,9 @@ export default function Wordcloud() {
     };
     return (
         <div className="wordcloud-container">
-            <ReactWordcloud words={words} options={options} />
+        <div className="cloud-mask">
+                <ReactWordcloud words={words} options={options} />
+            </div>
         </div>
     );
 
