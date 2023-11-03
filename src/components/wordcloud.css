@@ -1,5 +1,14 @@
-.wordcloud {
-    font-style: inherit;
-    color: darkmagenta;
-    margin: 30px;
+.wordcloud-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.circle-mask {
+    width: 100%;
+    height: 100%;
+    clip-path: url('cloud.svg');
+    overflow: hidden;
 }

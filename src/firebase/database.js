@@ -94,23 +94,14 @@ function time() {
     return `${day}, ${Month} ${dayOfMonth}, ${year}, ${hour}:${minutes} ${ampm}`
 }
 
-function getUserReferenceLocation(username) {
-    const userRef = ref(db, 'users')
+export function getUserReferenceLocation(username) {
+    return new Promise((resolve, reject) => {
+        const userRef = ref(db, 'users');
 
-    onValue(userRef, (snapshot) => {
-        if (snapshot.exists()) {
-            snapshot.forEach((userSnapshot) => {
-                const userData = userSnapshot.val();
-                if (userData && userData.Username === username) {
-                    const userKey = userSnapshot.key;
-                    return userKey;
-                }
-            })
-        } else {
-            console.log("username not found");
-        }
-    })  
+
+    })
 }
+
 
 function displayCommunityEntry(username, date){
     const userLocation = getUserReferenceLocation(username);
@@ -131,7 +122,9 @@ function displayCommunityEntry(username, date){
 export function createNewEntry(headline, content, visibility) {
     var date = time();
     const userId = auth.currentUser.uid;
-    
+
+    const username = localStorage.getItem('Username');
+
     push(ref(db, "users/" + userId + "/posts"), {
         date: date,
         Headline: headline,
@@ -139,11 +132,11 @@ export function createNewEntry(headline, content, visibility) {
         visibility: visibility
     })
         .then(() => {
-            alert("Entry successfully created");
             if (visibility === true) {
                 push(ref(db, 'community/posts'), {
                     date: date,
-                    Headline: headline
+                    Headline: headline,
+                    Username: username
                 });
             }
         })
@@ -193,6 +186,14 @@ export function entryHeadline(inputString) {
     return extractedText;
 }
 
+export function getUsernameFromString(inputString) {
+    var splitArray = inputString.split(/Username:|[|]/);
+
+    var extractedText = splitArray[1].trim();
+
+    return extractedText;
+}
+
 export function communityPageDisplay() {
     return new Promise((resolve, reject) => {
 
@@ -203,8 +204,8 @@ export function communityPageDisplay() {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
 
-                const { Headline, date } = childData;
-                posts.push("Headline: " + Headline + " | Username: Jscott72 | Date: " + date);
+                const { Headline, date, Username } = childData;
+                posts.push("Headline: " + Headline + " | Username: " + Username + " | Date: " + date);
             });
             resolve(posts);
         }, (error) => {
@@ -218,7 +219,7 @@ export function deleteJournalEntry() {
 
 export function signOutOfAccount() {
     signOut(auth).then(() => {
-        alert("Sign out successful");
+        //localStorage.clear();
         window.location = "/";
         
     }).catch((error) => {
@@ -243,6 +244,7 @@ export function userAccountCheck(userID) {
 
             snapshot.forEach((childSnapshot) => {
                 
+                console.log(childSnapshot.key, "|||",userID);
                 if (childSnapshot.key === userID) {
                     accountExists = true;
                     return; 
@@ -250,21 +252,6 @@ export function userAccountCheck(userID) {
             });
 
             resolve(accountExists);
-        });
-    });
-}
-
-export function getUsername() {
-    const dbRef = ref(db, 'users/' + auth.currentUser.uid);
-
-    return new Promise((resolve, reject) => {
-        onValue(dbRef, (snapshot) => {
-            const userData = snapshot.val();
-            const username = userData.Username;
-
-            resolve(username);
-        }, (error) => {
-            reject(error);
         });
     });
 }
