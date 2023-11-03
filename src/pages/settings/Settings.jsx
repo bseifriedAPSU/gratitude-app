@@ -1,6 +1,7 @@
 import "./settings.css";
 import UserSettings from "../../components/UserSettings";
 import TopBar from "../../components/TopBar";
+import AdminSettings from "../../components/AdminSettings";
 export default function Settings() {
 
     return (
@@ -11,7 +12,7 @@ export default function Settings() {
             <h3>----------------------------------------</h3>
             <UserSettings />
             <h3>----------------------------------------</h3>
-            <h3>ADMIN SETTINGS COMPONENT GOES HERE</h3>
+            <AdminSettings />
         </div>
         </>
     )
