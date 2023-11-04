@@ -95,30 +95,45 @@ function time() {
     return `${day}, ${Month} ${dayOfMonth}, ${year}, ${hour}:${minutes} ${ampm}`
 }
 
-export function getUserReferenceLocation(username) {
+
+export async function getUsernameLocation(username) {
     return new Promise((resolve, reject) => {
-        const userRef = ref(db, 'users');
+        const dbRef = ref(db, 'users');
 
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+                if (childData.Username === username) {
+                    const userKey = childSnapshot.key;
+                    resolve(userKey);
+                }
 
-    })
-}
-
-
-function displayCommunityEntry(username, date) {
-    const userLocation = getUserReferenceLocation(username);
-    const dbRef = ref(db, 'users/' + userLocation + '/posts');
-
-    onValue(dbRef, (snapshot) => {
-        snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-
-            if (childData && childData.date === date) {
-                const { content } = childData;
-                return content;
-            }
+            })
         })
     })
 }
+
+export function displayCommunityEntry(headline, date) {
+    return new Promise((resolve, reject) => {
+        const userLocation = localStorage.getItem('RefLocation');
+        const dbRef = ref(db, 'users/' + userLocation + '/posts');
+        var content;
+
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+
+                if (childData.Headline === headline && childData.date === date) {
+                    content = childData.content;
+                }
+            })
+            resolve(content);
+        }, (error) => {
+            reject(error);
+        });
+    });
+}
+
 
 export function getUsername() {
     const dbRef = ref(db, 'users/' + auth.currentUser.uid);
@@ -152,9 +167,6 @@ export function getUserImage() {
 
 
 
-
-
-
 export function createNewEntry(headline, content, visibility) {
     var date = time();
     const userId = auth.currentUser.uid;
@@ -184,7 +196,7 @@ export function createNewEntry(headline, content, visibility) {
 export function homepageJournalList(userId) {
     return new Promise((resolve, reject) => {
         const data = [];
-        const dbRef = query(ref(db, 'users/' + userId + '/posts'), limitToLast(5));
+        const dbRef = ref(db, 'users/' + userId + '/posts');
 
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
@@ -213,6 +225,14 @@ export function entryDate(inputString) {
 
     return extractedText;
 }
+export function getCommunityHeadline(inputString) {
+    const match = inputString.match(/Headline: ([^|]+)\s*\|/);
+
+    if (match && match[1]) {
+        const extractedText = match[1].trim();
+        return extractedText;
+    }
+}
 
 export function entryHeadline(inputString) {
     var splitArray = inputString.split(/Headline:|[*]/);
@@ -223,18 +243,19 @@ export function entryHeadline(inputString) {
 }
 
 export function getUsernameFromString(inputString) {
-    var splitArray = inputString.split(/Username:|[|]/);
+    const match = inputString.match(/Username: ([^|]+)\s*\|/);
 
-    var extractedText = splitArray[1].trim();
-
-    return extractedText;
+    if (match && match[1]) {
+        const extractedText = match[1].trim();
+        return extractedText;
+    }
 }
 
 export function communityPageDisplay() {
     return new Promise((resolve, reject) => {
 
         var posts = [];
-        const dbRef = query(ref(db, 'community/posts'), limitToLast(5));
+        const dbRef = query(ref(db, 'community/posts'));
 
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
@@ -250,7 +271,8 @@ export function communityPageDisplay() {
     });
 };
 
-export function deleteJournalEntry() {
+export function deleteJournalEntry(headline, date) {
+
 }
 
 export function signOutOfAccount() {
@@ -290,6 +312,7 @@ export function userAccountCheck(userID) {
     });
 }
 
+export function updateUserAccount() { }
 
 export function getUserEntryContent(headline, date) {
     return new Promise((resolve, reject) => {
@@ -299,14 +322,36 @@ export function getUserEntryContent(headline, date) {
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
-                console.log(childData.date);
-                console.log(date);
                 if (childData.Headline === headline && childData.date === date) {
                     content = childData.content;
-                    console.log(content);
                 }
             });
             resolve(content);
+        }, (error) => {
+            reject(error);
+        });
+    });
+}
+
+
+export function wordCloudList(userId) {
+    return new Promise((resolve, reject) => {
+        const data = [];
+        const dbRef = query(ref(db, 'users/' + userId + '/posts'));
+
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+
+                if (childData && childData.Headline && childData.content) {
+                    var { Headline, content } = childData;
+                    Headline.trim();
+                    content.trim();
+                    var inputString = "Headline: " + Headline + "   *****   content: " + content;
+                    data.push(inputString);
+                }
+            });
+            resolve(data);
         }, (error) => {
             reject(error);
         });

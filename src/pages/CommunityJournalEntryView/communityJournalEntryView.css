@@ -30,6 +30,8 @@
     border-radius: 5px;
     text-align: center;
     margin: 10px 0;
+    white-space: normal;
+
 }
 
 h3 {
