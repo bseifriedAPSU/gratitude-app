@@ -5,8 +5,6 @@ import { auth } from './../../firebase/firebaseConfig.js'
 import Header from "../../components/Header"
 export default function Login() {
 
-    const [user, setUser] = useState(null);
-
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
@@ -22,9 +20,6 @@ export default function Login() {
                             window.location.href = '/newUser'
                         }
                     })
-            }
-            else {
-                setUser(null);
             }
         });
 

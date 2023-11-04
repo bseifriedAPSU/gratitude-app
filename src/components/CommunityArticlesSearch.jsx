@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { communityPageDisplay, getUserReferenceLocation, getUsernameFromString } from '../firebase/database'
+import { communityPageDisplay, getUsernameLocation, getUsernameFromString } from '../firebase/database'
 export default function CommunityArticlesSearch() { 
 
     const [communityList, setCommunityList] = useState([]);
@@ -16,8 +16,12 @@ export default function CommunityArticlesSearch() {
 
 
     const getLinkValue = (item) => {
+        localStorage.removeItem('inputString');
         localStorage.setItem('inputString', item);
-        localStorage.setItem('RefLocation', getUserReferenceLocation(getUsernameFromString(item)));
+        console.log(getUsernameFromString(item));
+        getUsernameLocation(getUsernameFromString(item)).then((data) => { 
+            localStorage.setItem('RefLocation', data);
+        })
     }
 
     return (
@@ -29,11 +33,11 @@ export default function CommunityArticlesSearch() {
                 <p>No Community Entries</p>
             ) : (
                 communityList.length > 0 ? (
-                    <ul>
+                    <ol>
                         {communityList.map((item, index) => (
-                            <Link to={'/home'} onClick={ getLinkValue(JSON.stringify(item)) }><li key={index}>{item}</li></Link>
+                            <Link to={'/communityJournalEntryView'} onClick={() => getLinkValue(JSON.stringify(item))}><li key={index}>{item}</li></Link>
                         ))}
-                    </ul>
+                    </ol>
                 ) : (
                     <p>Loading...</p>
                 )

@@ -1,6 +1,6 @@
 import "./homeArticlesSearch.css";
 import React, { useEffect, useState } from 'react'
-import { homepageJournalList } from '../firebase/database'
+import { homepageJournalList, wordCloudList } from '../firebase/database'
 import { Link } from 'react-router-dom'
 
 export default function HomeArticlesSearch() {
@@ -16,6 +16,14 @@ export default function HomeArticlesSearch() {
                 console.log('Error fetching articles: ', error);
             });
 
+
+        wordCloudList(uid)
+            .then((data) => {
+                console.log(data);
+            }).catch((error) => {
+                console.log(error);
+            });
+
     }, [uid]);
 
     const getLinkValue = (item) => {
@@ -26,9 +34,8 @@ export default function HomeArticlesSearch() {
         return (
             <>
                 <input className="homeSearchBar" placeholder="Home Page Search Bar..." /*on change HERE*/ />
-                {items.length === 0 ? (
-                    <p>No Journal Entries</p>
-                ) : (
+
+                    {
                         items.length > 0 ? (
                             <ul>
                                 {items.map((item, index) => (
@@ -38,7 +45,7 @@ export default function HomeArticlesSearch() {
                         ) : (
                             <p>Loading...</p>
                         )
-                )}
+                    }
             </>
         )
     
