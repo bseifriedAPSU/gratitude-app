@@ -7,15 +7,27 @@ import Nav from './Nav';
 export default function TopBar() {
     const navigate = useNavigate();
 
+    //need to add const for profile image
 
+
+    const username = JSON.stringify(localStorage.getItem('Username'));
+    const imagenumber = JSON.parse(localStorage.getItem('UserImage'));
 
     return (
         <div className="top">
             <div className="topLeft">
-              
+             
                 <div className="userInfo" onClick={() => navigate('/settings')}>
-                   <img className="userBannerImage" src="images/avatarImage1.png" alt="UserBannerImage" />
-                    <div className="userInfoUsername">Username</div>
+
+                   {/* Need to update with local storage*/}
+                    <img
+                        className="userBannerImage"
+                        src={`./images/avatarImage${imagenumber}.png`}
+                        alt="UserBannerImage"
+                    />
+
+
+                    <div className="userInfoUsername">{username}</div>
                 </div>
             </div>
             
