@@ -3,7 +3,6 @@ import './userSettings.css';
 import ConfirmationModal from './ConfirmationModal';
 import { createUserAccount } from '../firebase/database';
 import { useNavigate } from 'react-router-dom';
-import { getUsername, getUserImage } from "../firebase/database";
 
 export default function UserSettings() {
     const navigate = useNavigate();

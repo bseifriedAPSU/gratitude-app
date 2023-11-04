@@ -3,10 +3,8 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\components",
-    "\\src\\pages",
-    "\\src\\pages\\settings"
+    "\\src\\pages\\newUser"
   ],
-  "SelectedNode": "\\src\\pages\\login",
+  "SelectedNode": "\\src\\App.js",
   "PreviewInSolutionExplorer": false
 }
