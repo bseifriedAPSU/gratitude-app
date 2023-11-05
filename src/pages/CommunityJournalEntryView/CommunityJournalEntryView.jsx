@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './communityJournalEntryView.css';
 import TopBar from "../../components/TopBar";
-import { getCommunityHeadline, entryDate, displayCommunityEntry, getUsernameFromString } from '../../firebase/database'
+import { displayCommunityEntryContent } from '../../firebase/databaseCommunity'
+import { getUsernameFromString, entryDate, getCommunityHeadline } from '../../firebase/databaseUser'
 
 export default function CommunityJournalEntryView() {
 
@@ -16,7 +17,7 @@ export default function CommunityJournalEntryView() {
     
 
     useEffect(() => {
-        displayCommunityEntry(headline, date)
+        displayCommunityEntryContent(headline, date)
             .then((data) => {
                 setUsername(getUsernameFromString(inputString));
                 setContent(data);

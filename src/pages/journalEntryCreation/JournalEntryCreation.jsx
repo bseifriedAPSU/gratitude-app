@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './journalEntryCreation.css';
-import { createNewEntry } from "./../../firebase/database.js";
+import { createNewEntry } from "./../../firebase/databaseHomepage";
 import ToggleSwitch from "../../components/ToggleSwitch";
 import JournalPrompts from '../../components/JournalPrompts';
 import ConfirmationModal from '../../components/ConfirmationModal';

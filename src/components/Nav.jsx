@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './nav.css'; 
 import { Link } from 'react-router-dom';
-import { signOutOfAccount } from './../firebase/database';
+import { signOutOfAccount } from './../firebase/databaseUser';
 
 export default function Nav() {
     const [isDrawerOpen, setDrawerOpen] = useState(false);
