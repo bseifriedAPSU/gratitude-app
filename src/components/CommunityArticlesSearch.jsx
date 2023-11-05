@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { getUsernameLocation, getUsernameFromString } from '../firebase/databaseUser'
-import { communityPageDisplay } from '../firebase/databaseCommunity'
-
+import { communityPageDisplay, getUsernameLocation, getUsernameFromString } from '../firebase/database'
 export default function CommunityArticlesSearch() { 
 
     const [communityList, setCommunityList] = useState([]);
@@ -27,10 +25,9 @@ export default function CommunityArticlesSearch() {
     }
 
     return (
-    <>
-            <input className="communitySearchBar"
-                placeholder="Community Search Bar..."
-                    /*on change HERE*/ />
+        <>
+
+        <CommunitySearchBar />
             {communityList.length === 0 ? (
                 <p>No Community Entries</p>
             ) : (
