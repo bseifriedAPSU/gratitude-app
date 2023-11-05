@@ -1,12 +1,17 @@
 import "./homeArticlesSearch.css";
-import React, { useEffect, useState } from 'react'
-import { homepageJournalList, wordCloudList } from '../firebase/database'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { homepageJournalList, wordCloudList } from '../firebase/database';
+import { Link } from 'react-router-dom';
+import HomeSearchBar from "../components/HomeSearchBar"
 
 export default function HomeArticlesSearch() {
-    const [items, setItems] = useState([]);
+    
+ 
 
+
+    
     const uid = localStorage.getItem('uid');
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         homepageJournalList(uid)
@@ -33,8 +38,9 @@ export default function HomeArticlesSearch() {
 
         return (
             <>
-                <input className="homeSearchBar" placeholder="Home Page Search Bar..." /*on change HERE*/ />
 
+                <HomeSearchBar />
+               
                     {
                         items.length > 0 ? (
                             <ul>
