@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './homepageJournalEntryView.css';
 import TopBar from "../../components/TopBar";
-import { entryHeadline, entryDate, getUserEntryContent } from '../../firebase/database'
+import { entryHeadline, entryDate } from '../../firebase/databaseUser'
+import { getUserEntryContent } from '../../firebase/databaseHomepage'
 
 export default function HomepageJournalEntryView() {
 

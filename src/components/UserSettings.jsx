@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import './userSettings.css';
 import ConfirmationModal from './ConfirmationModal';
-import { createUserAccount } from '../firebase/database';
+import { createUserAccount, updateUserAccount } from '../firebase/databaseUser';
 import { useNavigate } from 'react-router-dom';
-import { getUsername, getUserImage } from "../firebase/database";
+
 
 export default function UserSettings() {
+    const isUser = localStorage.getItem('isUser');
     const navigate = useNavigate();
     //Username 
     const [currentUsername, setCurrentUsername] = useState("");
@@ -29,10 +30,9 @@ export default function UserSettings() {
         setIsModalOpen(true);
     };
 
-    const handleConfirm = () => {
+    
+    const createNewUser = () => {
 
-
-        //THIS IS WHERE WE ARE RE_CREATING USERS I BELIEVE
         createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
 
        //DO NOT REMOVE 
@@ -52,6 +52,10 @@ export default function UserSettings() {
 
 
     };
+
+    const updateCurrentUser = () => {
+        
+    }
     const handleCancel = () => {
         setIsModalOpen(false);
     };
@@ -81,11 +85,12 @@ export default function UserSettings() {
                 <div className="saveConfirmed">Your Entry Has been Saved!</div>
             )}
 
+            { }
             <button onClick={openModal}>Submit Changes</button>
             <ConfirmationModal
                 isOpen={isModalOpen}
                 message="Are you sure you want to Submit?"
-                onConfirm={handleConfirm}
+                onConfirm={createNewUser}
                 onCancel={handleCancel}
             />
 
