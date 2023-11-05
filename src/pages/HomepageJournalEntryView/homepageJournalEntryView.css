@@ -9,9 +9,12 @@
 }
 
 .journalEntryViewContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    word-wrap: break-word;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
 }
 
 .postHeader {
