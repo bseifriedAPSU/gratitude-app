@@ -8,28 +8,17 @@ import { useNavigate } from 'react-router-dom';
 export default function UserSettings() {
     const isUser = localStorage.getItem('isUser');
     const navigate = useNavigate();
-
-
-
-    //Username
+    //Username 
     const [currentUsername, setCurrentUsername] = useState("");
     //Cycle through Avatar images
     const [currentImage, setCurrentImage] = useState(1);
 
-
-
     const handleUsernameChange = (event) => {
         setCurrentUsername(event.target.value);
     };
-
-
-    // CLicking through avatar images
     const handleClick = () => {
         setCurrentImage(currentImage === 4 ? 1 : currentImage + 1);
-       // setCurrentUsername(currentUsername);
     };
-
-
 
     //Confirmation Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,18 +29,17 @@ export default function UserSettings() {
         setIsModalOpen(true);
     };
 
-    
+
     const createNewUser = () => {
 
         createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
-   
-       //DO NOT REMOVE 
-       //This sets localStorage for TopBar so user does NOT need to log out to see changes made
-        localStorage.setItem('Username', currentUsername);        
+        //DO NOT REMOVE 
+        //This sets localStorage for TopBar so user does NOT need to log out to see changes made
+        localStorage.setItem('Username', currentUsername);
         localStorage.setItem('UserImage', currentImage);
-       
+
         setIsModalOpen(false);
-        //Message Dialgue
+        //Message Dialogue
         setShowMessage(true);
         //Time Out after 3 seconds
         setTimeout(() => {
@@ -64,16 +52,26 @@ export default function UserSettings() {
     };
 
     const updateCurrentUser = () => {
-        
+        updateUserAccount(currentImage, localStorage.getItem('uid'));
+
+        localStorage.setItem('UserImage', currentImage);
+
+        setIsModalOpen(false);
+        //Message Dialogue
+        setShowMessage(true);
+        //Time Out after 3 seconds 
+        setTimeout(() => {
+            setShowMessage(false);
+        }, 3000);
+
+        navigate("/home");
     }
-
-
 
     const handleCancel = () => {
         setIsModalOpen(false);
     };
 
-  
+
     return (
         <div className="flex-container">
             <label>Choose an Avatar Image</label>
@@ -86,6 +84,7 @@ export default function UserSettings() {
                 />
             </div>
 
+            
             <label>Choose User Name</label>
 
             <input className="userNameInput"
@@ -93,21 +92,28 @@ export default function UserSettings() {
                 value={currentUsername}
                 onChange={handleUsernameChange}
             />
-            
+
             {showMessage && (
                 <div className="saveConfirmed">Your Entry Has been Saved!</div>
             )}
-
-            { }
             <button onClick={openModal}>Submit Changes</button>
-            <ConfirmationModal
-                isOpen={isModalOpen}
-                message="Are you sure you want to Submit?"
-                onConfirm={createNewUser}
-                onCancel={handleCancel}
-            />
+            {!isUser ? (
+                <ConfirmationModal
+                    isOpen={isModalOpen}
+                    message="Are you sure you want to Submit?"
+                    onConfirm={createNewUser}
+                    onCancel={handleCancel}
+                />
+            ) : (
+                <ConfirmationModal
+                    isOpen={isModalOpen}
+                    message="Are you sure you want to Submit?"
+                    onConfirm={updateCurrentUser}
+                    onCancel={handleCancel}
+                />
+            )}
 
-         
+
         </div>
     );
 }

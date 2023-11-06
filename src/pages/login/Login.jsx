@@ -13,8 +13,10 @@ export default function Login() {
                 userAccountCheck(localStorage.getItem('uid'))
                     .then((accountExists) => {
                         if (accountExists) {
+                            localStorage.removeItem('isUser');
                             localStorage.setItem('isUser', true);
                             getUsername().then((data) => {
+                                localStorage.removeItem('Username');
                             localStorage.setItem('Username', data); 
                             });
                             // getting user image # and setting to localstorage
