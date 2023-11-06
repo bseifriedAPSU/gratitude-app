@@ -140,17 +140,9 @@ export function userAccountCheck(userID) {
 
 //updates the user's profile picture if the account exist 
 export function updateUserAccount(profilePic, userID) {
-    var dbRef = ref(db, 'users/' + userID);
-
-    var newProfilePic = profilePic;
-
-    var updates = {};
-    updates['proiflePic'] = newProfilePic;
-
-    dbRef.update(updates).then(function () {
-        console.log("Profile picture successfully updated");
-    }).catch(function (error) {
-        console.error('Error updating profile picture: ', error);
-    });
-}
+    const dbRef = ref(db, `users/${userID}`);
+    const updates = {};
+    updates[`profilePicture`] = profilePic;
+    return update(dbRef, updates);
+    }
 
