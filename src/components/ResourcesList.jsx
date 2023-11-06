@@ -2,12 +2,12 @@ import "./resourcesList.css";
 
 export default function ResourcesList() {
     const resources = [
-        { label: "calm.com", link: "https://calm.com" },
+        { label: "Calm", link: "https://calm.com" },
         { label: "Mesmerize", link: "https://www.mesmerizeapp.com/" },
-        { label: "Resource 3", link: "https://example.com/resource3" },
-        { label: "Resource 4", link: "https://example.com/resource4" },
-        { label: "Resource 5", link: "https://example.com/resource5" },
-        { label: "Resource 6", link: "https://example.com/resource6" }
+        { label: "Pzizz", link: "https://pzizz.com/" },
+        { label: "Headspace", link: "https://www.headspace.com/" },
+        { label: "Buddhify", link: "https://buddhify.com/" },
+        { label: "Sleep Cycle", link: "https://www.sleepcycle.com/" }
     ];
 
     return (

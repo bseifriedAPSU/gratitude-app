@@ -7,6 +7,7 @@ export default function Resources() {
         <><TopBar />
         <div className="resources">
             <h1>Resources Page</h1>
+            <h3>Here is a list of additional resources for you to explore!</h3>
             <ResourcesList />
         </div>
         </>
