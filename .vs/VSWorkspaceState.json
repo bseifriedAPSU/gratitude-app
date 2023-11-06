@@ -3,10 +3,13 @@
     "",
     "\\src",
     "\\src\\components",
+    "\\src\\firebase",
     "\\src\\pages",
-    "\\src\\pages\\home",
+    "\\src\\pages\\HomepageJournalEntryView",
+    "\\src\\pages\\login",
+    "\\src\\pages\\newUser",
     "\\src\\pages\\resources"
   ],
-  "SelectedNode": "\\src\\components\\ResourcesList.jsx",
+  "SelectedNode": "\\src\\pages\\newUser\\NewUser.jsx",
   "PreviewInSolutionExplorer": false
 }
