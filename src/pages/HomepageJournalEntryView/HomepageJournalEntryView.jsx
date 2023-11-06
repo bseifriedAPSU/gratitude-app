@@ -38,7 +38,17 @@ export default function HomepageJournalEntryView() {
                     ) : (
                         <h3>Loading...</h3>
                     )}
-            </div>
+                </div>
+                <button className="deleteEntryButton"
+
+                    /*ADDED BUTTON FOR DELETE HERE. WILL ADD CONFIRMATION MODAL AFTER ITS WORKING  */ 
+                    onClick={() => {
+
+                    }}
+                >
+                    {" "}
+                    &#128465;
+                </button>
             </div>
         </>
     );

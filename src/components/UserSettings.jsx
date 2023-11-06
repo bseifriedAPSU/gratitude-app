@@ -8,18 +8,28 @@ import { useNavigate } from 'react-router-dom';
 export default function UserSettings() {
     const isUser = localStorage.getItem('isUser');
     const navigate = useNavigate();
-    //Username 
+
+
+
+    //Username
     const [currentUsername, setCurrentUsername] = useState("");
     //Cycle through Avatar images
     const [currentImage, setCurrentImage] = useState(1);
 
+
+
     const handleUsernameChange = (event) => {
         setCurrentUsername(event.target.value);
     };
+
+
+    // CLicking through avatar images
     const handleClick = () => {
         setCurrentImage(currentImage === 4 ? 1 : currentImage + 1);
-        setCurrentUsername(currentUsername);
+       // setCurrentUsername(currentUsername);
     };
+
+
 
     //Confirmation Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +44,7 @@ export default function UserSettings() {
     const createNewUser = () => {
 
         createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
-
+   
        //DO NOT REMOVE 
        //This sets localStorage for TopBar so user does NOT need to log out to see changes made
         localStorage.setItem('Username', currentUsername);        
@@ -56,6 +66,9 @@ export default function UserSettings() {
     const updateCurrentUser = () => {
         
     }
+
+
+
     const handleCancel = () => {
         setIsModalOpen(false);
     };
