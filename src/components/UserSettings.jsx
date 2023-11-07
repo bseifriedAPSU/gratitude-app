@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserSettings() {
     const isUser = localStorage.getItem('isUser');
+    console.log(isUser);
     const navigate = useNavigate();
     //Username 
     const [currentUsername, setCurrentUsername] = useState("");
@@ -14,7 +15,9 @@ export default function UserSettings() {
     const [currentImage, setCurrentImage] = useState(1);
 
     const handleUsernameChange = (event) => {
-        setCurrentUsername(event.target.value);
+        if (event.target.value !== null) {
+            setCurrentUsername(event.target.value);
+        }
     };
     const handleClick = () => {
         setCurrentImage(currentImage === 4 ? 1 : currentImage + 1);
@@ -33,6 +36,7 @@ export default function UserSettings() {
     const createNewUser = () => {
 
         createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
+        console.log("Create new user");
         //DO NOT REMOVE 
         //This sets localStorage for TopBar so user does NOT need to log out to see changes made
         localStorage.setItem('Username', currentUsername);
@@ -46,6 +50,7 @@ export default function UserSettings() {
             setShowMessage(false);
         }, 3000);
 
+        localStorage.setItem('isUser', true);
         navigate("/home");
 
 
@@ -53,7 +58,7 @@ export default function UserSettings() {
 
     const updateCurrentUser = () => {
         updateUserAccount(currentImage, localStorage.getItem('uid'));
-
+        console.log("Update user Account");
         localStorage.setItem('UserImage', currentImage);
 
         setIsModalOpen(false);
@@ -67,6 +72,13 @@ export default function UserSettings() {
         navigate("/home");
     }
 
+    const handleConfirm = () => {
+        if (isUser === 'false') {
+            createNewUser();
+        } else {
+            updateCurrentUser();
+        }
+    }
     const handleCancel = () => {
         setIsModalOpen(false);
     };
@@ -97,23 +109,12 @@ export default function UserSettings() {
                 <div className="saveConfirmed">Your Entry Has been Saved!</div>
             )}
             <button onClick={openModal}>Submit Changes</button>
-            {!isUser ? (
                 <ConfirmationModal
                     isOpen={isModalOpen}
                     message="Are you sure you want to Submit?"
-                    onConfirm={createNewUser}
+                    onConfirm={handleConfirm}
                     onCancel={handleCancel}
                 />
-            ) : (
-                <ConfirmationModal
-                    isOpen={isModalOpen}
-                    message="Are you sure you want to Submit?"
-                    onConfirm={updateCurrentUser}
-                    onCancel={handleCancel}
-                />
-            )}
-
-
         </div>
     );
 }

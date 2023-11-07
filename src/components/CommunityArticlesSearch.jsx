@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { communityPageDisplay } from '../firebase/databaseCommunity';
-import { getUsernameLocation, getUsernameFromString } from '../firebase/databaseUser';
-import CommunitySearchBar from './CommunitySearchBar';
-
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { getUsernameLocation, getUsernameFromString } from '../firebase/databaseUser'
+import { communityPageDisplay } from '../firebase/databaseCommunity'
 export default function CommunityArticlesSearch() { 
 
     const [communityList, setCommunityList] = useState([]);

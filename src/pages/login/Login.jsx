@@ -25,6 +25,7 @@ export default function Login() {
                             });
                             window.location.href = '/home'
                         } else {
+                            localStorage.setItem('isUser', false);
                             window.location.href = '/newUser'
                         }
                     })
