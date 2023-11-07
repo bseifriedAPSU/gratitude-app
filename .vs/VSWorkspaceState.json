@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+<<<<<<< HEAD
     "\\public\\images",
     "\\src",
     "\\src\\firebase",
@@ -8,5 +9,16 @@
     "\\src\\pages\\newUser"
   ],
   "SelectedNode": "\\src\\firebase\\databaseUser.js",
+=======
+    "\\src",
+    "\\src\\components",
+    "\\src\\firebase",
+    "\\src\\pages",
+    "\\src\\pages\\HomepageJournalEntryView",
+    "\\src\\pages\\login",
+    "\\src\\pages\\newUser",
+    "\\src\\pages\\resources"
+  ],
+>>>>>>> c7ef1b642a8520823a06338d9a0d760319a6a32b
   "PreviewInSolutionExplorer": false
 }

@@ -1,9 +1,9 @@
 .wordcloud-container {
     position: relative;
-    width: 100%;
-    max-width: 800px;
+    width: 85%;
+    max-width: auto;
     height: 300px;
-    margin: 0 auto;
+    margin: 45px;
 }
 
 .circle-mask {
@@ -12,3 +12,5 @@
     clip-path: url('cloud.svg');
     overflow: hidden;
 }
+
+

@@ -34,7 +34,7 @@ label {
 }
 
 input, textarea {
-    width: 100%;
+    width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -43,7 +43,7 @@ input, textarea {
 }
 
 button {
-    background-color: #666;
+  
     color: #fff;
     padding: 10px 20px;
     border: none;

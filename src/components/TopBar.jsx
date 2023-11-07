@@ -6,10 +6,6 @@ import Nav from './Nav';
 
 export default function TopBar() {
     const navigate = useNavigate();
-
-    //need to add const for profile image
-
-
     const username = JSON.stringify(localStorage.getItem('Username'));
     const imagenumber = JSON.parse(localStorage.getItem('UserImage'));
 

@@ -41,6 +41,12 @@ h3 {
     margin: 10px 0;
 }
 
+
+deleteEntryButton {
+     
+    width: 50px;
+}
+
 /* Add responsive styles for mobile */
 @media (max-width: 767px) {
     .title {
@@ -53,5 +59,8 @@ h3 {
 
     h3 {
         font-size: 1rem;
+    }
+    deleteEntryButton {
+        width: 50px;
     }
 }

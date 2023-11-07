@@ -41,6 +41,11 @@ export default function CommunityJournalEntryView() {
                     ) : (
                         <h3>Loading...</h3>
                     )}
+                    <label>
+                        < input type="checkbox" />  
+                        FLAG
+                    </label>
+                
                 </div>
             </div>
         </>

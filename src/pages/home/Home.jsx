@@ -11,9 +11,9 @@ export default function Home() {
     return (
         <> <TopBar />
         <div className="home">  
-            <Wordcloud />
-            <button onClick={() => navigate('/journalEntryCreation')}>Create New Journal Entry Button</button>
-            <HomeArticlesSearch />     
+                <Wordcloud />
+                <button className="createButton" onClick={() => navigate('/journalEntryCreation')}>Create New Journal Entry Button</button>
+                <HomeArticlesSearch />     
             </div>
         </>
     );
