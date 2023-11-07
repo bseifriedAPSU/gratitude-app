@@ -2,8 +2,14 @@ import "./adminSettings.css";
 
 export default function UserSettings() {
 
+
+    ///Here 
     return (
-    <h3>Username ****   [x]</h3>
+        <div className="adminContainer">
+            <h3>Username</h3>
+            <input type="checkbox" />
+            <h4>delete?</h4>
+        </div>
     );
 
 };

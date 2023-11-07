@@ -4,11 +4,8 @@
     "\\src",
     "\\src\\components",
     "\\src\\firebase",
-    "\\src\\pages",
-    "\\src\\pages\\HomepageJournalEntryView",
-    "\\src\\pages\\login",
-    "\\src\\pages\\newUser",
-    "\\src\\pages\\resources"
+    "\\src\\pages"
   ],
+  "SelectedNode": "\\src\\components\\TopBar.jsx",
   "PreviewInSolutionExplorer": false
 }
