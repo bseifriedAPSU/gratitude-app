@@ -12,7 +12,9 @@
         font-size: 30px;
     }
 
-    .button {
-        margin: 30px;
-    }
+.loginButton {
+    margin: 30px;
+    background-color: #333;
+}
+
 

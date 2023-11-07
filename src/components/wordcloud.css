@@ -1,7 +1,7 @@
 .wordcloud-container {
     position: relative;
     width: 85%;
-    max-width: 800px;
+    max-width: auto;
     height: 300px;
     margin: 45px;
 }

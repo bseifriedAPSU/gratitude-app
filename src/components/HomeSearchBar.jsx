@@ -9,6 +9,7 @@ export default function HomeSearchBar() {
 
 
 
+
     //MY HANDLE IS NOT WORKING CORRECTLY
     
     const handleSearch = async () => {
@@ -42,11 +43,11 @@ export default function HomeSearchBar() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search Your Entries"
                 />  
-                <button type="submit" onClick={handleSearch} >Search</button >
+                <button className="homeSearchButton" type="submit" onClick={handleSearch}>&#x1F50E;</button >
             </form>
 
 
-            { /* THIS IS THE PROTOTYPE FOR DISPLAYING THAT WILL NEED TO RENDER ON FilteredArticleView.jsx Page*/ }
+            { /* THIS IS THE PROTOTYPE FOR DISPLAYING THAT WILL NEED TO RENDER ON FilteredArticleView.jsx */ }
             <div>
                 {searchResults.map((post) => (
                 <div key={post.id}>

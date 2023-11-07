@@ -33,7 +33,8 @@ export default function HomeArticlesSearch() {
     }
 
         return (
-            <>
+            <div className="homeArticleContainer">
+            
                 <HomeSearchBar />
                     {
                         items.length > 0 ? (
@@ -46,7 +47,7 @@ export default function HomeArticlesSearch() {
                             <p>Loading...</p>
                         )
                     }
-            </>
+            </div>
         )
     
 }

@@ -40,7 +40,7 @@ export default function Login() {
 
             <Header />
 
-            <button className="login-with-google-btn" onClick={signIn}>
+            <button className="loginButton" onClick={signIn}>
                 Sign in with Google
             </button>
 
