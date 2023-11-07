@@ -1,5 +1,5 @@
 import { auth, db } from "./firebaseConfig";
-import { ref, onValue, push, query } from 'firebase/database';
+import { ref, onValue, push, query, remove } from 'firebase/database';
 
 //creates a new journal entry for the user and puts it into their database location
 //If the visibility is set to true add the journal entry to the community page as well
@@ -190,5 +190,22 @@ function time() {
 //deletes a journal entry from the user's location in the database 
 //If the entry is on the community page as well, deletes the entry from the community page
 export function deleteJournalEntry(headline, date) {
+    return new Promise((resolve, reject) => {
+        const dbRef = ref(db, `users/${localStorage.getItem('uid')}/posts`);
+
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+
+                if (childData.Headline === headline && childData.date === date) {
+                    if (childData.visibility === true) {
+
+                    }
+                    const postKey = childSnapshot.key;
+                    remove(postKey);
+                }
+            })
+        })
+    })
 
 }
