@@ -4,8 +4,8 @@
     "\\src",
     "\\src\\components",
     "\\src\\firebase",
-    "\\src\\pages"
+    "\\src\\pages\\HomepageJournalEntryView"
   ],
-  "SelectedNode": "\\src\\components\\TopBar.jsx",
+  "SelectedNode": "\\src\\components\\adminSettings.css",
   "PreviewInSolutionExplorer": false
 }
