@@ -201,8 +201,7 @@ export function deleteJournalEntry(headline, date) {
                     if (childData.visibility === true) {
 
                     }
-                    const postKey = childSnapshot.key;
-                    remove(postKey);
+                    remove(childSnapshot);
                 }
             })
         })
