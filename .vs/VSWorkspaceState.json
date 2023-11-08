@@ -13,12 +13,12 @@
     "\\src",
     "\\src\\components",
     "\\src\\firebase",
-    "\\src\\pages",
-    "\\src\\pages\\HomepageJournalEntryView",
-    "\\src\\pages\\login",
-    "\\src\\pages\\newUser",
-    "\\src\\pages\\resources"
+    "\\src\\pages"
   ],
+<<<<<<< HEAD
 >>>>>>> c7ef1b642a8520823a06338d9a0d760319a6a32b
+=======
+  "SelectedNode": "\\src\\components\\TopBar.jsx",
+>>>>>>> a79fdb9e3e4d0f20e13e04101e0f1741b7e2c1be
   "PreviewInSolutionExplorer": false
 }

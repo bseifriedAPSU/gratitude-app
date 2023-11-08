@@ -36,16 +36,17 @@ export default function CommunityJournalEntryView() {
                         </div>
                     </div>
                     <div className="postTextContainer">{content}</div>
-                    {username ? (
-                        <h3>Username: {username}</h3>
-                    ) : (
-                        <h3>Loading...</h3>
-                    )}
-                    <label>
-                        < input type="checkbox" />  
-                        FLAG
-                    </label>
-                
+                    <div className="articleBottomContainer">
+                        {username ? (
+                            <h3>Username: {username}</h3>
+                        ) : (
+                            <h3>Loading...</h3>
+                        )}
+                            <input type="checkbox" />
+                            <h3>SpICy?!</h3>
+                     
+                    </div>
+
                 </div>
             </div>
         </>

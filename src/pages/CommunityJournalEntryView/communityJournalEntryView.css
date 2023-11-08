@@ -42,6 +42,24 @@ h3 {
     color: #333;
     margin: 10px 0;
 }
+.articleBottomContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: flex-end;
+}
+
+    .checkboxLabel input[type="checkbox"] {
+        margin-right: 5px; 
+    }
+
+
+
+
 
 /* Add responsive styles for mobile */
 @media (max-width: 767px) {

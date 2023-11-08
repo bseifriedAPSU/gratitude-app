@@ -24,7 +24,8 @@ export default function HomepageJournalEntryView() {
     });
 
     return (
-        <><TopBar />
+      <>
+            <TopBar />
         <div className="journalEntryView">
             <div className="journalEntryViewContainer">
                 <div className="postHeader">
@@ -33,23 +34,27 @@ export default function HomepageJournalEntryView() {
                     </div>
                 </div>
                 <div className="postTextContainer">{content}</div>
+
+                <div className="articleBottomContainer">
+                    <div className="usernameDisplay">
                     {username ? (
                         <h3>Username: {username}</h3>
                     ) : (
                         <h3>Loading...</h3>
                     )}
-                </div>
-                <button className="deleteEntryButton"
-
+                    </div>
+                    <button className="deleteEntryButton"
                     /*ADDED BUTTON FOR DELETE HERE. WILL ADD CONFIRMATION MODAL AFTER ITS WORKING  */ 
                     onClick={() => {
 
                     }}
-                >
+                    >
                     {" "}
                     &#128465;
-                </button>
+                    </button>
+                </div>
+                </div>
             </div>
-        </>
+      </>
     );
 }

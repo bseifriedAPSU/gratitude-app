@@ -6,8 +6,11 @@ import Nav from './Nav';
 
 export default function TopBar() {
     const navigate = useNavigate();
-    const username = JSON.stringify(localStorage.getItem('Username'));
+    const usernameQuotes = JSON.stringify(localStorage.getItem('Username'));
     const imagenumber = JSON.parse(localStorage.getItem('UserImage'));
+
+    //gets rid of quotes from JSON to render correctly
+    const username = usernameQuotes.replace(/"/g, '');
 
     return (
         <div className="top">
