@@ -8,7 +8,7 @@ export default function SearchResults() {
         <><TopBar />
         <div className="searchResults">
             <h1>Search Results Page</h1>
-            <FilteredResults />
+                <p>Results will map here</p>
             
             </div>
         </>

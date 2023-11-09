@@ -2,7 +2,7 @@ import "./homeArticlesSearch.css";
 import React, { useEffect, useState } from 'react';
 import { homepageJournalList, wordCloudList } from '../firebase/databaseHomepage';
 import { Link } from 'react-router-dom';
-import HomeSearchBar from "./HomeSearchBar";
+
 
 export default function HomeArticlesSearch() {
     const [items, setItems] = useState([]);
@@ -34,8 +34,6 @@ export default function HomeArticlesSearch() {
 
         return (
             <div className="homeArticleContainer">
-            
-                <HomeSearchBar />
                     {
                         items.length > 0 ? (
                             <ul>

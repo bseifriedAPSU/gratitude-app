@@ -7,8 +7,8 @@ export default function UserSettings() {
     return (
         <div className="adminContainer">
             <h3>Username</h3>
-            <input type="checkbox" />
-            <h4>delete?</h4>
+            <button className="deleteUserAdminButton">DELETE</button>
+            
         </div>
     );
 

@@ -1,0 +1,13 @@
+.filterResultsList{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+    max-height:300px;
+    overflow-y: scroll;
+}
+
+.listItem:hover {
+    background-color: darkgrey;
+    cursor: pointer;
+}

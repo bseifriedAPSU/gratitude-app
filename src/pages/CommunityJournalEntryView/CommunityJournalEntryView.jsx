@@ -42,8 +42,8 @@ export default function CommunityJournalEntryView() {
                         ) : (
                             <h3>Loading...</h3>
                         )}
-                            <input type="checkbox" />
-                            <h3>SpICy?!</h3>
+                            <button className="hideEntryButton">FLAG</button>
+                           
                      
                     </div>
 
