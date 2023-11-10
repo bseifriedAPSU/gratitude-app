@@ -11,6 +11,7 @@ export default function HistorySearchBar({ setResults }) {
     const fetchData = (value) => {
 
         //using JSON Placeholder inplace of firebase for testing
+        // JOEL ...show me a better way :)
         fetch("https://jsonplaceholder.typicode.com/users")
             .then((response) => response.json())
             .then((json) => {
