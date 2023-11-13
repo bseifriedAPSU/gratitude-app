@@ -9,11 +9,6 @@ const MessageDialogue = ({ isOpen, message, onConfirm }) => {
             <div className="msg-background"></div>
             <div className="msg-content">
                 <p className="msg-message">{message}</p>
-                <div className="msg-buttons">
-                    <button className="confirm-button" onClick={onConfirm}>
-                       OK
-                    </button>
-                </div>
             </div>
         </div>
     );
