@@ -17,6 +17,8 @@ export default function CommunityJournalEntryView() {
     console.log(date);
     
 
+
+
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
     //Message Dialogue
@@ -26,6 +28,8 @@ export default function CommunityJournalEntryView() {
     };
     const handleConfirm = () => {
         //FLAG ENTRY FUNCTION CALL GOES HERE         <<<*****************************<<<
+
+
         setIsModalOpen(false);
         setShowMessage(true);
         setTimeout(() => {
@@ -35,10 +39,6 @@ export default function CommunityJournalEntryView() {
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-
-
-
-
 
 
     useEffect(() => {
