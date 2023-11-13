@@ -10,7 +10,7 @@ export default function HistorySearchBar() {
 
         searchJournalEntry(input).then((data) => {
             localStorage.setItem('searchResults', JSON.stringify(data));
-
+            window.location.href = '/SearchResults'
         });
     }
     

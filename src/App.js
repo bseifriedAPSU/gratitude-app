@@ -6,6 +6,7 @@ import History from "./pages/history/History";
 import Login from "./pages/login/Login";
 import JournalEntryCreation from "./pages/journalEntryCreation/JournalEntryCreation";
 import SearchResults from "./pages/searchResults/SearchResults";
+import CommunitySearchResults from './pages/communitySearchResults/communitySearchResults'
 import HomepageJournalEntryView from "./pages/HomepageJournalEntryView/HomepageJournalEntryView";
 import CommunityJournalEntryView from './pages/CommunityJournalEntryView/CommunityJournalEntryView';
 import NewUser from "./pages/newUser/NewUser";
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/homepageJournalEntryView" element={<HomepageJournalEntryView isAuth={isAuth} />} />
                 <Route path="/communityJournalEntryView" element={<CommunityJournalEntryView isAuth={isAuth} />} />
                 <Route path="/searchResults" element={<SearchResults isAuth={isAuth} />} />
+                <Route path="/communitySearchResults" element={<CommunitySearchResults isAuth={isAuth} />} />
                 <Route path="/newUser" element={<NewUser isAuth={isAuth} />} />
             </Routes>       
     </Router>
