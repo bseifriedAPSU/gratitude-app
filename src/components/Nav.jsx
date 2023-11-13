@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './nav.css'; 
 import { Link } from 'react-router-dom';
 import { signOutOfAccount } from './../firebase/databaseUser';
+import ConfirmationModal from './ConfirmationModal';
 
 export default function Nav() {
     const [isDrawerOpen, setDrawerOpen] = useState(false);
@@ -14,6 +15,33 @@ export default function Nav() {
     const closeDrawer = () => {
         setDrawerOpen(false);
     };
+    //Confirmation Modal 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleConfirm = () => {
+        signOutOfAccount();
+        closeDrawer();
+        setIsModalOpen(false);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return (
         <div className="topBar">
@@ -41,7 +69,14 @@ export default function Nav() {
                             <li onClick={closeDrawer}>
                                 <Link to="/settings">Settings</Link>
                             </li>
-                            <li onClick={() => { signOutOfAccount(); closeDrawer(); }}>Logout</li>
+                            <li onClick={openModal}>Logout</li>
+                            { /*Handling LOGOUT Confirmation*/}
+                            <ConfirmationModal
+                                isOpen={isModalOpen}
+                                message="Are you sure you want to LOGOUT?"
+                                onConfirm={handleConfirm}
+                                onCancel={handleCancel}
+                            />
                         </>
                     )}
                 </ul>

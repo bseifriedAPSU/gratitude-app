@@ -36,7 +36,7 @@ export default function CommunityArticlesSearch() {
                 communityList.length > 0 ? (
                     <ol>
                         {communityList.map((item, index) => (
-                            <Link to={'/communityJournalEntryView'} onClick={() => getLinkValue(JSON.stringify(item))}><li key={index}>{item}</li></Link>
+                            <Link to={'/communityJournalEntryView'} onClick={() => getLinkValue(JSON.stringify(item))}><li className="articleItem" key={index}>{item}</li></Link>
                         ))}
                     </ol>
                 ) : (

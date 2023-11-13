@@ -2,3 +2,12 @@
 
     margin: 20vh;
 }
+
+.articleItem {
+    box-shadow: 1px 1px 1px 1px;
+    text-decoration: none;
+}
+
+.articleItem:hover {
+    cursor: pointer;
+}

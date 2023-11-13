@@ -14,7 +14,7 @@
     width: 60%;
     text-align: center;
     cursor: pointer;
-    min-width:60%;
+    min-width:60vh;
 }
 
     .resource-button:hover {
