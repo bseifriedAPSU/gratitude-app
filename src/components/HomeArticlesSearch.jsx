@@ -14,7 +14,7 @@ export default function HomeArticlesSearch() {
             .then((data) => {
                 setItems(data.reverse());
             }).catch((error) => {
-                console.log('Error fetching articles: ', error);
+                console.log('Error fetching entries: ', error);
             });
 
 

@@ -1,26 +1,25 @@
 import "./communitySearchBar.css";
 import React, { useState } from 'react';
-import Axios from 'axios';
+import { FaSearch } from "react-icons/fa";
+import { searchCommunityJournalEntry } from '../firebase/databaseCommunity'
 
-//TESTING AXIOS
 export default function CommunitySearchBar() {
+    const [input, setInput] = useState("");
 
-    Axios.get("https://jsonplaceholder.typicode.com/posts")
-        .then((res) => {
-            console.log(res.data);
+    const getSearchInput = () => {
+        searchCommunityJournalEntry(input).then((data) => {
+            localStorage.setItem('searchResults', JSON.stringify(data));
+            window.location.href = '/communitySearchResults'
         });
-
-  
-
-    
+    }
     return (
-        <div className="communitySearchContainer">
+        <div className="input-wrapper">
+            <FaSearch id="search-icon" onClick={getSearchInput} />
             <input
-                type="text"
-                className="communitySearchInput"
-                placeholder="Search"
+                placeholder="Search community entries..."
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
             />
-            <p>  </p>
         </div>
     );
 };

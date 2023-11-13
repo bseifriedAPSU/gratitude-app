@@ -1,5 +1,5 @@
 import { db } from "./firebaseConfig";
-import { onValue, ref, query } from 'firebase/database';
+import { onValue, ref, query, orderByChild, startAt, endAt, get } from 'firebase/database';
 
 //displays the content for the specific community entry when the user clicks the link 
 export function displayCommunityEntryContent(headline, date) {
@@ -43,3 +43,36 @@ export function communityPageDisplay() {
         });
     });
 };
+
+export function searchCommunityJournalEntry(inputString) {
+    const userID = localStorage.getItem('uid');
+    const userPostsRef = ref(db, `community/posts`);
+    const searchQuery = query(
+        userPostsRef,
+        orderByChild('Headline'),
+        startAt(inputString),
+        endAt(inputString + '\uf8ff')
+    );
+
+    return get(searchQuery).then((snapshot) => {
+        const searchResults = [];
+
+        if (snapshot.exists()) {
+            snapshot.forEach((postSnapshot) => {
+                const post = postSnapshot.val();
+                const headline = post.Headline;
+                const date = post.date;
+                const username = post.Username;
+                const inputString = "Headline: " + headline + " | Username: " + username + " | Date: " + date;
+                searchResults.push(inputString);
+            });
+        } else {
+            console.log('No matching posts found.');
+        }
+
+        return searchResults;
+    }).catch((error) => {
+        console.error('Error getting data:', error);
+        throw error;
+    });
+}

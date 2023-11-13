@@ -20,7 +20,8 @@ export function createNewEntry(headline, content, visibility) {
                 push(ref(db, 'community/posts'), {
                     date: date,
                     Headline: headline,
-                    Username: username
+                    Username: username,
+                    flagCount: 0
                 });
             }
         })
@@ -212,7 +213,6 @@ export function deleteJournalEntry(headline, date) {
 export function searchJournalEntry(inputString) {
     const userID = localStorage.getItem('uid');
     const userPostsRef = ref(db, `users/${userID}/posts`);
-
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline'),
@@ -221,20 +221,21 @@ export function searchJournalEntry(inputString) {
     );
 
     return get(searchQuery).then((snapshot) => {
-        const matchingHeadlines = [];
+        const searchResults = [];
 
         if (snapshot.exists()) {
             snapshot.forEach((postSnapshot) => {
                 const post = postSnapshot.val();
                 const headline = post.Headline;
-                console.log('Matching Headline:', headline);
-                matchingHeadlines.push(headline);
+                const date = post.date;
+                var inputString = "Headline: " + headline + "   *****   Date: " + date;
+                searchResults.push(inputString);
             });
         } else {
             console.log('No matching posts found.');
         }
 
-        return matchingHeadlines; 
+        return searchResults; 
     }).catch((error) => {
         console.error('Error getting data:', error);
         throw error; 

@@ -1,10 +1,10 @@
-import "./searchResults.css";
+import "./communitySearchResults.css";
 import FilteredResults from "../../components/FilteredResults";
 import TopBar from "../../components/TopBar";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 
-export default function SearchResults() {
+export default function CommunitySearchResults() {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
@@ -23,12 +23,12 @@ export default function SearchResults() {
     return (
         <><TopBar />
         <div className="searchResults">
-            <h1>Search Results Page</h1>
+            <h1>Search Results</h1>
                 {
                     items.length > 0 ? (
                         <ul>
                             {items.map((item, index) => (
-                                <Link to={`/homepageJournalEntryView`} onClick={() => getLinkValue(JSON.stringify(item))}><li className="articleItem" key={index}>{item}</li></Link>
+                                <Link to={`/communityJournalEntryView`} onClick={() => getLinkValue(JSON.stringify(item))}><li className="articleItem" key={index}>{item}</li></Link>
                             ))}
                         </ul>
                     ) : (
