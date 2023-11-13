@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\documents",
+    "\\public\\images",
     "\\src",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\AdminSettings.jsx",
+  "SelectedNode": "\\src\\components\\CommunityArticlesSearch.jsx",
   "PreviewInSolutionExplorer": false
 }

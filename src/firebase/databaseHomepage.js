@@ -1,5 +1,5 @@
 import { auth, db } from "./firebaseConfig";
-import { ref, onValue, push, query, remove } from 'firebase/database';
+import { ref, onValue, push, query, remove, startAt, orderByChild, endAt, get } from 'firebase/database';
 
 //creates a new journal entry for the user and puts it into their database location
 //If the visibility is set to true add the journal entry to the community page as well
@@ -207,4 +207,36 @@ export function deleteJournalEntry(headline, date) {
         })
     })
 
+}
+
+export function searchJournalEntry(inputString) {
+    const userID = localStorage.getItem('uid');
+    const userPostsRef = ref(db, `users/${userID}/posts`);
+
+    const searchQuery = query(
+        userPostsRef,
+        orderByChild('Headline'),
+        startAt(inputString),
+        endAt(inputString + '\uf8ff')
+    );
+
+    return get(searchQuery).then((snapshot) => {
+        const matchingHeadlines = [];
+
+        if (snapshot.exists()) {
+            snapshot.forEach((postSnapshot) => {
+                const post = postSnapshot.val();
+                const headline = post.Headline;
+                console.log('Matching Headline:', headline);
+                matchingHeadlines.push(headline);
+            });
+        } else {
+            console.log('No matching posts found.');
+        }
+
+        return matchingHeadlines; 
+    }).catch((error) => {
+        console.error('Error getting data:', error);
+        throw error; 
+    });
 }
