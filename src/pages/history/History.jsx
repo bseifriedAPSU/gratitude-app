@@ -14,7 +14,7 @@ export default function History() {
             <div className="history">
                 <h1>History Page</h1>
                 
-                <HistorySearchBar setResults={setResults} />
+                <HistorySearchBar />
                 <FilteredResults results={ results } />
             <HomeArticlesSearch />
         </div>

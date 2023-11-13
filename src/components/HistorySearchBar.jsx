@@ -1,40 +1,28 @@
 import "./historySearchBar.css";
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
+import { searchJournalEntry } from '../firebase/databaseHomepage'
 import { FaSearch } from "react-icons/fa";
 
-export default function HistorySearchBar({ setResults }) {
-
+export default function HistorySearchBar() {
     const [input, setInput] = useState("");
 
+    const getSearchInput = () => {
 
-    // function to fetch from API
-    const fetchData = (value) => {
-        //using JSON Placeholder inplace of firebase for testing
-        // JOEL ...show me a better way :)
-        fetch("https://jsonplaceholder.typicode.com/users")
-            .then((response) => response.json())
-            .then((data) => {
-                const results = data.filter((user) => {
-                    return value && user && user.name && user.name.toLowerCase().includes(value)
-                });
-                setResults(results);
+        searchJournalEntry(input).then((data) => {
+            localStorage.setItem('searchResults', JSON.stringify(data));
+
         });
     }
+    
 
-    const handleChange = (value) => {
-        setInput(value);
-        fetchData(value);
-    }
     return (
         <div className="input-wrapper">
-        <FaSearch id="search-icon" />
-            <input placeholder="Search your entries..."
+            <FaSearch id="search-icon" onClick={getSearchInput} />
+            <input
+                placeholder="Search your entries..."
                 value={input}
-                onChange={(e) => handleChange(e.target.value)}
+                onChange={(e) => setInput(e.target.value)}
             />
         </div>
-       
     );
 };
-
-
