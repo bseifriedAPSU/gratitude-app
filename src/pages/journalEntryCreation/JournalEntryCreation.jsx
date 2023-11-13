@@ -97,7 +97,7 @@ export default function JournalEntryCreation() {
                 </div>
 
 
-                <button onClick={openModal}>Submit Entry</button>
+                <button className="journalEntryCreationButton" onClick={openModal}>Submit Entry</button>
                 <ConfirmationModal
                     isOpen={isModalOpen}
                     message="Are you sure you want to Submit?" 

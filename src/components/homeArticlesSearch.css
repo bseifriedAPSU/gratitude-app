@@ -1,11 +1,12 @@
 .homeArticleContainer {
 
-    margin: 20vh;
+    margin: 20px;
 }
 
 .articleItem {
     box-shadow: 1px 1px 1px 1px;
     text-decoration: none;
+
 }
 
 .articleItem:hover {

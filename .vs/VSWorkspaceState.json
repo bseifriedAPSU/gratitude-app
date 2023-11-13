@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\firebase"
+    "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\firebase\\databaseUser.js",
+  "SelectedNode": "\\src\\pages\\journalEntryCreation",
   "PreviewInSolutionExplorer": false
 }
