@@ -2,11 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\pages",
-    "\\src\\pages\\history",
-    "\\src\\pages\\searchResults"
+    "\\src\\firebase"
   ],
-  "SelectedNode": "\\src\\pages\\history\\History.jsx",
+  "SelectedNode": "\\src\\firebase\\databaseUser.js",
   "PreviewInSolutionExplorer": false
 }

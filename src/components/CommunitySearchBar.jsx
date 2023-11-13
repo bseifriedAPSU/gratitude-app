@@ -1,26 +1,26 @@
 import "./communitySearchBar.css";
 import React, { useState } from 'react';
+import Axios from 'axios';
 
-//TESTING
+//TESTING AXIOS
 export default function CommunitySearchBar() {
 
-    const [query, setQuery] = useState("")
+    Axios.get("https://jsonplaceholder.typicode.com/posts")
+        .then((res) => {
+            console.log(res.data);
+        });
 
-    function search(e) {
-        e.preventDefault()
-        setQuery(e.target.value)
+  
 
-    } 
+    
     return (
         <div className="communitySearchContainer">
             <input
                 type="text"
                 className="communitySearchInput"
                 placeholder="Search"
-                onChange={search}
-                value={query}
             />
-
+            <p>  </p>
         </div>
     );
 };

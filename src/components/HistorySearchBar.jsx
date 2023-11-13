@@ -1,21 +1,20 @@
 import "./historySearchBar.css";
 import React, { useState }  from 'react';
-
 import { FaSearch } from "react-icons/fa";
 
 export default function HistorySearchBar({ setResults }) {
+
     const [input, setInput] = useState("");
 
 
     // function to fetch from API
     const fetchData = (value) => {
-
         //using JSON Placeholder inplace of firebase for testing
         // JOEL ...show me a better way :)
         fetch("https://jsonplaceholder.typicode.com/users")
             .then((response) => response.json())
-            .then((json) => {
-                const results = json.filter((user) => {
+            .then((data) => {
+                const results = data.filter((user) => {
                     return value && user && user.name && user.name.toLowerCase().includes(value)
                 });
                 setResults(results);
