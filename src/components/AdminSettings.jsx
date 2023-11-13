@@ -28,12 +28,12 @@ export default function UserSettings() {
     ///Here 
     return (
         <div className="adminContainer">
-            {/* message confirmation*/}
-
+            <h2>ADMIN ONLY</h2>
             {/* Render list of username and button*/}
+            <div className="accountListContainer">
             <h3>Username</h3>
             <button className="deleteUserAdminButton" onClick={openModal}>DELETE ACCOUNT</button>
-
+            </div>
 
 
             {showMessage && (

@@ -38,7 +38,7 @@ export default function HomeArticlesSearch() {
                         items.length > 0 ? (
                             <ul>
                                 {items.map((item, index) => (
-                                    <Link to={`/homepageJournalEntryView`} onClick={() => getLinkValue(JSON.stringify(item))}><li key={index}>{item}</li></Link>
+                                    <Link to={`/homepageJournalEntryView`} onClick={() => getLinkValue(JSON.stringify(item))}><li className="articleItem" key={index}>{item}</li></Link>
                                 ))}
                             </ul>
                         ) : (
