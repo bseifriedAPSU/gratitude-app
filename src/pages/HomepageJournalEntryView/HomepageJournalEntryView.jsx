@@ -3,6 +3,7 @@ import './homepageJournalEntryView.css';
 import TopBar from "../../components/TopBar";
 import { entryHeadline, entryDate } from '../../firebase/databaseUser'
 import { getUserEntryContent } from '../../firebase/databaseHomepage'
+import ConfirmationModal from '../../components/ConfirmationModal';
 
 export default function HomepageJournalEntryView() {
 
@@ -12,6 +13,30 @@ export default function HomepageJournalEntryView() {
     var headline = entryHeadline(inputString);
     var date = entryDate(inputString);
     date = date.slice(0, -1);
+
+    //Confirmation Modal 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    //Message Dialogue
+    const [showMessage, setShowMessage] = useState(false);
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+    const handleConfirm = () => {
+        //DELETE ENTRY FUNCTION CALL GOES HERE<<<*****************************<<<
+        setIsModalOpen(false);
+        setShowMessage(true);
+        setTimeout(() => {
+            setShowMessage(false);
+        }, 3000);
+    };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
+
+
+
+
+
 
     useEffect(() => {
         getUserEntryContent(headline, date)
@@ -42,16 +67,24 @@ export default function HomepageJournalEntryView() {
                     ) : (
                         <h3>Loading...</h3>
                     )}
-                    </div>
-                    <button className="deleteEntryButton"
-                    /*ADDED BUTTON FOR DELETE HERE. WILL ADD CONFIRMATION MODAL AFTER ITS WORKING  */ 
-                    onClick={() => {
+                        </div>
 
-                    }}
-                    >
-                    {" "}
-                    &#128465;
-                    </button>
+                        {/* message confirmation*/ }
+                        {showMessage && (
+                            <div className="deleteConfirmed">Your Entry Has been Deleted</div>
+                        )}
+                        <button className="deleteEntryButton"
+                            onClick={openModal}>&#128465;</button>
+
+                        { /*Handling Delete Confirmation*/}
+                        <ConfirmationModal
+                            isOpen={isModalOpen}
+                            message="Are you sure you want to delete?"
+                            onConfirm={handleConfirm}
+                            onCancel={handleCancel}  
+                        />
+
+                        
                 </div>
                 </div>
             </div>
