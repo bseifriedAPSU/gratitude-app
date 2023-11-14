@@ -1,14 +1,35 @@
 .homeArticleContainer {
-
     margin: 20px;
 }
 
 .articleItem {
-    box-shadow: 1px 1px 1px 1px;
+    background-color: gainsboro;
     text-decoration: none;
-
 }
 
-.articleItem:hover {
-    cursor: pointer;
+    .articleItem:hover {
+        cursor: pointer;
+    }
+
+
+.pageContainer {
+    width: 80vw; /* 80% of viewport width */
+    height: 60vh; /* 80% of viewport height */
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px /* Adjust spacing from the articles container */
+}
+
+    .pagination button {
+        margin: 0 50px;
+        /* Add other styling for the pagination buttons as needed */
+    }

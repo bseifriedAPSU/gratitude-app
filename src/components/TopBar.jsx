@@ -13,7 +13,7 @@ export default function TopBar() {
     const username = usernameQuotes.replace(/"/g, '');
 
     return (
-        <div className="top">
+        <div className="navContainer">
             <div className="topLeft">
              
                 <div className="userInfo" onClick={() => navigate('/settings')}>
@@ -32,7 +32,7 @@ export default function TopBar() {
             
             <div className="topCenter"> 
                 <div className="topCenter-flex-container" onClick={() => navigate('/home')} >
-                    {/* /<img className="topBarLogo" src="/images/gratitudeLogoHorizontal.svg" alt="Gratitide Logo"></img> */}
+                    {/* <img className="topBarLogo" src="/images/gratitudeLogoHorizontal.svg" alt="Gratitide Logo"></img> */}
                 </div>
             </div>
             <div className="topRight"><Nav /></div>
