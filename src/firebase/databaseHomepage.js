@@ -190,25 +190,45 @@ function time() {
 
 //deletes a journal entry from the user's location in the database 
 //If the entry is on the community page as well, deletes the entry from the community page
-export function deleteJournalEntry(headline, date) {
-    return new Promise((resolve, reject) => {
-        const dbRef = ref(db, `users/${localStorage.getItem('uid')}/posts`);
+export async function deleteJournalEntry(headline, date) {
+    const dbRef = ref(db, `users/${localStorage.getItem('uid')}/posts`);
 
-        onValue(dbRef, (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                const childData = childSnapshot.val();
+    try {
+        const snapshot = await get(dbRef);
 
-                if (childData.Headline === headline && childData.date === date) {
-                    if (childData.visibility === true) {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            console.log("ChildData.visibility", childData.visibility);
 
-                    }
-                    remove(childSnapshot);
+            if (childData.Headline === headline && childData.date === date) {
+                console.log('childSnapshot.key:', childSnapshot.key);
+
+                if (childData.visibility === true) {
+                    deleteFromCommunity(childData.Headline, localStorage.getItem('username'), childData.date)
+                        .catch((error) => {
+                            console.error('Error deleting from community:', error);
+                        });
+                    console.log("Completed");
                 }
-            })
-        })
-    })
 
+                const dataRemoveRef = ref(db, `users/${localStorage.getItem('uid')}/posts/${childSnapshot.key}`);
+
+                remove(dataRemoveRef)
+                    .then(() => {
+                        console.log('Data removed successfully.');
+                    })
+                    .catch((error) => {
+                        console.error('Error removing data:', error);
+                    });
+            }
+        });
+    } catch (error) {
+        console.error('Error deleting journal entry:', error);
+        throw error;
+    }
 }
+
+
 
 export function searchJournalEntry(inputString) {
     const userID = localStorage.getItem('uid');
@@ -235,9 +255,30 @@ export function searchJournalEntry(inputString) {
             console.log('No matching posts found.');
         }
 
-        return searchResults; 
+        return searchResults;
     }).catch((error) => {
         console.error('Error getting data:', error);
-        throw error; 
+        throw error;
+    });
+}
+
+function deleteFromCommunity(headline, username, date) {
+    const dbRef = ref(db, 'community/posts');
+
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();  
+
+            if (childData.Headline === headline && childData.Username === username && childData.date === date) {
+                console.log('community snapshot', childData);
+                const removeRef = ref(db, `community/posts/${childSnapshot.key}`);
+
+                return remove(removeRef).then(() => {  
+                    console.log('Data removed successfully from community.');
+                }).catch((error) => {
+                    console.error('Error removing data:', error);
+                });
+            }
+        });
     });
 }
