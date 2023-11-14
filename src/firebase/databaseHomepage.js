@@ -233,11 +233,13 @@ export async function deleteJournalEntry(headline, date) {
 export function searchJournalEntry(inputString) {
     const userID = localStorage.getItem('uid');
     const userPostsRef = ref(db, `users/${userID}/posts`);
+
+    const lowercaseInputString = inputString.toLowerCase();
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline'),
-        startAt(inputString),
-        endAt(inputString + '\uf8ff')
+        startAt(lowercaseInputString),
+        endAt(lowercaseInputString + '\uf8ff')
     );
 
     return get(searchQuery).then((snapshot) => {
@@ -248,8 +250,14 @@ export function searchJournalEntry(inputString) {
                 const post = postSnapshot.val();
                 const headline = post.Headline;
                 const date = post.date;
-                var inputString = "Headline: " + headline + "   *****   Date: " + date;
-                searchResults.push(inputString);
+
+                const lowercaseHeadline = headline.toLowerCase();
+
+
+                if (lowercaseHeadline.includes(lowercaseInputString)) {
+                    const resultString = `Headline: ${headline}   *****   Date: ${date}`;
+                    searchResults.push(resultString);
+                }
             });
         } else {
             console.log('No matching posts found.');
@@ -267,13 +275,13 @@ function deleteFromCommunity(headline, username, date) {
 
     return get(dbRef).then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();  
+            const childData = childSnapshot.val();
 
             if (childData.Headline === headline && childData.Username === username && childData.date === date) {
                 console.log('community snapshot', childData);
                 const removeRef = ref(db, `community/posts/${childSnapshot.key}`);
 
-                return remove(removeRef).then(() => {  
+                return remove(removeRef).then(() => {
                     console.log('Data removed successfully from community.');
                 }).catch((error) => {
                     console.error('Error removing data:', error);
