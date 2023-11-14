@@ -45,13 +45,14 @@ export function communityPageDisplay() {
 };
 
 export function searchCommunityJournalEntry(inputString) {
-    const userID = localStorage.getItem('uid');
     const userPostsRef = ref(db, `community/posts`);
+
+    const lowercaseInputString = inputString.toLowerCase();
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline'),
-        startAt(inputString),
-        endAt(inputString + '\uf8ff')
+        startAt(lowercaseInputString),
+        endAt(lowercaseInputString + '\uf8ff')
     );
 
     return get(searchQuery).then((snapshot) => {
@@ -63,8 +64,13 @@ export function searchCommunityJournalEntry(inputString) {
                 const headline = post.Headline;
                 const date = post.date;
                 const username = post.Username;
-                const inputString = "Headline: " + headline + " | Username: " + username + " | Date: " + date;
-                searchResults.push(inputString);
+
+                const lowercaseHeadline = headline.toLowerCase();
+
+                if (lowercaseHeadline.includes(lowercaseInputString)) {
+                    const resultString = "Headline: " + headline + " | Username: " + username + " | Date: " + date;
+                    searchResults.push(resultString);
+                }
             });
         } else {
             console.log('No matching posts found.');
