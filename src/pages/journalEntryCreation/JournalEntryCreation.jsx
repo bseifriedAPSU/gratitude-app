@@ -75,7 +75,8 @@ export default function JournalEntryCreation() {
                 <JournalPrompts />
                 <div className="entryInput">
                     <label> Title:</label>
-                    <input
+                        <input
+                        className="headlineInput"
                         type="text"
                         placeholder="Title..."
                         value={headlineContent}
@@ -85,7 +86,8 @@ export default function JournalEntryCreation() {
                 </div>
                 <div className="entryInput">
                     <label> Entry:</label>
-                    <textarea
+                        <textarea
+                        className="contentInput"
                         placeholder="Entry..."
                         value={textAreaContent}
                         onChange={handleTextAreaChange}

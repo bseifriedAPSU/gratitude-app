@@ -15,8 +15,9 @@
         filter: grayscale(0%); 
     }
 
-label, input, button {
-    color: #333; 
+label, input {
+    color: black;
+    
 }
 
 .userNameInput {
