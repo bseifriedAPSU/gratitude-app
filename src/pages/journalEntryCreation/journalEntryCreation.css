@@ -7,7 +7,7 @@
 
 .journalEntryContainer {
     background-color: #fff;
-    padding: 20px; /* Adjusted padding */
+    padding: 20px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -21,7 +21,7 @@
         justify-content: center;
         align-items: center;
         height: fit-content;
-        margin-bottom: 20px; /* Adjusted margin */
+        margin-bottom: 20px; 
     }
 
 .entryInput {
@@ -30,9 +30,9 @@
 }
 
 label {
-    display: block; /* Show labels as block elements */
+    display: block; 
     color: #333;
-    margin-bottom: 5px; /* Adjusted margin */
+    margin-bottom: 5px; 
 }
 
 .contentInput {
@@ -42,7 +42,7 @@ label {
 
 input, textarea {
     width: 95%;
-    padding: 8px; /* Adjusted padding */
+    padding: 8px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #f5f5f5;
@@ -71,7 +71,7 @@ input, textarea {
 .saveConfirmed {
     display: flex;
     align-items: center;
-    margin: 20px; /* Adjusted margin */
+    margin: 20px;
 }
 
 .journalCreationBottom {

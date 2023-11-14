@@ -12,8 +12,7 @@
 
 .topCenter {
     flex: auto;
-    margin:auto;
-  padding: 22px;
+ 
 }
 .topCenter-flex-container {
     display: flex;
@@ -24,6 +23,12 @@
     height: 50px;
     width:auto;
 }
+
+    .topCenter-flex-container img {
+        height: 100%;
+        width: auto;
+        margin: 15px 5vh 10px 5vh;
+    }
 
 .userInfo {
     display: flex;
@@ -61,4 +66,5 @@ topBarLogo{
     height: 25px;
     width:auto;
     margin: 0;
+    
 }
