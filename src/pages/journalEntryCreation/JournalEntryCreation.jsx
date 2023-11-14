@@ -93,7 +93,8 @@ export default function JournalEntryCreation() {
                         onChange={handleTextAreaChange}
                         maxLength={1000}
                     />
-                </div>
+                    </div>
+                <div className="journalCreationBottom">
                 <div className="toggleSwitch">
                     <ToggleSwitch onToggle={handleToggle}/>
                 </div>
@@ -110,7 +111,7 @@ export default function JournalEntryCreation() {
                 {showMessage && (
                     <div className="saveConfirmed">Your Entry Has been Saved!</div>
                 )}
-               
+                    </div>
             </div>
             </div>
         </>

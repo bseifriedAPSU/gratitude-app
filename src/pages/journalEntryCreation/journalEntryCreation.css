@@ -57,6 +57,7 @@ input, textarea {
     cursor: pointer;
     font-size: 1rem;
     background-color: dimgray;
+    margin-left: auto;
 }
 
     .journalEntryCreationButton:hover {
@@ -71,4 +72,11 @@ input, textarea {
     display: flex;
     align-items: center;
     margin: 20px; /* Adjusted margin */
+}
+
+.journalCreationBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: self-end;
+    
 }
