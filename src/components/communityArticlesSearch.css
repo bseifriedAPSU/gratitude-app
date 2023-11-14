@@ -1,9 +1,30 @@
 
+.communityArticleContainer {
+    width: 80vw; 
+    height: 60vh; 
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .articleItem {
-    box-shadow: 1px 1px 1px 1px;
     text-decoration: none;
+   
 }
 
     .articleItem:hover {
         cursor: pointer;
+    }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+}
+
+    .pagination button {
+        margin: 0 50px;
+       
     }

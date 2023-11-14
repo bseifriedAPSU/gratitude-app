@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { homepageJournalList, wordCloudList } from '../firebase/databaseHomepage';
 import { Link } from 'react-router-dom';
-import './homeArticlesSearch.css'; // Import the CSS file
+import './homeArticlesSearch.css';
 
 export default function HomeArticlesSearch() {
     const [items, setItems] = useState([]);
