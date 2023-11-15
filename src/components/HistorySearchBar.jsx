@@ -12,12 +12,17 @@ export default function HistorySearchBar() {
         }
     };
 
-    const getSearchInput = () => {
-        searchJournalEntry(input).then((data) => {
+    const getSearchInput = async () => {
+        try {
+            const data = await searchJournalEntry(input);
+
             localStorage.setItem('searchResults', JSON.stringify(data));
-            window.location.href = '/SearchResults'
-        });
+            window.location.href = '/SearchResults';
+        } catch (error) {
+            console.error('Error searching journal entry:', error);
+        }
     }
+
 
     return (
         <div className="input-wrapper">

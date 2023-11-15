@@ -234,34 +234,30 @@ export function searchJournalEntry(inputString) {
     const userID = localStorage.getItem('uid');
     const userPostsRef = ref(db, `users/${userID}/posts`);
 
+    // Convert the inputString to lowercase for case-insensitive search
     const lowercaseInputString = inputString.toLowerCase();
+
     const searchQuery = query(
         userPostsRef,
-        orderByChild('Headline'),
-        startAt(lowercaseInputString),
-        endAt(lowercaseInputString + '\uf8ff')
+        orderByChild('Headline')
     );
 
     return get(searchQuery).then((snapshot) => {
         const searchResults = [];
 
-        if (snapshot.exists()) {
-            snapshot.forEach((postSnapshot) => {
-                const post = postSnapshot.val();
-                const headline = post.Headline;
-                const date = post.date;
+        snapshot.forEach((postSnapshot) => {
+            const post = postSnapshot.val();
+            const headline = post.Headline;
 
-                const lowercaseHeadline = headline.toLowerCase();
+            // Convert the headline to lowercase for case-insensitive comparison
+            const lowercaseHeadline = headline.toLowerCase();
 
-
-                if (lowercaseHeadline.includes(lowercaseInputString)) {
-                    const resultString = `Headline: ${headline}   *****   Date: ${date}`;
-                    searchResults.push(resultString);
-                }
-            });
-        } else {
-            console.log('No matching posts found.');
-        }
+            // Check if the lowercaseHeadline includes the lowercaseInputString
+            if (lowercaseHeadline.includes(lowercaseInputString)) {
+                const resultString = `Headline: ${headline}   *****   Date: ${post.date}`;
+                searchResults.push(resultString);
+            }
+        });
 
         return searchResults;
     }).catch((error) => {
@@ -269,6 +265,8 @@ export function searchJournalEntry(inputString) {
         throw error;
     });
 }
+
+
 
 function deleteFromCommunity(headline, username, date) {
     const dbRef = ref(db, 'community/posts');
