@@ -51,8 +51,6 @@ export function searchCommunityJournalEntry(inputString) {
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline'),
-        startAt(lowercaseInputString),
-        endAt(lowercaseInputString + '\uf8ff')
     );
 
     return get(searchQuery).then((snapshot) => {
@@ -62,18 +60,14 @@ export function searchCommunityJournalEntry(inputString) {
             snapshot.forEach((postSnapshot) => {
                 const post = postSnapshot.val();
                 const headline = post.Headline;
-                const date = post.date;
-                const username = post.Username;
 
                 const lowercaseHeadline = headline.toLowerCase();
 
                 if (lowercaseHeadline.includes(lowercaseInputString)) {
-                    const resultString = "Headline: " + headline + " | Username: " + username + " | Date: " + date;
+                    const resultString = "Headline: " + headline + " | Username: " + post.Username + " | Date: " + post.date;
                     searchResults.push(resultString);
                 }
             });
-        } else {
-            console.log('No matching posts found.');
         }
 
         return searchResults;

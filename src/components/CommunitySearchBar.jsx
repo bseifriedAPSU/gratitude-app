@@ -12,11 +12,15 @@ export default function CommunitySearchBar() {
         }
     };
 
-    const getSearchInput = () => {
-        searchCommunityJournalEntry(input).then((data) => {
+    const getSearchInput = async () => {
+        try {
+            const data = await searchCommunityJournalEntry(input);
+
             localStorage.setItem('searchResults', JSON.stringify(data));
-            window.location.href = '/communitySearchResults'
-        });
+            window.location.href = '/communitySearchResults';
+        } catch (error) {
+            console.error('Error searching journal entry:', error);
+        }
     }
 
     return (
