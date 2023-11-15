@@ -10,22 +10,25 @@ import CommunitySearchResults from './pages/communitySearchResults/communitySear
 import HomepageJournalEntryView from "./pages/HomepageJournalEntryView/HomepageJournalEntryView";
 import CommunityJournalEntryView from './pages/CommunityJournalEntryView/CommunityJournalEntryView';
 import NewUser from "./pages/newUser/NewUser";
+import About from "./pages/about/About";
+//import TopBar from "./components/TopBar";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TopBar from "./components/TopBar";
 //import Nav from "./components/Nav";
 import { useState } from 'react';
 
 
- 
+
+
 
 function App() {
-   
+
     const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-    
+
     return (
         <Router>
             <Routes>
-                <Route path="/" element={<Login setIsAuth={ setIsAuth } />} />
+                <Route path="/" element={<Login setIsAuth={setIsAuth} />} />
                 <Route path="/home" element={<Home isAuth={isAuth} />} />
                 <Route path="/community" element={<Community isAuth={isAuth} />} />
                 <Route path="/settings" element={<Settings isAuth={isAuth} />} />
@@ -37,9 +40,10 @@ function App() {
                 <Route path="/searchResults" element={<SearchResults isAuth={isAuth} />} />
                 <Route path="/communitySearchResults" element={<CommunitySearchResults isAuth={isAuth} />} />
                 <Route path="/newUser" element={<NewUser isAuth={isAuth} />} />
-            </Routes>       
-    </Router>
-  );
+                <Route path="/about" element={<About isAuth={isAuth} />} />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;

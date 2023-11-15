@@ -30,19 +30,6 @@ export default function Nav() {
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     return (
         <div className="topBar">
             <div className="topBarContent">
@@ -68,6 +55,9 @@ export default function Nav() {
                             </li>
                             <li onClick={closeDrawer}>
                                 <Link to="/settings">Settings</Link>
+                            </li>
+                            <li onClick={closeDrawer}>
+                                <Link to="/about">About</Link> 
                             </li>
                             <li onClick={openModal}>Logout</li>
                             { /*Handling LOGOUT Confirmation*/}
