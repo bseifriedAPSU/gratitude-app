@@ -5,10 +5,14 @@
 .articleItem {
     box-shadow: #414141 1px 1px 1px 1px;
     text-decoration: none;
+    border: 1px solid #000;
+    border-radius: 8px;
 }
 
+
     .articleItem:hover {
-        cursor: pointer;
+        background-color: #e0e0e0;
+        cursor:pointer;
     }
 
 
