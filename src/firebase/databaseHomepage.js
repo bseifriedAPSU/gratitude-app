@@ -237,6 +237,7 @@ export function searchJournalEntry(inputString) {
     // Convert the inputString to lowercase for case-insensitive search
     const lowercaseInputString = inputString.toLowerCase();
 
+    //create the query to orgainze by headline
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline')
@@ -245,6 +246,7 @@ export function searchJournalEntry(inputString) {
     return get(searchQuery).then((snapshot) => {
         const searchResults = [];
 
+        //search through the get each headline for comparison
         snapshot.forEach((postSnapshot) => {
             const post = postSnapshot.val();
             const headline = post.Headline;
@@ -259,6 +261,7 @@ export function searchJournalEntry(inputString) {
             }
         });
 
+        //return the search results 
         return searchResults;
     }).catch((error) => {
         console.error('Error getting data:', error);
