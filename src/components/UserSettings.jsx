@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function UserSettings() {
-    const isUser = localStorage.getItem('isUser');
+    const isUser = JSON.parse(localStorage.getItem('isUser'));
     console.log(isUser);
     const navigate = useNavigate();
     //Username 
@@ -73,8 +73,9 @@ export default function UserSettings() {
     }
 
     const handleConfirm = () => {
-        if (isUser === 'false') {
-            createNewUser();
+        if (!isUser) {
+            createNewUser()
+                localStorage.setItem('isUser', true.toString());
         } else {
             updateCurrentUser();
         }
@@ -96,25 +97,28 @@ export default function UserSettings() {
                 />
             </div>
 
-            
-            <label>Choose User Name</label>
+            {!isUser && (
+                <div>
+                    <label>Choose User Name</label>
 
-            <input className="userNameInput"
-                type="text"
-                value={currentUsername}
-                onChange={handleUsernameChange}
-            />
+                    <input className="userNameInput"
+                        type="text"
+                        value={currentUsername}
+                        onChange={handleUsernameChange}
+                    />
+                </div>
+            )}
 
             {showMessage && (
                 <div className="saveConfirmed">Your Entry Has been Saved!</div>
             )}
             <button onClick={openModal}>Submit Changes</button>
-                <ConfirmationModal
-                    isOpen={isModalOpen}
-                    message="Are you sure you want to Submit?"
-                    onConfirm={handleConfirm}
-                    onCancel={handleCancel}
-                />
+            <ConfirmationModal
+                isOpen={isModalOpen}
+                message="Are you sure you want to Submit?"
+                onConfirm={handleConfirm}
+                onCancel={handleCancel}
+            />
         </div>
     );
 }
