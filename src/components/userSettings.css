@@ -36,6 +36,7 @@ label, input {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    box-shadow: #414141 1px 1px 1px 1px;
 }
 
     .acceptChanges:hover {
