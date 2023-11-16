@@ -1,8 +1,7 @@
-import "./wordcloud.css"
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ReactWordcloud from 'react-wordcloud';
-import { searchJournalEntry } from '../firebase/databaseHomepage'
+import { searchJournalEntry } from '../firebase/databaseHomepage';
 
 export default function Wordcloud() {
     const [list, setList] = useState([]);
@@ -13,7 +12,7 @@ export default function Wordcloud() {
         if (wordCloudArray) {
             const words = wordCloudArray.split(/\s+/);
 
-            const uniqueWords = new Set(); 
+            const uniqueWords = new Set();
 
             const filteredWords = words
                 .map(word => word.trim())
@@ -21,14 +20,13 @@ export default function Wordcloud() {
                 .filter(word => {
                     if (!uniqueWords.has(word)) {
                         uniqueWords.add(word);
-                        return true; 
+                        return true;
                     }
-                    return false; 
+                    return false;
                 });
 
-
             const wordsWithValues = filteredWords.map(word => ({
-                text: word.trim(), 
+                text: word.trim(),
                 value: Math.round((Math.random() * (100 - 50) + 50) / 5) * 5,
             }));
 
@@ -36,18 +34,21 @@ export default function Wordcloud() {
         }
     }, []);
 
-    const handleWordClick = (word) => {
-        searchJournalEntry(word).then((data) => { 
+    const handleWordClick = word => {
+        searchJournalEntry(word).then(data => {
             localStorage.setItem('searchResults', JSON.stringify(data));
             window.location.href = '/SearchResults';
-        })
-    }
-    
+        });
+    };
+
     const options = {
         rotations: 2,
         rotationAngles: [0, 35, 90, 110],
         fontSizes: [20, 60, 75],
+        // Adding stopwords to exclude certain words
+        stopwords: ['taco', 'me', 'the', 'and'], // Replace these with your actual stopwords
     };
+
     return (
         <div className="wordcloud-container">
             <div className="circle-mask">
@@ -56,13 +57,13 @@ export default function Wordcloud() {
                         words={list}
                         options={options}
                         callbacks={{
-                            onWordClick: (word) => handleWordClick(word.text)
+                            onWordClick: word => handleWordClick(word.text),
                         }}
                     />
                 ) : (
-                    <p>No data to display.</p>)}
+                    <p>No data to display.</p>
+                )}
             </div>
         </div>
     );
-};
-
+}
