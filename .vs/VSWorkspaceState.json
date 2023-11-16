@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\firebase",
-    "\\src\\pages"
+    "\\src\\components"
   ],
-  "SelectedNode": "\\src\\firebase\\databaseUser.js",
+  "SelectedNode": "\\src\\components\\userSettings.css",
   "PreviewInSolutionExplorer": false
 }
