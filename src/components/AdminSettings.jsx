@@ -1,9 +1,16 @@
 import ConfirmationModal from "./ConfirmationModal";
 import "./adminSettings.css";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { admin } from '../firebase/databaseUser'
 
 export default function UserSettings() {
+    const [isAdmin, setIsAdmin] = useState(false);
 
+    useEffect(() => {
+        admin().then((data) => {
+            setIsAdmin(data);
+        });
+    })
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
     //Message Dialogue
@@ -26,7 +33,7 @@ export default function UserSettings() {
 
 
     ///Here 
-    return (
+    return isAdmin && (
         <div className="adminContainer">
             <h2>ADMIN ONLY</h2>
             {/* Render list of username and button*/}
@@ -46,7 +53,6 @@ export default function UserSettings() {
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
             />
-        </div>
-    );
-
+            </div>
+        )
 };

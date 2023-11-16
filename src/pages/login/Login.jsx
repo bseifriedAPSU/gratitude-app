@@ -17,7 +17,7 @@ export default function Login() {
 
                             //set isUser to true if the user currently exists 
                             localStorage.removeItem('isUser');
-                            localStorage.setItem('isUser', true);
+                            localStorage.setItem('isUser', true.toString());
 
                             //get the username for the user and set it to local storage 
                             getUsername().then((data) => {
@@ -40,7 +40,7 @@ export default function Login() {
                             });
                             window.location.href = '/home'
                         } else {
-                            localStorage.setItem('isUser', false);
+                            localStorage.setItem('isUser', false.toString());
                             window.location.href = '/newUser'
                         }
                     })

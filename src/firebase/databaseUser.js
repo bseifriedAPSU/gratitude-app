@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { ref, remove, onValue, set, update } from 'firebase/database';
+import { ref, remove, onValue, set, update, get } from 'firebase/database';
 import { Profiler } from "react";
 
 
@@ -115,7 +115,8 @@ export function createUserAccount(profile_pic, username, userID) {
 
     set(ref(db, 'users/' + userID), {
         Username: username,
-        profilePicture: profile_pic
+        profilePicture: profile_pic,
+        isAdmin: false
     });
 }
 
@@ -147,6 +148,16 @@ export function updateUserAccount(profilePic, userID) {
     return update(dbRef, updates);
 }
 
+export function admin() {
+    const userID = localStorage.getItem('uid');
+    const dbRef = ref(db, `users/${userID}`);
+
+    return get(dbRef).then((snapshot) => {
+        const childData = snapshot.val();
+        return childData.isAdmin;
+    })
+}
+
 //deletes user account when they press the delete button 
 export function deleteUserAccount() {
     const userID = localStorage.getItem('uid');
@@ -156,4 +167,5 @@ export function deleteUserAccount() {
     })
 
 }
+
 
