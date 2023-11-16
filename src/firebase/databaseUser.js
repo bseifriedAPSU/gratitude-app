@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { ref, query, onValue, set, update } from 'firebase/database';
+import { ref, remove, onValue, set, update } from 'firebase/database';
 import { Profiler } from "react";
 
 
@@ -101,8 +101,9 @@ export function getUsernameFromString(inputString) {
 //signs the user of of their account 
 export function signOutOfAccount() {
     signOut(auth).then(() => {
-        //localStorage.clear();
         window.location = "/";
+        localStorage.clear();
+
 
     }).catch((error) => {
         alert("There was an error signing out");
@@ -144,5 +145,15 @@ export function updateUserAccount(profilePic, userID) {
     const updates = {};
     updates[`profilePicture`] = profilePic;
     return update(dbRef, updates);
-    }
+}
+
+//deletes user account when they press the delete button 
+export function deleteUserAccount() {
+    const userID = localStorage.getItem('uid');
+    const removeRef = ref(db, `users/${userID}`);
+    remove(removeRef).then(() => {
+        window.location.href = '/';
+    })
+
+}
 
