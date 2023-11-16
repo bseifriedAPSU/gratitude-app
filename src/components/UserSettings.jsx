@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function UserSettings() {
     const isUser = JSON.parse(localStorage.getItem('isUser'));
-    console.log(isUser);
     const navigate = useNavigate();
     //Username 
     const [currentUsername, setCurrentUsername] = useState("");
