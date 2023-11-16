@@ -1,5 +1,5 @@
 import { auth, db } from "./firebaseConfig";
-import { ref, onValue, push, query, remove, startAt, orderByChild, endAt, get } from 'firebase/database';
+import { ref, onValue, push, query, remove, limitToLast, orderByChild, get } from 'firebase/database';
 
 //creates a new journal entry for the user and puts it into their database location
 //If the visibility is set to true add the journal entry to the community page as well
@@ -30,11 +30,36 @@ export function createNewEntry(headline, content, visibility) {
         })
 }
 
-//displays the list of journal entries for the user on their homepage 
-export function homepageJournalList(userId) {
+//displays the list of journal entries for the user on their history page  
+export function historyJournalList(userId) {
     return new Promise((resolve, reject) => {
         const data = [];
         const dbRef = ref(db, 'users/' + userId + '/posts');
+
+        onValue(dbRef, (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const childData = childSnapshot.val();
+
+                if (childData && childData.Headline && childData.date) {
+                    var { Headline, date } = childData;
+                    Headline.trim();
+                    date.trim();
+                    var inputString = "Headline: " + Headline + "   *****   Date: " + date;
+                    data.push(inputString);
+                }
+            });
+            resolve(data);
+        }, (error) => {
+            reject(error);
+        });
+    });
+}
+
+//displays the user's five most recent journal entries on the homepage 
+export function homepageJournalList(userId) {
+    return new Promise((resolve, reject) => {
+        const data = [];
+        const dbRef = query(ref(db, 'users/' + userId + '/posts'), limitToLast(5));
 
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
@@ -77,26 +102,19 @@ export function getUserEntryContent(headline, date) {
 
 //gets the list of headlines from the user's journal entries to create the wordcloud on the user's homepage 
 export function wordCloudList(userId) {
-    return new Promise((resolve, reject) => {
-        const data = [];
-        const dbRef = query(ref(db, 'users/' + userId + '/posts'));
+    const dbRef = ref(db, `users/${userId}/posts`);
 
-        onValue(dbRef, (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                const childData = childSnapshot.val();
+    return get(dbRef).then((snapshot) => {
+        const wordCloud = [];
 
-                if (childData && childData.Headline && childData.content) {
-                    var { Headline, content } = childData;
-                    Headline.trim();
-                    content.trim();
-                    var inputString = "Headline: " + Headline + "   *****   content: " + content;
-                    data.push(inputString);
-                }
-            });
-            resolve(data);
-        }, (error) => {
-            reject(error);
+        snapshot.forEach((postSnapshot) => {
+            const post = postSnapshot.val();
+            wordCloud.push(post.Headline);
         });
+        return wordCloud;
+    }).catch((error) => {
+        console.error('Error getting data:', error);
+        throw error;
     });
 }
 

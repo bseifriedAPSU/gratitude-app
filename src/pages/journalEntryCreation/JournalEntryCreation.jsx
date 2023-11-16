@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './journalEntryCreation.css';
-import { createNewEntry } from "./../../firebase/databaseHomepage";
+import { createNewEntry, wordCloudList } from "./../../firebase/databaseHomepage";
 import ToggleSwitch from "../../components/ToggleSwitch";
 import JournalPrompts from '../../components/JournalPrompts';
 import ConfirmationModal from '../../components/ConfirmationModal';
@@ -27,6 +27,13 @@ export default function JournalEntryCreation() {
         setTimeout(() => {
             setShowMessage(false);
         }, 3000);
+
+        wordCloudList(localStorage.getItem('uid'))
+            .then((data) => {
+                localStorage.setItem('wordCloudList', JSON.stringify(data));
+            }).catch((error) => {
+                console.log(error);
+            });
     };
 
     const handleCancel = () => { 

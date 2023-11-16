@@ -18,13 +18,6 @@ export default function HomeArticlesSearch() {
                 console.log('Error fetching entries: ', error);
             });
 
-        wordCloudList(uid)
-            .then((data) => {
-                console.log(data);
-            }).catch((error) => {
-                console.log(error);
-            });
-
     }, [uid]);
 
     const getLinkValue = (item) => {
