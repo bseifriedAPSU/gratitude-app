@@ -11,13 +11,20 @@ export default function Wordcloud() {
         const wordCloudArray = localStorage.getItem('wordCloudList');
 
         if (wordCloudArray) {
+            //split the array for the word cloud 
             const words = wordCloudArray.split(/\s+/);
 
+            //list of stopwords 
+            const stopWords = new Set(['and']);
+
+            //list of words so that there aren't duplicates in the word cloud 
             const uniqueWords = new Set();
 
+            //filtering out the words for the word cloud 
             const filteredWords = words
                 .map(word => word.trim())
                 .filter(word => /^[a-zA-Z0-9]+$/.test(word))
+                .filter(word => !stopWords.has(word))
                 .filter(word => {
                     if (!uniqueWords.has(word)) {
                         uniqueWords.add(word);
