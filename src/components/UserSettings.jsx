@@ -1,5 +1,5 @@
+import '../css/components.css';
 import React, { useState } from 'react';
-import './userSettings.css';
 import ConfirmationModal from './ConfirmationModal';
 import { createUserAccount, updateUserAccount } from '../firebase/databaseUser';
 import { useNavigate } from 'react-router-dom';

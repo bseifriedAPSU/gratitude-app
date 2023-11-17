@@ -1,7 +1,8 @@
+import '../css/components.css';
 import React, { useEffect, useState } from 'react';
 import { homepageJournalList } from '../firebase/databaseHomepage';
 import { Link } from 'react-router-dom';
-import './homeArticlesSearch.css';
+
 
 export default function HomeArticlesSearch() {
     const [items, setItems] = useState([]);
@@ -25,6 +26,7 @@ export default function HomeArticlesSearch() {
         localStorage.setItem('inputString', item);
     };
 
+    //pagination constructs
     const indexOfLastArticle = currentPage * articlesPerPage;
     const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
     const currentArticles = items.slice(indexOfFirstArticle, indexOfLastArticle);

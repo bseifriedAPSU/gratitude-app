@@ -1,5 +1,5 @@
+import '../css/components.css';
 import ConfirmationModal from "./ConfirmationModal";
-import "./adminSettings.css";
 import React, { useState, useEffect } from 'react';
 import { admin, deleteUserAccount, displayAccountUsernames } from '../firebase/databaseUser'
 

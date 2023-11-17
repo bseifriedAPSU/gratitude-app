@@ -1,5 +1,7 @@
+import '../css/components.css';
+
 import React from 'react';
-import './messageDialogue.css';
+
 
 const MessageDialogue = ({ isOpen, message, onConfirm }) => {
     if (!isOpen) return null;

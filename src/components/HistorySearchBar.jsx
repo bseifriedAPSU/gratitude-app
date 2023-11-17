@@ -1,4 +1,4 @@
-import "./historySearchBar.css";
+import '../css/components.css';
 import React, { useState } from 'react';
 import { searchJournalEntry } from '../firebase/databaseHomepage';
 import { FaSearch } from "react-icons/fa";

@@ -1,3 +1,4 @@
+import '../css/components.css';
 import React, { useState } from 'react';
 import ReactSwitch from 'react-switch';
 

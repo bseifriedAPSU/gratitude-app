@@ -1,4 +1,4 @@
-import "./communitySearchBar.css";
+import '../css/components.css';
 import React, { useState } from 'react';
 import { FaSearch } from "react-icons/fa";
 import { searchCommunityJournalEntry } from '../firebase/databaseCommunity'

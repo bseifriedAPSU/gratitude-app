@@ -1,5 +1,5 @@
+import '../css/components.css';
 import React, { useState } from 'react';
-import './nav.css'; 
 import { Link } from 'react-router-dom';
 import { signOutOfAccount } from './../firebase/databaseUser';
 import ConfirmationModal from './ConfirmationModal';

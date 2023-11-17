@@ -4,6 +4,8 @@ import TopBar from "../../components/TopBar";
 import { entryHeadline, entryDate } from '../../firebase/databaseUser'
 import { getUserEntryContent, deleteJournalEntry } from '../../firebase/databaseHomepage'
 import ConfirmationModal from '../../components/ConfirmationModal';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function HomepageJournalEntryView() {
 
@@ -43,7 +45,11 @@ export default function HomepageJournalEntryView() {
         setIsModalOpen(false);
     };
 
-
+    //Back Button function
+    const navigate = useNavigate();
+    const goBack = () => {
+        navigate(-1);
+    }
 
 
 
@@ -98,6 +104,10 @@ export default function HomepageJournalEntryView() {
                     </div>
                 </div>
             </div>
-        </>
+            
+            <div className="bottomPageContainer">
+            <button className="backButton" onClick={goBack}>Previous Page</button>
+            </div>
+            </>
     );
 }

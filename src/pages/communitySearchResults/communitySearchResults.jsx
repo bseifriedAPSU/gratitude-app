@@ -2,7 +2,7 @@ import "./communitySearchResults.css";
 import FilteredResults from "../../components/FilteredResults";
 import TopBar from "../../components/TopBar";
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function CommunitySearchResults() {
     const [items, setItems] = useState([]);
@@ -19,7 +19,12 @@ export default function CommunitySearchResults() {
         localStorage.removeItem('inputString');
         localStorage.setItem('inputString', item);
     }
-
+  
+    //Back Button function
+    const navigate = useNavigate();
+    const goBack = () => {
+        navigate(-1);
+    }
     return (
         <><TopBar />
         <div className="searchResults">
@@ -35,6 +40,9 @@ export default function CommunitySearchResults() {
                         <p>Loading...</p>
                     )
                 }
+            </div>
+            <div className="bottomPageContainer">
+                <button className="backButton" onClick={goBack}>Previous Page</button>
             </div>
         </>
 

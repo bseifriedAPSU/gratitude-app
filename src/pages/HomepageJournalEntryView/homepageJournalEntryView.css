@@ -53,6 +53,12 @@ h3 {
     align-items: center;
 }
 
+.bottomPageContainer {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
 /* Add responsive styles for mobile */
 @media (max-width: 767px) {
     .title {

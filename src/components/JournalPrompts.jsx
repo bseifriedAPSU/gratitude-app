@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './journalPrompt.css';
+import '../css/components.css';
 
 export default function JournalPrompts() {
     const inspiringPrompts = [
