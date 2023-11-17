@@ -1,9 +1,9 @@
-import React from 'react';
+import "../css/pages.css";
+import Wordcloud from "../components/Wordcloud";
+import HomeArticlesSearch from '../components/HomeArticlesSearch';
+import TopBar from '../components/TopBar';
 import { useNavigate } from 'react-router-dom';
-import Wordcloud from "../../components/Wordcloud";
-import HomeArticlesSearch from '../../components/HomeArticlesSearch';
-import "./home.css";
-import TopBar from '../../components/TopBar';
+import React from 'react';
 
 export default function Home() {
     const navigate = useNavigate();

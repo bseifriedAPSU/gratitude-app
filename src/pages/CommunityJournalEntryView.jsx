@@ -1,9 +1,9 @@
+import "../css/pages.css";
 import React, { useState, useEffect } from 'react';
-import './communityJournalEntryView.css';
-import TopBar from "../../components/TopBar";
-import { displayCommunityEntryContent } from '../../firebase/databaseCommunity'
-import { getUsernameFromString, entryDate, getCommunityHeadline } from '../../firebase/databaseUser'
-import ConfirmationModal from '../../components/ConfirmationModal';
+import TopBar from "../components/TopBar";
+import { displayCommunityEntryContent } from '../firebase/databaseCommunity'
+import { getUsernameFromString, entryDate, getCommunityHeadline } from '../firebase/databaseUser'
+import ConfirmationModal from '../components/ConfirmationModal';
 import { useNavigate } from 'react-router-dom';
 
 export default function CommunityJournalEntryView() {

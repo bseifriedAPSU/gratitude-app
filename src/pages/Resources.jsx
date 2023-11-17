@@ -1,6 +1,7 @@
-import "./resources.css"
-import ResourcesList from "../../components/ResourcesList"
-import TopBar from "../../components/TopBar";
+import "../css/pages.css";
+import ResourcesList from "../components/ResourcesList"
+import TopBar from "../components/TopBar";
+
 export default function Resources() {
 
     return (

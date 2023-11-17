@@ -1,6 +1,6 @@
-import "./community.css";
-import CommunityArticlesSearch from "../../components/CommunityArticlesSearch";
-import TopBar from "../../components/TopBar";
+import "../css/pages.css";
+import CommunityArticlesSearch from "../components/CommunityArticlesSearch";
+import TopBar from "../components/TopBar";
 import { useNavigate } from 'react-router-dom';
 export default function Community() {
     //Back Button function

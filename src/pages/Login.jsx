@@ -1,9 +1,10 @@
-import "./login.css"
+import "../css/pages.css";
 import React, { useEffect } from 'react'
-import { signIn, userAccountCheck, getUsername, getUserImage } from "./../../firebase/databaseUser"
-import { wordCloudList } from '../../firebase/databaseHomepage'
-import { auth } from './../../firebase/firebaseConfig'
-import Header from "../../components/Header"
+import { signIn, userAccountCheck, getUsername, getUserImage } from "./../firebase/databaseUser"
+import { wordCloudList } from '../firebase/databaseHomepage'
+import { auth } from '../firebase/firebaseConfig'
+import Header from "../components/Header"
+
 export default function Login() {
 
     useEffect(() => {

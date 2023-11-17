@@ -1,7 +1,7 @@
-import "./settings.css";
-import UserSettings from "../../components/UserSettings";
-import TopBar from "../../components/TopBar";
-import AdminSettings from "../../components/AdminSettings";
+import "../css/pages.css";
+import UserSettings from "../components/UserSettings";
+import TopBar from "../components/TopBar";
+import AdminSettings from "../components/AdminSettings";
 export default function Settings() {
 
     return (

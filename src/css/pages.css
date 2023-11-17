@@ -7,4 +7,392 @@
     flex-direction: column;
 }
 
-/**/
+/*Community*/
+.community {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px auto;
+    list-style: none;
+}
+
+.communitySearchBar {
+    width: 50%;
+}
+
+/*CommunityJournalEntryView*/
+
+.journalEntryView {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.journalEntryViewContainer {
+    word-wrap: break-word;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.postHeader {
+    text-align: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.postTextContainer {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px 0;
+    white-space: normal;
+}
+
+h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+.articleBottomContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkboxLabel {
+    display: flex;
+    align-items: flex-end;
+}
+
+    .checkboxLabel input[type="checkbox"] {
+        margin-right: 5px;
+    }
+
+/* Add responsive styles for mobile */
+@media (max-width: 767px) {
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .postTextContainer {
+        font-size: 0.9rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+/*CommunitySearchResults*/
+.searchResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px auto;
+    list-style: none;
+}
+
+/*History*/
+.history {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.historySearchBar {
+    width: 50%;
+}
+/*Home*/
+
+.home {
+    text-align: center;
+    padding: 20px;
+}
+
+.createButton {
+    background-color: #666;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 15px;
+    max-width: 300px;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+.homeSearchBar {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-size: 1rem;
+    margin: auto;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    color: #333;
+    font-size: 1rem;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/*HomepageJournalEntryView*/
+
+.journalEntryView {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.journalEntryViewContainer {
+    word-wrap: break-word;
+    height: auto;
+    max-height: 400px;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.postHeader {
+    text-align: center;
+}
+
+.title {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.postTextContainer {
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+
+.deleteEntryButton {
+    width: 50px;
+}
+
+.articleBottomContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottomPageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Add responsive styles for mobile */
+@media (max-width: 767px) {
+    .title {
+        font-size: 1.2rem;
+    }
+
+    .postTextContainer {
+        font-size: 0.9rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    deleteEntryButton {
+        width: 50px;
+    }
+}
+
+/*JournalEntryCreation*/
+.journalEntryCreation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.journalEntryContainer {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    width: 100%;
+    margin: 15px;
+}
+
+    .journalEntryContainer h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        margin-bottom: 20px;
+    }
+
+.entryInput {
+    margin-bottom: 20px;
+    width: 95%/;
+}
+
+label {
+    display: block;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.contentInput {
+    min-height: 100px;
+    overflow-y: scroll;
+}
+
+input, textarea {
+    width: 95%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+    font-size: 1rem;
+}
+
+.journalEntryCreationButton {
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    background-color: dimgray;
+    margin-left: auto;
+}
+
+    .journalEntryCreationButton:hover {
+        background-color: slategray;
+    }
+
+.toggleSwitch {
+    margin-top: 10px;
+}
+
+.saveConfirmed {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+.journalCreationBottom {
+    display: flex;
+    flex-direction: row;
+    align-items: self-end;
+}
+/*Login*/
+.login {
+    width: 100vw;
+    height: calc(100vh - 80px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+}
+
+    .login p {
+        font-size: 30px;
+    }
+
+.loginButton {
+    background-color: #666;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 15px;
+    max-width: 300px;
+}
+
+button:hover {
+    background-color: #444;
+}
+
+/*NewUser*/
+.newUser {
+    width: fit-content;
+    height: auto;
+    padding: 20px;
+    border: outset;
+    border-radius: 12px;
+    border-color: black;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    margin: 60px auto;
+}
+
+
+/*Resources*/
+.resources {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px auto;
+    list-style: none;
+}
+
+/*SearchResults*/
+.searchResults {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px auto;
+    list-style: none;
+}
+
+/*Settings*/
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px auto;
+    list-style: none;
+}
+

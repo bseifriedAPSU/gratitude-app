@@ -1,9 +1,9 @@
+import "../css/pages.css";
+import ConfirmationModal from '../components/ConfirmationModal';
+import TopBar from "../components/TopBar";
+import { entryHeadline, entryDate } from '../firebase/databaseUser'
+import { getUserEntryContent, deleteJournalEntry } from '../firebase/databaseHomepage'
 import React, { useState, useEffect } from 'react';
-import './homepageJournalEntryView.css';
-import TopBar from "../../components/TopBar";
-import { entryHeadline, entryDate } from '../../firebase/databaseUser'
-import { getUserEntryContent, deleteJournalEntry } from '../../firebase/databaseHomepage'
-import ConfirmationModal from '../../components/ConfirmationModal';
 import { useNavigate } from 'react-router-dom';
 
 

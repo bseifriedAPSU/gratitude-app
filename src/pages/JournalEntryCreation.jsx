@@ -1,12 +1,12 @@
+import "../css/pages.css";
 import React, { useState } from 'react';
-import './journalEntryCreation.css';
-import { createNewEntry, wordCloudList } from "./../../firebase/databaseHomepage";
-import ToggleSwitch from "../../components/ToggleSwitch";
-import JournalPrompts from '../../components/JournalPrompts';
-import ConfirmationModal from '../../components/ConfirmationModal';
-import TopBar from "../../components/TopBar";
-
+import { createNewEntry, wordCloudList } from "./../firebase/databaseHomepage";
+import ToggleSwitch from "../components/ToggleSwitch";
+import JournalPrompts from '../components/JournalPrompts';
+import ConfirmationModal from '../components/ConfirmationModal';
+import TopBar from "../components/TopBar";
 import { useNavigate } from 'react-router-dom';
+
 export default function JournalEntryCreation() {
 
     //Confirmation Modal 

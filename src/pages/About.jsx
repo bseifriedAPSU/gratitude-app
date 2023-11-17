@@ -1,6 +1,6 @@
-import TopBar from "../../components/TopBar";
+import TopBar from "../components/TopBar";
 import { useNavigate } from 'react-router-dom';
-import "./about.css";
+import "../css/pages.css";
 
 export default function About() {
 

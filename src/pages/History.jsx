@@ -1,10 +1,10 @@
-import "./history.css";
-import HomeArticlesSearch from "../../components/HomeArticlesSearch";
-import TopBar from "../../components/TopBar";
-import HistorySearchBar from "../../components/HistorySearchBar";
-import { useState } from 'react';
-import FilteredResults from "../../components/FilteredResults";
+import "../css/pages.css";
+import HomeArticlesSearch from "../components/HomeArticlesSearch";
+import TopBar from "../components/TopBar";
+import HistorySearchBar from "../components/HistorySearchBar";
+import FilteredResults from "../components/FilteredResults";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
 

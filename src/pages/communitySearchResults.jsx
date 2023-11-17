@@ -1,6 +1,6 @@
-import "./communitySearchResults.css";
-import FilteredResults from "../../components/FilteredResults";
-import TopBar from "../../components/TopBar";
+import "../css/pages.css";
+import FilteredResults from "../components/FilteredResults";
+import TopBar from "../components/TopBar";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 
