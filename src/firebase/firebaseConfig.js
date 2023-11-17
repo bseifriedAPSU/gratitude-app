@@ -3,16 +3,16 @@ import { initializeApp } from "firebase/app";
 //import firebase database for database usage
 import { getDatabase } from 'firebase/database'
 //import firebase authentication 
-import { GoogleAuthProvider, getAuth} from "firebase/auth";
+import { GoogleAuthProvider, getAuth } from "firebase/auth";
 
 //Configure the firebase database
 const firebaseConfig = {
-  apiKey: "AIzaSyD22sZN5BsAKhr966RjHkz_jH1w0gtGiJg",
-  authDomain: "database-test-626d7.firebaseapp.com",
-  projectId: "database-test-626d7",
-  storageBucket: "database-test-626d7.appspot.com",
-  messagingSenderId: "521254194277",
-  appId: "1:521254194277:web:4b1f24147456d8e1e3ca8c"
+    apiKey: "AIzaSyBiRvDRU-MPPPifHa4itS3GUS4f2t87wQ8",
+    authDomain: "gratitude-ab7a0.firebaseapp.com",
+    projectId: "gratitude-ab7a0",
+    storageBucket: "gratitude-ab7a0.appspot.com",
+    messagingSenderId: "235956396078",
+    appId: "1:235956396078:web:01ca8b1c2f8a864208ffbf"
 };
 
 const app = initializeApp(firebaseConfig);//initialization of the firebase app 
