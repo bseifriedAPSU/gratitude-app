@@ -26,6 +26,7 @@ export default function HomeArticlesSearch() {
         localStorage.setItem('inputString', item);
     };
 
+    //pagination constructs
     const indexOfLastArticle = currentPage * articlesPerPage;
     const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
     const currentArticles = items.slice(indexOfFirstArticle, indexOfLastArticle);
