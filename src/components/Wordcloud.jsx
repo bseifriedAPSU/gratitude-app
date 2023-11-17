@@ -14,7 +14,7 @@ export default function Wordcloud() {
             //split the array for the word cloud 
             const words = wordCloudArray.split(/\s+/);
 
-            //list of stopwords 
+            //list of stopwords  NOTE add irrelavant words as needed in alphabetical order PLEASE :)
             const stopWords = new Set([
                 'and',
                 'about',
@@ -34,6 +34,7 @@ export default function Wordcloud() {
                 'been',
                 'before',
                 'being',
+                'best',
                 'between',
                 'both',
                 'but',
@@ -66,6 +67,7 @@ export default function Wordcloud() {
                 'it',
                 'like',
                 'make',
+                'makes',
                 'many',
                 'me',
                 'might',
@@ -144,6 +146,8 @@ export default function Wordcloud() {
                 });
 
             const wordsWithValues = filteredWords.map(word => ({
+                
+                enableTooltip: false,
                 text: word.trim(),
                 value: Math.round((Math.random() * (100 - 50) + 50) / 5) * 5,
             }));
@@ -164,7 +168,7 @@ export default function Wordcloud() {
         rotationAngles: [0],
         fontSizes: [20, 60, 75],
         // Adding stopwords to exclude certain words
-        stopwords: ['taco', 'me', 'the', 'and'], // Replace these with your actual stopwords
+        enableTooltip: false,
     };
 
     return (
