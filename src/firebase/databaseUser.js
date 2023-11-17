@@ -1,6 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { ref, remove, onValue, set, update, get } from 'firebase/database';
+import { ref, remove, onValue, set, update, get, query, orderByChild } from 'firebase/database';
 import { Profiler } from "react";
 
 
@@ -168,4 +168,37 @@ export function deleteUserAccount() {
 
 }
 
+export function adminAccountDelete(username) {
+    const dbRef = ref(db, 'users');
 
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            if (childData.Username === username) {
+                const removeRef = ref(db, `users/${childSnapshot.key}`);
+
+                return remove(removeRef).then(() => {
+                    console.log("Account successfully deleted");
+                }).catch((error) => {
+                    console.log('Error reomoving account', error);
+                });
+            }
+        });
+    });
+}
+
+export function displayAccountUsernames() {
+    const dbRef = ref(db, 'users');
+
+    return get(dbRef).then((snapshot) => {
+        const usernames = [];
+
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            const Username = childData.Username;
+
+            usernames.push(Username);
+        });
+        return usernames;
+    });
+}
