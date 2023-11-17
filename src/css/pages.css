@@ -1,0 +1,10 @@
+/*about*/
+.aboutContainer {
+    margin-top: 50px;
+    width: 80%;
+    margin-left: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+/**/

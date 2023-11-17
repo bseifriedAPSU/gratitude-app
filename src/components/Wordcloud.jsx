@@ -17,6 +17,7 @@ export default function Wordcloud() {
 
             const filteredWords = words
                 .map(word => word.trim())
+                //Can we filter stopwords here?
                 .filter(word => /^[a-zA-Z0-9]+$/.test(word))
                 .filter(word => {
                     if (!uniqueWords.has(word)) {
