@@ -1,5 +1,5 @@
 import "./login.css"
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { signIn, userAccountCheck, getUsername, getUserImage } from "./../../firebase/databaseUser"
 import { wordCloudList } from '../../firebase/databaseHomepage'
 import { auth } from './../../firebase/firebaseConfig'

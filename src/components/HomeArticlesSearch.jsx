@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { homepageJournalList, wordCloudList } from '../firebase/databaseHomepage';
+import { homepageJournalList } from '../firebase/databaseHomepage';
 import { Link } from 'react-router-dom';
 import './homeArticlesSearch.css';
 

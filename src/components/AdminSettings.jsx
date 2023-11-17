@@ -1,30 +1,42 @@
 import ConfirmationModal from "./ConfirmationModal";
 import "./adminSettings.css";
 import React, { useState, useEffect } from 'react';
-import { admin } from '../firebase/databaseUser'
+import { admin, deleteUserAccount, displayAccountUsernames } from '../firebase/databaseUser'
 
 export default function UserSettings() {
     const [isAdmin, setIsAdmin] = useState(false);
+    const [usernames, setUsernames] = useState([]);
+    const [selectedUsername, setSelectedUsername] = useState(null);
 
     useEffect(() => {
         admin().then((data) => {
             setIsAdmin(data);
         });
-    })
+
+        displayAccountUsernames().then((data) => {
+            setUsernames(data);
+            console.log(data);
+        })
+    }, [])
+
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
     //Message Dialogue
     const [showMessage, setShowMessage] = useState(false);
-    const openModal = () => {
+
+    const openModal = (username) => {
+        setSelectedUsername(username);
         setIsModalOpen(true);
     };
     const handleConfirm = () => {
-        //DELETE USER ACCOUNT FUNCTION CALL GOES HERE         <<<*****************************<<<
-        setIsModalOpen(false);
-        setShowMessage(true);
-        setTimeout(() => {
-            setShowMessage(false);
-        }, 3000);
+        if (selectedUsername) {
+            deleteUserAccount(selectedUsername);
+            setIsModalOpen(false);
+            setShowMessage(true);
+            setTimeout(() => {
+                setShowMessage(false);
+            }, 3000);
+        }
     };
     const handleCancel = () => {
         setIsModalOpen(false);
@@ -38,21 +50,34 @@ export default function UserSettings() {
             <h2>ADMIN ONLY</h2>
             {/* Render list of username and button*/}
             <div className="accountListContainer">
-            <h3>Username</h3>
-            <button className="deleteUserAdminButton" onClick={openModal}>DELETE ACCOUNT</button>
+                <h3>Usernames:</h3>
+                <ul>
+                    {usernames.map((username, index) => (
+                        <li key={index}>
+                            {username}
+                            <button
+                                className="deleteUserAdminButton"
+                                onClick={() => openModal(username)}
+                            >
+                                DELETE ACCOUNT
+                            </button>
+                        </li>
+                    ))}
+                </ul>
             </div>
 
-
             {showMessage && (
-                <div className="accountDeletionConfirmed">Account had been DELETED</div>
+                <div className="accountDeletionConfirmed">
+                    Account has been DELETED
+                </div>
             )}
-            { /*Handling account deletion Confirmation*/}
+            {/* Handling account deletion Confirmation*/}
             <ConfirmationModal
                 isOpen={isModalOpen}
-                message="Are you sure you want to DELETE? This action CANNOT be undone."
+                message={`Are you sure you want to DELETE ${selectedUsername}'s account? This action CANNOT be undone.`}
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
             />
-            </div>
-        )
+        </div>
+    )
 };
