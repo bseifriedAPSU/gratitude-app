@@ -18,7 +18,6 @@ export default function Wordcloud() {
             const filteredWords = words
                 .map(word => word.trim())
                 .filter(word => /^[a-zA-Z0-9]+$/.test(word))
-                .fil
                 .filter(word => {
                     if (!uniqueWords.has(word)) {
                         uniqueWords.add(word);
