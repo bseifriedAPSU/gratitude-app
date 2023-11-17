@@ -4,6 +4,7 @@ import TopBar from "../../components/TopBar";
 import { displayCommunityEntryContent } from '../../firebase/databaseCommunity'
 import { getUsernameFromString, entryDate, getCommunityHeadline } from '../../firebase/databaseUser'
 import ConfirmationModal from '../../components/ConfirmationModal';
+import { useNavigate } from 'react-router-dom';
 
 export default function CommunityJournalEntryView() {
 
@@ -15,9 +16,6 @@ export default function CommunityJournalEntryView() {
     var date = entryDate(inputString);
     date = date.slice(0, -1);
     console.log(date);
-    
-
-
 
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,6 +24,12 @@ export default function CommunityJournalEntryView() {
     const openModal = () => {
         setIsModalOpen(true);
     };
+
+    //Back Button function
+    const navigate = useNavigate();
+    const goBack = () => {
+        navigate(-1);
+    }
     const handleConfirm = () => {
         //FLAG ENTRY FUNCTION CALL GOES HERE         <<<*****************************<<<
 
@@ -82,8 +86,12 @@ export default function CommunityJournalEntryView() {
                         />
                      
                     </div>
-
+                  
                 </div>
+                
+            </div>
+            <div className="bottomPageContainer">
+                <button className="backButton" onClick={goBack}>Previous Page</button>
             </div>
         </>
     );

@@ -5,6 +5,8 @@ import ToggleSwitch from "../../components/ToggleSwitch";
 import JournalPrompts from '../../components/JournalPrompts';
 import ConfirmationModal from '../../components/ConfirmationModal';
 import TopBar from "../../components/TopBar";
+
+import { useNavigate } from 'react-router-dom';
 export default function JournalEntryCreation() {
 
     //Confirmation Modal 
@@ -27,7 +29,8 @@ export default function JournalEntryCreation() {
         setTimeout(() => {
             setShowMessage(false);
         }, 3000);
-
+        window.location.href = '/home'
+        
         wordCloudList(localStorage.getItem('uid'))
             .then((data) => {
                 localStorage.setItem('wordCloudList', JSON.stringify(data));
@@ -69,6 +72,11 @@ export default function JournalEntryCreation() {
 
     var visibility = handleButtonClick();
 
+    //Back Button function
+    const navigate = useNavigate();
+    const goBack = () => {
+        navigate(-1);
+    }
 
 
     return (
@@ -120,6 +128,9 @@ export default function JournalEntryCreation() {
                 )}
                     </div>
             </div>
+            </div>
+            <div className="bottomPageContainer">
+                <button className="backButton" onClick={goBack}>Previous Page</button>
             </div>
         </>
     );

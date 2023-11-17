@@ -12,7 +12,6 @@ import CommunityJournalEntryView from './pages/CommunityJournalEntryView/Communi
 import NewUser from "./pages/newUser/NewUser";
 import About from "./pages/about/About";
 //import TopBar from "./components/TopBar";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //import Nav from "./components/Nav";
 import { useState } from 'react';

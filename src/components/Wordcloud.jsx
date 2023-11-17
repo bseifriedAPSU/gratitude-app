@@ -43,7 +43,7 @@ export default function Wordcloud() {
 
     const options = {
         rotations: 2,
-        rotationAngles: [0, 35, 90, 110],
+        rotationAngles: [0],
         fontSizes: [20, 60, 75],
         // Adding stopwords to exclude certain words
         stopwords: ['taco', 'me', 'the', 'and'], // Replace these with your actual stopwords
