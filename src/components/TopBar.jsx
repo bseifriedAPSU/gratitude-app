@@ -1,4 +1,4 @@
-import './topbar.css'
+import '../css/components.css';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 

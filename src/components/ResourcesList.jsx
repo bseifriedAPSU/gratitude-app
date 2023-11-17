@@ -1,5 +1,4 @@
-import "./resourcesList.css";
-
+import '../css/components.css';
 export default function ResourcesList() {
     const resources = [
         { label: "Calm", link: "https://calm.com" },
