@@ -3,7 +3,7 @@ import '../css/components.css';
 import React from 'react';
 
 
-const MessageDialogue = ({ isOpen, message, onConfirm }) => {
+const MessageDialogue = ({ isOpen, message }) => {
     if (!isOpen) return null;
 
     return (

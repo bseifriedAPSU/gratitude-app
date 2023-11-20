@@ -1,5 +1,6 @@
 import '../css/components.css';
 import ConfirmationModal from "./ConfirmationModal";
+import MessageDialogue from './MessageDialogue';
 import React, { useState, useEffect } from 'react';
 import { admin, deleteUserAccount, displayAccountUsernames } from '../firebase/databaseUser'
 
@@ -21,20 +22,22 @@ export default function UserSettings() {
 
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    //Message Dialogue
-    const [showMessage, setShowMessage] = useState(false);
-
     const openModal = (username) => {
         setSelectedUsername(username);
         setIsModalOpen(true);
     };
+    // Message Dialogue 
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
+
     const handleConfirm = () => {
         if (selectedUsername) {
             deleteUserAccount(selectedUsername);
             setIsModalOpen(false);
-            setShowMessage(true);
+            setIsMessageOpen(true);
             setTimeout(() => {
-                setShowMessage(false);
+                setIsMessageOpen(false);
+
             }, 3000);
         }
     };
@@ -78,6 +81,7 @@ export default function UserSettings() {
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
             />
+            <MessageDialogue isOpen={isMessageOpen} message="The Account has been DELETED" />
         </div>
     )
 };

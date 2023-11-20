@@ -5,7 +5,7 @@ import { entryHeadline, entryDate } from '../firebase/databaseUser'
 import { getUserEntryContent, deleteJournalEntry } from '../firebase/databaseHomepage'
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import MessageDialogue from "../components/MessageDialogue";
 
 export default function HomepageJournalEntryView() {
 
@@ -18,24 +18,24 @@ export default function HomepageJournalEntryView() {
 
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    //Message Dialogue
-    const [showMessage, setShowMessage] = useState(false);
     const openModal = () => {
         setIsModalOpen(true);
     };
+    //Message Dialogue
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
+ 
 
     const handleConfirm = async () => {
         try {
-            await deleteJournalEntry(headline, date).then(() => {
-                setIsModalOpen(false);
-                setShowMessage(true);
-                setTimeout(() => {
-                    setShowMessage(false);
-                }, 3000);
+            await deleteJournalEntry(headline, date);
+            setIsModalOpen(false);
+            setIsMessageOpen(true);
+
+            // Set timeout to close the Message Dialogue after 3 seconds
+            setTimeout(() => {
+                setIsMessageOpen(false);
                 window.location.href = '/home';
-            }).catch((error) => {
-                console.log(error);
-            });
+            }, 3000);
         } catch (error) {
             console.error('Error deleting journal entry:', error);
         }
@@ -85,10 +85,7 @@ export default function HomepageJournalEntryView() {
                             )}
                         </div>
 
-                        {/* message confirmation*/}
-                        {showMessage && (
-                            <div className="deleteConfirmed">Your Entry Has been Deleted</div>
-                        )}
+                     
                         <button className="deleteEntryButton"
                             onClick={openModal}>&#128465;</button>
 
@@ -99,7 +96,7 @@ export default function HomepageJournalEntryView() {
                             onConfirm={handleConfirm}
                             onCancel={handleCancel}
                         />
-
+                        <MessageDialogue isOpen={isMessageOpen} message="Your Entry is DELETED!" />
 
                     </div>
                 </div>
