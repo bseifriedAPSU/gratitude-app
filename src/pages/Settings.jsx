@@ -9,7 +9,7 @@ export default function Settings() {
             <TopBar />
         <div className="settings">
             <h1>Settings</h1>
-                <h3>Short Description Here</h3>
+                
             <UserSettings />
 
             <AdminSettings />

@@ -81,7 +81,7 @@ export default function UserSettings() {
 
     return (
         <div className="flex-container">
-            <label>Choose an Avatar Image</label>
+            <label>Click Picture to Select an Avatar Image</label>
 
             <div className="UserImage">
                 <img
@@ -93,7 +93,8 @@ export default function UserSettings() {
 
             {!isUser && (
                 <div>
-                    <label>Choose User Name</label>
+                    <label>Choose User Name </label>
+                    <label>(This cannot be changed)</label>
 
                     <input className="userNameInput"
                         type="text"

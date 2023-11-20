@@ -1,5 +1,12 @@
 /*COMPONENTS CSS FILES CONDENSED*/
 
+
+.login-Container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin-top: 25px;
+}
 /*Admin Settings*/
 .adminContainer {
     display: flex;
