@@ -52,6 +52,9 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     padding: 5px;
+    margin-top: 25px;
+    max-width: 80%;
+    width: 400px;
 }
 
 #search-icon {
@@ -59,11 +62,6 @@
     cursor: pointer;
 }
 
-input {
-    border: none;
-    outline: none;
-    flex: 1;
-}
 
 /* CommunityArticleSearch*/
 .communityArticleContainer {
@@ -72,7 +70,7 @@ input {
     margin: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items:center;
 }
 
 .articleItem {
@@ -194,7 +192,10 @@ input {
 
 /*HomeArticleSearch*/
 .homeArticleContainer {
-    margin: 20px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .articleItem {
@@ -202,6 +203,7 @@ input {
     text-decoration: none;
     border: 1px solid #000;
     border-radius: 8px;
+    max-width:80vh;
 }
 
 
@@ -453,11 +455,11 @@ a {
     width: 100%;
     height: 65px;
     position: sticky;
-    margin: 10px;
     display: flex;
     flex-direction: row;
     background: white;
     z-index: 50;
+    margin-bottom: 20px;
 }
 
 .topCenter {
@@ -535,10 +537,6 @@ topBarLogo {
         filter: grayscale(0%);
     }
 
-label, input {
-    color: black;
-}
-
 .userNameInput {
     width: 100%;
     padding: 10px;
@@ -572,6 +570,7 @@ label, input {
     height: auto;
     margin: auto;
     border-radius: 50%;
+    margin-top:35px;
 }
 
 .circle-mask {
