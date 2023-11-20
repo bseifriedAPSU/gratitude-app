@@ -23,8 +23,8 @@ export default function History() {
         <>
             <TopBar />
             <div className="history">
-                <h1>History Page</h1>
-                
+                <h1>History</h1>
+                <h3>Short Description Here</h3>
                 <HistorySearchBar />
                 <FilteredResults results={ results } />
                 <HomeArticlesSearch />

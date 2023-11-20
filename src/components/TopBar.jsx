@@ -32,7 +32,7 @@ export default function TopBar() {
             
             <div className="topCenter"> 
                 <div className="topCenter-flex-container" onClick={() => navigate('/home')} >
-                    <img className="topBarLogo" src="/images/gratitudeLogoHorizontal.svg" alt="Gratitide Logo"></img>
+                    <img className="topBarLogo" src="/images/gratitudeLogoIcon.svg" alt="Gratitide Icon"></img>
                 </div>
             </div>
             <div className="topRight"><Nav /></div>

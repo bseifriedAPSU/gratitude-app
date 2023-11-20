@@ -6,42 +6,49 @@ import JournalPrompts from '../components/JournalPrompts';
 import ConfirmationModal from '../components/ConfirmationModal';
 import TopBar from "../components/TopBar";
 import { useNavigate } from 'react-router-dom';
+import MessageDialogue from "../components/MessageDialogue";
 
 export default function JournalEntryCreation() {
 
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    //Message Dialogue
-    const [showMessage, setShowMessage] = useState(false);
-
     const openModal = () => {
         setIsModalOpen(true);
     };
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    };
 
-    const handleConfirm = () => {
+
+    //Message Dialogue
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
+
+    const handleConfirm = ( ) => {
         createNewEntry(headlineContent, textAreaContent, visibility);
         setTextAreaContent('');
         setHeadlineContent('');
+        // close Confirmation Modal
         setIsModalOpen(false);
-        //Message Dialgue
-        setShowMessage(true);
-        //Time Out after 3 seconds
+        // open Message Dialogue
+        setIsMessageOpen(true);
+        // Set timeout to close the Message Dialogue after 3 seconds
         setTimeout(() => {
-            setShowMessage(false);
+            setIsMessageOpen(false);
+            // redirect back to home page after the message is displayed
+            window.location.href = '/home';
+
+            wordCloudList(localStorage.getItem('uid'))
+                .then((data) => {
+                    localStorage.setItem('wordCloudList', JSON.stringify(data));
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }, 3000);
-        window.location.href = '/home'
-        
-        wordCloudList(localStorage.getItem('uid'))
-            .then((data) => {
-                localStorage.setItem('wordCloudList', JSON.stringify(data));
-            }).catch((error) => {
-                console.log(error);
-            });
     };
 
-    const handleCancel = () => { 
-        setIsModalOpen(false);
-    };
+
+  
 
     // Article Creation
     const [textAreaContent, setTextAreaContent] = useState('');
@@ -116,16 +123,16 @@ export default function JournalEntryCreation() {
 
 
                 <button className="journalEntryCreationButton" onClick={openModal}>Submit Entry</button>
+
                 <ConfirmationModal
                     isOpen={isModalOpen}
                     message="Are you sure you want to Submit?" 
                     onConfirm={handleConfirm}
                     onCancel={handleCancel}
-                />
-                
-                {showMessage && (
-                    <div className="saveConfirmed">Your Entry Has been Saved!</div>
-                )}
+                        />
+                    
+                    <MessageDialogue isOpen={isMessageOpen} message="Your Entry is SAVED!" />
+                 
                     </div>
             </div>
             </div>

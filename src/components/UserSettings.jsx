@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
 import { createUserAccount, updateUserAccount } from '../firebase/databaseUser';
 import { useNavigate } from 'react-router-dom';
-
+import MessageDialogue from './MessageDialogue';
 
 export default function UserSettings() {
     const isUser = JSON.parse(localStorage.getItem('isUser'));
@@ -24,30 +24,28 @@ export default function UserSettings() {
 
     //Confirmation Modal
     const [isModalOpen, setIsModalOpen] = useState(false);
-    //Message Dialogue
-    const [showMessage, setShowMessage] = useState(false);
-
     const openModal = () => {
         setIsModalOpen(true);
     };
 
+    // Message Dialogue 
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
+
+  
 
     const createNewUser = () => {
 
         createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
         console.log("Create new user");
+
         //DO NOT REMOVE 
         //This sets localStorage for TopBar so user does NOT need to log out to see changes made
         localStorage.setItem('Username', currentUsername);
         localStorage.setItem('UserImage', currentImage);
 
         setIsModalOpen(false);
-        //Message Dialogue
-        setShowMessage(true);
-        //Time Out after 3 seconds
-        setTimeout(() => {
-            setShowMessage(false);
-        }, 3000);
+       
 
         localStorage.setItem('isUser', true);
         navigate("/home");
@@ -61,16 +59,13 @@ export default function UserSettings() {
         localStorage.setItem('UserImage', currentImage);
 
         setIsModalOpen(false);
-        //Message Dialogue
-        setShowMessage(true);
-        //Time Out after 3 seconds 
+        setIsMessageOpen(true);
         setTimeout(() => {
-            setShowMessage(false);
+            setIsMessageOpen(false);
+         
         }, 3000);
-
-        navigate("/home");
-    }
-
+    };
+    
     const handleConfirm = () => {
         if (!isUser) {
             createNewUser()
@@ -86,7 +81,7 @@ export default function UserSettings() {
 
     return (
         <div className="flex-container">
-            <label>Choose an Avatar Image</label>
+            <label>Click Picture to Select an Avatar Image</label>
 
             <div className="UserImage">
                 <img
@@ -98,7 +93,8 @@ export default function UserSettings() {
 
             {!isUser && (
                 <div>
-                    <label>Choose User Name</label>
+                    <label>Choose User Name </label>
+                    <label>(This cannot be changed)</label>
 
                     <input className="userNameInput"
                         type="text"
@@ -118,6 +114,7 @@ export default function UserSettings() {
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
             />
+            <MessageDialogue isOpen={isMessageOpen} message="Your Selection has been SAVED!" />
         </div>
     );
 }

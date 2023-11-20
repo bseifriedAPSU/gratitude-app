@@ -1,5 +1,6 @@
 import '../css/components.css';
 import ConfirmationModal from "./ConfirmationModal";
+import MessageDialogue from './MessageDialogue';
 import React, { useState, useEffect } from 'react';
 import { admin, adminAccountDelete, deleteUserAccount, displayAccountUsernames } from '../firebase/databaseUser'
 
@@ -21,20 +22,21 @@ export default function UserSettings() {
 
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    //Message Dialogue
-    const [showMessage, setShowMessage] = useState(false);
-
     const openModal = (username) => {
         setSelectedUsername(username);
         setIsModalOpen(true);
     };
+    // Message Dialogue 
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
+
     const handleConfirm = () => {
         if (selectedUsername) {
             adminAccountDelete(selectedUsername);
             setIsModalOpen(false);
-            setShowMessage(true);
+            setIsMessageOpen(true);
             setTimeout(() => {
-                setShowMessage(false);
+                setIsMessageOpen(false);
+
             }, 3000);
             window.location.href = "/home";
         }
@@ -51,10 +53,10 @@ export default function UserSettings() {
             <h2>ADMIN ONLY</h2>
             {/* Render list of username and button*/}
             <div className="accountListContainer">
-                <h3>Usernames:</h3>
                 <ul>
                     {usernames.map((username, index) => (
-                        <li key={index}>
+                        <li className="accountName"
+                            key={index}>
                             {username}
                             <button
                                 className="deleteUserAdminButton"
@@ -67,11 +69,7 @@ export default function UserSettings() {
                 </ul>
             </div>
 
-            {showMessage && (
-                <div className="accountDeletionConfirmed">
-                    Account has been DELETED
-                </div>
-            )}
+           
             {/* Handling account deletion Confirmation*/}
             <ConfirmationModal
                 isOpen={isModalOpen}
@@ -79,6 +77,7 @@ export default function UserSettings() {
                 onConfirm={handleConfirm}
                 onCancel={handleCancel}
             />
+            <MessageDialogue isOpen={isMessageOpen} message="The Account has been DELETED" />
         </div>
     )
 };

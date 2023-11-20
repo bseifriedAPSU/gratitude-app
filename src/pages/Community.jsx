@@ -13,7 +13,8 @@ export default function Community() {
            <TopBar />
             <div className="community">
 
-            <h1>Community Page</h1>
+                <h1>Community</h1>
+                <h3>Short Description Here</h3>
                 <CommunityArticlesSearch />   
                 <div className="bottomPageContainer">
                     <button className="backButton" onClick={goBack}>Previous Page</button>
