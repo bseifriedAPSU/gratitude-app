@@ -1,10 +1,9 @@
 /*about*/
 .aboutContainer {
     margin-top: 50px;
-    width: 80%;
-    margin-left: 100px;
     display: flex;
     flex-direction: column;
+    align-items:center;
 }
 
 /*Community*/
@@ -29,6 +28,10 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width:80vh;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
 }
 
 .journalEntryViewContainer {
@@ -164,14 +167,6 @@ li {
 
 /*HomepageJournalEntryView*/
 
-.journalEntryView {
-    background-color: #f5f5f5;
-    padding: 20px;
-    margin: 30px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
 .journalEntryViewContainer {
     word-wrap: break-word;

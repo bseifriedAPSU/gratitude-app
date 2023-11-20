@@ -4,6 +4,7 @@ import TopBar from "../components/TopBar";
 import { displayCommunityEntryContent } from '../firebase/databaseCommunity'
 import { getUsernameFromString, entryDate, getCommunityHeadline } from '../firebase/databaseUser'
 import ConfirmationModal from '../components/ConfirmationModal';
+import MessageDialogue from "../components/MessageDialogue";
 import { useNavigate } from 'react-router-dom';
 
 export default function CommunityJournalEntryView() {
@@ -19,11 +20,13 @@ export default function CommunityJournalEntryView() {
 
     //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    //Message Dialogue
-    const [showMessage, setShowMessage] = useState(false);
     const openModal = () => {
         setIsModalOpen(true);
     };
+    //Message Dialogue
+    const [isMessageOpen, setIsMessageOpen] = useState(false);
+    const [showMessage, setShowMessage] = useState(false);
+  
 
     //Back Button function
     const navigate = useNavigate();
@@ -31,13 +34,15 @@ export default function CommunityJournalEntryView() {
         navigate(-1);
     }
     const handleConfirm = () => {
+
         //FLAG ENTRY FUNCTION CALL GOES HERE         <<<*****************************<<<
 
-
         setIsModalOpen(false);
-        setShowMessage(true);
+        // open Message Dialogue
+        setIsMessageOpen(true);
+        // Set timeout to close the Message Dialogue after 3 seconds
         setTimeout(() => {
-            setShowMessage(false);
+            setIsMessageOpen(false);
         }, 3000);
     };
     const handleCancel = () => {
@@ -84,7 +89,7 @@ export default function CommunityJournalEntryView() {
                             onConfirm={handleConfirm}
                             onCancel={handleCancel}
                         />
-                     
+                        <MessageDialogue isOpen={isMessageOpen} message="This Article has been FLAGGED!" />
                     </div>
                   
                 </div>

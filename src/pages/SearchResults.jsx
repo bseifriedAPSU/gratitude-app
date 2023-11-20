@@ -38,7 +38,7 @@ export default function SearchResults() {
     return (
         <><TopBar />
         <div className="searchResults">
-            <h1>Search Results Page</h1>
+            <h1>Search Results</h1>
                 {
                     items.length > 0 ? (
                         <ul>
