@@ -56,10 +56,11 @@ export function historyJournalList(userId) {
 }
 
 //displays the user's five most recent journal entries on the homepage 
+//removed 5 article limit as it was affecting total articles available to display thorugh pagination
 export function homepageJournalList(userId) {
     return new Promise((resolve, reject) => {
         const data = [];
-        const dbRef = query(ref(db, 'users/' + userId + '/posts'), limitToLast(5));
+        const dbRef = query(ref(db, 'users/' + userId + '/posts'));
 
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
