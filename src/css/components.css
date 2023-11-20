@@ -571,7 +571,6 @@ label, input {
     max-width: 85vh;
     height: auto;
     margin: auto;
-    border: 1px solid black;
     border-radius: 50%;
 }
 
