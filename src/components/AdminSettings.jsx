@@ -28,7 +28,6 @@ export default function UserSettings() {
     };
     // Message Dialogue 
     const [isMessageOpen, setIsMessageOpen] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
 
     const handleConfirm = () => {
         if (selectedUsername) {
@@ -53,10 +52,10 @@ export default function UserSettings() {
             <h2>ADMIN ONLY</h2>
             {/* Render list of username and button*/}
             <div className="accountListContainer">
-                <h3>Usernames:</h3>
                 <ul>
                     {usernames.map((username, index) => (
-                        <li key={index}>
+                        <li className="accountName"
+                            key={index}>
                             {username}
                             <button
                                 className="deleteUserAdminButton"
@@ -69,11 +68,7 @@ export default function UserSettings() {
                 </ul>
             </div>
 
-            {showMessage && (
-                <div className="accountDeletionConfirmed">
-                    Account has been DELETED
-                </div>
-            )}
+           
             {/* Handling account deletion Confirmation*/}
             <ConfirmationModal
                 isOpen={isModalOpen}
