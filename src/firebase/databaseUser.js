@@ -176,7 +176,7 @@ export function adminAccountDelete(username) {
             const childData = childSnapshot.val();
             if (childData.Username === username) {
                 const removeRef = ref(db, `users/${childSnapshot.key}`);
-
+                console.log(removeRef);
                 return remove(removeRef).then(() => {
                     console.log("Account successfully deleted");
                 }).catch((error) => {
