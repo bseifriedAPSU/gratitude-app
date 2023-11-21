@@ -39,6 +39,7 @@ export default function Login() {
                             getUserImage().then((data) => {
                                 localStorage.setItem('UserImage', data);
                             });
+                            localStorage.setItem('isAuth', true);
                             window.location.href = '/home'
                         } else {
                             localStorage.setItem('isUser', false.toString());
