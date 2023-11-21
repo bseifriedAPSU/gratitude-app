@@ -1,7 +1,7 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
 import { ref, remove, onValue, set, update, get, query, orderByChild } from 'firebase/database';
-import { Profiler } from "react";
+import { Children, Profiler } from "react";
 
 
 //calls firebase google sign in function 
@@ -103,8 +103,6 @@ export function signOutOfAccount() {
     signOut(auth).then(() => {
         window.location = "/";
         localStorage.clear();
-
-
     }).catch((error) => {
         alert("There was an error signing out");
     });
@@ -162,10 +160,7 @@ export function admin() {
 export function deleteUserAccount() {
     const userID = localStorage.getItem('uid');
     const removeRef = ref(db, `users/${userID}`);
-    remove(removeRef).then(() => {
-        window.location.href = '/';
-    })
-
+    remove(removeRef);
 }
 
 export function adminAccountDelete(username) {
@@ -176,7 +171,7 @@ export function adminAccountDelete(username) {
             const childData = childSnapshot.val();
             if (childData.Username === username) {
                 const removeRef = ref(db, `users/${childSnapshot.key}`);
-
+                console.log(removeRef);
                 return remove(removeRef).then(() => {
                     console.log("Account successfully deleted");
                 }).catch((error) => {
@@ -200,5 +195,24 @@ export function displayAccountUsernames() {
             usernames.push(Username);
         });
         return usernames;
+    });
+}
+
+export function usernameCheck(username) {
+    const dbRef = ref(db, 'users');
+
+    return get(dbRef).then((snapshot) => {
+        let exists = false;
+
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            const storedUsername = childData.Username;
+
+            if (username === storedUsername) {
+                exists = true;
+            }
+        });
+
+        return exists;
     });
 }

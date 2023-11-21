@@ -2,7 +2,8 @@ import '../css/components.css';
 import ConfirmationModal from "./ConfirmationModal";
 import MessageDialogue from './MessageDialogue';
 import React, { useState, useEffect } from 'react';
-import { admin, deleteUserAccount, displayAccountUsernames } from '../firebase/databaseUser'
+import { admin, adminAccountDelete, displayAccountUsernames } from '../firebase/databaseUser'
+import { userAccountCommunityDelete } from '../firebase/databaseCommunity'
 
 export default function UserSettings() {
     const [isAdmin, setIsAdmin] = useState(false);
@@ -31,13 +32,15 @@ export default function UserSettings() {
 
     const handleConfirm = () => {
         if (selectedUsername) {
-            deleteUserAccount(selectedUsername);
+            userAccountCommunityDelete(selectedUsername);
+            adminAccountDelete(selectedUsername);
             setIsModalOpen(false);
             setIsMessageOpen(true);
             setTimeout(() => {
                 setIsMessageOpen(false);
 
             }, 3000);
+            window.location.href = "/home";
         }
     };
     const handleCancel = () => {

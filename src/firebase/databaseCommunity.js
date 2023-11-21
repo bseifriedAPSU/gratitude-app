@@ -1,5 +1,5 @@
 import { db } from "./firebaseConfig";
-import { onValue, ref, query, orderByChild, startAt, endAt, get } from 'firebase/database';
+import { onValue, ref, query, orderByChild, remove, get } from 'firebase/database';
 
 //displays the content for the specific community entry when the user clicks the link 
 export function displayCommunityEntryContent(headline, date) {
@@ -74,5 +74,26 @@ export function searchCommunityJournalEntry(inputString) {
     }).catch((error) => {
         console.error('Error getting data:', error);
         throw error;
+    });
+}
+
+export function userAccountCommunityDelete(username) {
+    const dbRef = ref(db, 'community/posts');
+
+    return get(dbRef).then((snapshot) => {
+        const deletePromises = [];
+
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            const communityUsername = childData.Username;
+
+            if (username === communityUsername) {
+                const removeRef = ref(db, `community/posts/${childSnapshot.key}`);
+                const deletePromise = remove(removeRef);
+                deletePromises.push(deletePromise);
+            }
+        });
+
+        return Promise.all(deletePromises);
     });
 }
