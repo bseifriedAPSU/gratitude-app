@@ -136,7 +136,7 @@ export default function Wordcloud() {
                 .map(word => word.trim())
                 //Can we filter stopwords here?
                 .filter(word => /^[a-zA-Z]+$/.test(word))
-                .filter(word => !stopWords.has(word.toLowerCase()))
+                .filter(word => !stopWords.has(word))
                 .filter(word => {
                     if (!uniqueWords.has(word.toLowerCase())) {
                         uniqueWords.add(word.toLowerCase());
