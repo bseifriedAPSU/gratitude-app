@@ -1,7 +1,7 @@
 import '../css/components.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getUsernameLocation, getUsernameFromString } from '../firebase/databaseUser';
+import { getUsernameLocation, getUsernameFromString, getUsername } from '../firebase/databaseUser';
 import { communityPageDisplay } from '../firebase/databaseCommunity';
 import CommunitySearchBar from './CommunitySearchBar';
 
@@ -22,8 +22,8 @@ export default function CommunityArticlesSearch() {
     const getLinkValue = (item) => {
         localStorage.removeItem('inputString');
         localStorage.setItem('inputString', item);
-        console.log(getUsernameFromString(item));
         getUsernameLocation(getUsernameFromString(item)).then((data) => {
+            localStorage.setItem('flagUsername', getUsernameFromString(item));
             localStorage.setItem('RefLocation', data);
         });
     };

@@ -43,6 +43,11 @@ export default function UserSettings() {
         setIsModalOpen(true);
     };
 
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const openDeleteModal = () => {
+        setIsDeleteModalOpen(true);
+    }
+
     // Message Dialogue 
     const [isMessageOpen, setIsMessageOpen] = useState(false);
     const [showMessage, setShowMessage] = useState(false);
@@ -127,6 +132,9 @@ export default function UserSettings() {
         window.location.href = "/";
     }
 
+    const handleDeleteCancel = () => {
+        setIsDeleteModalOpen(false);
+    }
     //closes the modal if the user clicks on the cancel button 
     const handleCancel = () => {
         setIsModalOpen(false);
@@ -170,12 +178,12 @@ export default function UserSettings() {
             />
             {isUser && (
                 <div>
-                    <button onClick={openModal}>Delete Account</button>
+                    <button onClick={openDeleteModal}>Delete Account</button>
                     <ConfirmationModal
-                        isOpen={isModalOpen}
+                        isOpen={isDeleteModalOpen}
                         message="Are you sure you want to delete your account?"
                         onConfirm={handleDelete}
-                        onCancel={handleCancel}
+                        onCancel={handleDeleteCancel}
                     />
                 </div>
             )}
