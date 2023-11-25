@@ -158,9 +158,18 @@ export function admin() {
 
 //deletes user account when they press the delete button 
 export function deleteUserAccount() {
-    const userID = localStorage.getItem('uid');
-    const removeRef = ref(db, `users/${userID}`);
-    remove(removeRef);
+    return new Promise((resolve, reject) => {
+        const userID = localStorage.getItem('uid');
+        const removeRef = ref(db, `users/${userID}`);
+
+        remove(removeRef)
+            .then(() => {
+                resolve("User account deleted successfully");
+            })
+            .catch((error) => {
+                reject(error);
+            });
+    });
 }
 
 export function adminAccountDelete(username) {

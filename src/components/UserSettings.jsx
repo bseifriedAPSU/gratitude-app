@@ -122,14 +122,15 @@ export default function UserSettings() {
 
     const handleDelete = () => {
         setIsModalOpen(false);
-        deleteUserAccount();
+        deleteUserAccount().then(() => { 
 
         setDeletedAccount(true)
 
         setTimeout(() => {
             setDeletedAccount(false);
+            window.location.href = "/";
         }, 3000);
-        window.location.href = "/";
+        })
     }
 
     const handleDeleteCancel = () => {

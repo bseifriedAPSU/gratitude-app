@@ -29,10 +29,15 @@ export default function JournalEntryCreation() {
     };
 
     const handleConfirm = () => {
-        if (textAreaContent.length >= minLength && headlineContent.length >= minLength) {
+        var trimmedContent = textAreaContent.trim();
+        const whitespaceRemoveContent = trimmedContent.replace(/\s+/g, ' ');
+        var trimmedHeadline = headlineContent.trim();
+        const whitespaceRemoveHeadline = trimmedHeadline.replace(/\s+/g, ' ');
+
+        if (whitespaceRemoveContent.length >= minLength && whitespaceRemoveHeadline.length >= minLength) {
             const visibility = toggleState;
 
-            createNewEntry(headlineContent, textAreaContent, visibility);
+            createNewEntry(whitespaceRemoveHeadline, whitespaceRemoveContent, visibility);
             setTextAreaContent('');
             setHeadlineContent('');
             setIsModalOpen(false);

@@ -43,9 +43,10 @@ export function communityPageDisplay() {
 };
 
 export function searchCommunityJournalEntry(inputString) {
-    const userPostsRef = ref(db, `community/posts`);
+    const userPostsRef = ref(db, 'community/posts');
 
-    const lowercaseInputString = inputString.toLowerCase();
+    const lowercaseInputString = inputString.toLowerCase().trim();
+    const stringWithoutExtraSpaces = lowercaseInputString.replace(/\s+/g, ' ');
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline'),
@@ -58,11 +59,13 @@ export function searchCommunityJournalEntry(inputString) {
             snapshot.forEach((postSnapshot) => {
                 const post = postSnapshot.val();
                 const headline = post.Headline;
+                const username = post.Username;
 
                 const lowercaseHeadline = headline.toLowerCase();
+                const lowercaseUsername = username.toLowerCase();
 
-                if (lowercaseHeadline.includes(lowercaseInputString)) {
-                    const resultString = "Headline: " + headline + " | Username: " + post.Username + " | Date: " + post.date;
+                if (lowercaseHeadline.includes(stringWithoutExtraSpaces) || lowercaseUsername.includes(stringWithoutExtraSpaces)) {
+                    const resultString = "Headline: " + headline + " | Username: " + username + " | Date: " + post.date;
                     searchResults.push(resultString);
                 }
             });
@@ -167,7 +170,7 @@ export function flaggedUserList(headline, date, username) {
 
                     return update(ref(db), updates);
                 } else {
-                    const newExcludedUsers = [username];
+                    const newExcludedUsers = [localStorage.getItem('Username')];
                     return set(ref(db, `community/posts/${postKey}/excludedUsers`), newExcludedUsers);
                 }
             }
