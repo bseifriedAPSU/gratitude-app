@@ -1,8 +1,6 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
 import { ref, remove, onValue, set, update, get, query, orderByChild } from 'firebase/database';
-import { Children, Profiler } from "react";
-
 
 //calls firebase google sign in function 
 export function signIn() {

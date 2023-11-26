@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 //import firebase database for database usage
 import { getDatabase } from 'firebase/database'
 //import firebase authentication 
-import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, setPersistence, browserSessionPersistence } from "firebase/auth";
 
 //Configure the firebase database
 const firebaseConfig = {
@@ -17,5 +17,12 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);//initialization of the firebase app 
 export const auth = getAuth(app);//initialization of the firebase authentication
+
+setPersistence(auth, browserSessionPersistence).then(() => {
+    console.log("Setting session persistence");
+}).catch((error) => {
+    console.log('Error setting persistence', error);
+})
+
 export const db = getDatabase(app);//initialize the firebase database
 export const provider = new GoogleAuthProvider(app);
