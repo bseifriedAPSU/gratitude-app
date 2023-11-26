@@ -29,7 +29,7 @@ export default function UserSettings() {
     //checks if the username meets certain criteria before allowing the user to submit 
     const isUsernameValid = () => {
         // Check for spaces and minimum length
-        return currentUsername.length >= 5 && !/\s/.test(currentUsername);
+        return currentUsername.length >= 5 && !/\s/.test(currentUsername) && currentUsername.length <= 20;
     };
 
 
