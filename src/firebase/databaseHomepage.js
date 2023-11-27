@@ -21,7 +21,8 @@ export function createNewEntry(headline, content, visibility) {
                     date: date,
                     Headline: headline,
                     Username: username,
-                    flagCount: 0
+                    flagCount: 0,
+                    excludedUsers: ''
                 });
             }
         })
@@ -40,7 +41,7 @@ export function historyJournalList(userId) {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
 
-                if (childData && childData.Headline && childData.date) {
+                if (childData && childData.Headline.trim() && childData.date.trim()) {
                     var { Headline, date } = childData;
                     Headline.trim();
                     date.trim();
@@ -66,7 +67,7 @@ export function homepageJournalList(userId) {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
 
-                if (childData && childData.Headline && childData.date) {
+                if (childData && childData.Headline.trim() && childData.date.trim()) {
                     var { Headline, date } = childData;
                     Headline.trim();
                     date.trim();
@@ -90,7 +91,7 @@ export function getUserEntryContent(headline, date) {
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
-                if (childData.Headline === headline && childData.date === date) {
+                if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
                     content = childData.content;
                 }
             });
@@ -219,11 +220,11 @@ export async function deleteJournalEntry(headline, date) {
             const childData = childSnapshot.val();
             console.log("ChildData.visibility", childData.visibility);
 
-            if (childData.Headline === headline && childData.date === date) {
+            if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
                 console.log('childSnapshot.key:', childSnapshot.key);
 
                 if (childData.visibility === true) {
-                    deleteFromCommunity(childData.Headline, localStorage.getItem('username'), childData.date)
+                    deleteFromCommunity(childData.Headline, localStorage.getItem('Username'), childData.date)
                         .catch((error) => {
                             console.error('Error deleting from community:', error);
                         });
@@ -290,14 +291,14 @@ export function searchJournalEntry(inputString) {
 
 
 
-function deleteFromCommunity(headline, username, date) {
+export function deleteFromCommunity(headline, username, date) {
     const dbRef = ref(db, 'community/posts');
 
     return get(dbRef).then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
 
-            if (childData.Headline === headline && childData.Username === username && childData.date === date) {
+            if (childData.Headline.trim() === headline.trim() && childData.Username.trim() === username.trim() && childData.date === date.trim()) {
                 console.log('community snapshot', childData);
                 const removeRef = ref(db, `community/posts/${childSnapshot.key}`);
 

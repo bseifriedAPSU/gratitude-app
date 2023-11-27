@@ -29,7 +29,7 @@ export default function UserSettings() {
     //checks if the username meets certain criteria before allowing the user to submit 
     const isUsernameValid = () => {
         // Check for spaces and minimum length
-        return currentUsername.length >= 5 && !/\s/.test(currentUsername);
+        return currentUsername.length >= 5 && !/\s/.test(currentUsername) && currentUsername.length <= 20;
     };
 
 
@@ -42,6 +42,11 @@ export default function UserSettings() {
     const openModal = () => {
         setIsModalOpen(true);
     };
+
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const openDeleteModal = () => {
+        setIsDeleteModalOpen(true);
+    }
 
     // Message Dialogue 
     const [isMessageOpen, setIsMessageOpen] = useState(false);
@@ -117,16 +122,20 @@ export default function UserSettings() {
 
     const handleDelete = () => {
         setIsModalOpen(false);
-        deleteUserAccount();
+        deleteUserAccount().then(() => { 
 
         setDeletedAccount(true)
 
         setTimeout(() => {
             setDeletedAccount(false);
+            window.location.href = "/";
         }, 3000);
-        window.location.href = "/";
+        })
     }
 
+    const handleDeleteCancel = () => {
+        setIsDeleteModalOpen(false);
+    }
     //closes the modal if the user clicks on the cancel button 
     const handleCancel = () => {
         setIsModalOpen(false);
@@ -170,12 +179,12 @@ export default function UserSettings() {
             />
             {isUser && (
                 <div>
-                    <button onClick={openModal}>Delete Account</button>
+                    <button onClick={openDeleteModal}>Delete Account</button>
                     <ConfirmationModal
-                        isOpen={isModalOpen}
+                        isOpen={isDeleteModalOpen}
                         message="Are you sure you want to delete your account?"
                         onConfirm={handleDelete}
-                        onCancel={handleCancel}
+                        onCancel={handleDeleteCancel}
                     />
                 </div>
             )}

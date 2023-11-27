@@ -9,10 +9,11 @@ export default function Wordcloud() {
 
     useEffect(() => {
         const wordCloudArray = localStorage.getItem('wordCloudList');
+        console.log('word cloud list', localStorage.getItem('wordCloudList'));
 
         if (wordCloudArray) {
             //split the array for the word cloud 
-            const words = wordCloudArray.split(/\s+/);
+            const words = wordCloudArray.match(/\b\w+\b/g) || [];
 
             //list of stopwords  NOTE add irrelavant words as needed in alphabetical order PLEASE :)
             const stopWords = new Set([
@@ -146,12 +147,11 @@ export default function Wordcloud() {
                 });
 
             const wordsWithValues = filteredWords.map(word => ({
-                
                 enableTooltip: false,
                 text: word.trim(),
                 value: Math.round((Math.random() * (100 - 50) + 50) / 5) * 5,
             }));
-
+            console.log(wordsWithValues);
             setList(wordsWithValues);
         }
     }, []);

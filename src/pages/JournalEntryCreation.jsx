@@ -9,36 +9,42 @@ import { useNavigate } from 'react-router-dom';
 import MessageDialogue from "../components/MessageDialogue";
 
 export default function JournalEntryCreation() {
-
-    //Confirmation Modal 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const openModal = () => {
-        setIsModalOpen(true);
-    };
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
-
-
-    //Message Dialogue
     const [isMessageOpen, setIsMessageOpen] = useState(false);
-
-    //message if the length is too short for either the headline or the entry
     const [isLengthShort, setIsLengthShort] = useState(false);
+    const [textAreaContent, setTextAreaContent] = useState('');
+    const [headlineContent, setHeadlineContent] = useState('');
+    const [toggleState, setToggleState] = useState(false);
+
+    const handleToggle = (isChecked) => {
+        setToggleState(isChecked);
+    };
+
+    const handleTextAreaChange = (event) => {
+        setTextAreaContent(event.target.value);
+    };
+
+    const handleHeadlineChange = (event) => {
+        setHeadlineContent(event.target.value);
+    };
 
     const handleConfirm = () => {
-        if (textAreaContent.length >= minLength && headlineContent.length >= minLength) {
-            createNewEntry(headlineContent, textAreaContent, visibility);
+        var trimmedContent = textAreaContent.trim();
+        const whitespaceRemoveContent = trimmedContent.replace(/\s+/g, ' ');
+        var trimmedHeadline = headlineContent.trim();
+        const whitespaceRemoveHeadline = trimmedHeadline.replace(/\s+/g, ' ');
+
+        if (whitespaceRemoveContent.length >= minLength && whitespaceRemoveHeadline.length >= minLength) {
+            const visibility = toggleState;
+
+            createNewEntry(whitespaceRemoveHeadline, whitespaceRemoveContent, visibility);
             setTextAreaContent('');
             setHeadlineContent('');
-            // close Confirmation Modal
             setIsModalOpen(false);
-            // open Message Dialogue
             setIsMessageOpen(true);
-            // Set timeout to close the Message Dialogue after 3 seconds
+
             setTimeout(() => {
                 setIsMessageOpen(false);
-                // redirect back to home page after the message is displayed
                 window.location.href = '/home';
 
                 wordCloudList(localStorage.getItem('uid'))
@@ -50,53 +56,27 @@ export default function JournalEntryCreation() {
                     });
             }, 3000);
         } else {
-            //displays a message if the headline or entry are less than five characters 
             setIsLengthShort(true);
             setIsModalOpen(false);
-            //sets the message to timeout after 3 seconds 
+
             setTimeout(() => {
                 setIsLengthShort(false);
             }, 3000);
         }
     };
 
-
-
-
-    // Article Creation
-    const [textAreaContent, setTextAreaContent] = useState('');
-
-    const handleTextAreaChange = (event) => {
-        setTextAreaContent(event.target.value);
+    const handleCancel = () => {
+        setIsModalOpen(false);
     };
 
-    const [headlineContent, setHeadlineContent] = useState('');
-
-    const handleHeadlineChange = (event) => {
-        setHeadlineContent(event.target.value);
+    const openModal = () => {
+        setIsModalOpen(true);
     };
 
-    const [toggleState, setToggleState] = useState(false);
-
-    const handleToggle = (isChecked) => {
-        setToggleState(isChecked);
-    };
-
-    const handleButtonClick = () => {
-        if (toggleState) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    var visibility = handleButtonClick();
-
-    //Back Button function
     const navigate = useNavigate();
     const goBack = () => {
         navigate(-1);
-    }
+    };
 
     const minLength = 5;
 

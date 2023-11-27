@@ -1,3 +1,6 @@
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+
 import Home from "./pages/Home";
 import Community from "./pages/Community";
 import Settings from "./pages/Settings";
@@ -6,29 +9,27 @@ import History from "./pages/History";
 import Login from "./pages/Login";
 import JournalEntryCreation from "./pages/JournalEntryCreation";
 import SearchResults from "./pages/SearchResults";
-import CommunitySearchResults from './pages/communitySearchResults'
+import CommunitySearchResults from './pages/communitySearchResults';
 import HomepageJournalEntryView from "./pages/HomepageJournalEntryView";
 import CommunityJournalEntryView from './pages/CommunityJournalEntryView';
 import NewUser from "./pages/NewUser";
 import About from "./pages/About";
-//import TopBar from "./components/TopBar";
-import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
-//import Nav from "./components/Nav";
-import { useState } from 'react';
-
 
 function App() {
+    const [isUser, setIsUser] = useState(localStorage.getItem("isUser") === 'true');
 
-    const [isUser, setIsUser] = useState(localStorage.getItem("isUser"));
+    useEffect(() => {
+        // This effect runs when the component mounts
+        // Check and update the isUser state when the localStorage changes
+        setIsUser(localStorage.getItem("isUser") === 'true');
+    }, []);
 
     return (
         <Router>
+            {!isUser && <Navigate to="/" />}
+
             <Routes>
-              
-                    
-                <Route path="/" element={<Login isUser={setIsUser} />} />                   
-           
-                
+                <Route path="/" element={<Login isUser={setIsUser} />} />
                 <Route path="/home" element={<Home isUser={isUser} />} />
                 <Route path="/community" element={<Community isUser={isUser} />} />
                 <Route path="/settings" element={<Settings isUser={isUser} />} />
@@ -41,9 +42,6 @@ function App() {
                 <Route path="/communitySearchResults" element={<CommunitySearchResults isUser={isUser} />} />
                 <Route path="/newUser" element={<NewUser isUser={isUser} />} />
                 <Route path="/about" element={<About isUser={isUser} />} />
-               
-                )}
-          
             </Routes>
         </Router>
     );

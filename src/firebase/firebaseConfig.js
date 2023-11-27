@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 //import firebase database for database usage
 import { getDatabase } from 'firebase/database'
 //import firebase authentication 
-import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, setPersistence, browserSessionPersistence } from "firebase/auth";
 
 //Configure the firebase database
 const firebaseConfig = {

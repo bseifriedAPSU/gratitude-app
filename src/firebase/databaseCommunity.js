@@ -1,25 +1,23 @@
 import { db } from "./firebaseConfig";
-import { onValue, ref, query, orderByChild, remove, get } from 'firebase/database';
+import { onValue, ref, query, orderByChild, remove, get, update, set } from 'firebase/database';
+import { Children } from "react";
 
 //displays the content for the specific community entry when the user clicks the link 
 export function displayCommunityEntryContent(headline, date) {
-    return new Promise((resolve, reject) => {
+ 
         const userLocation = localStorage.getItem('RefLocation');
         const dbRef = ref(db, 'users/' + userLocation + '/posts');
-        var content;
+        var content = "Placeholder";
 
-        onValue(dbRef, (snapshot) => {
-            snapshot.forEach((childSnapshot) => {
-                const childData = childSnapshot.val();
-
-                if (childData.Headline === headline && childData.date === date) {
-                    content = childData.content;
-                }
-            })
-            resolve(content);
-        }, (error) => {
-            reject(error);
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
+                content = childData.content;
+                return;
+            }
         });
+        return content;
     });
 }
 
@@ -45,9 +43,10 @@ export function communityPageDisplay() {
 };
 
 export function searchCommunityJournalEntry(inputString) {
-    const userPostsRef = ref(db, `community/posts`);
+    const userPostsRef = ref(db, 'community/posts');
 
-    const lowercaseInputString = inputString.toLowerCase();
+    const lowercaseInputString = inputString.toLowerCase().trim();
+    const stringWithoutExtraSpaces = lowercaseInputString.replace(/\s+/g, ' ');
     const searchQuery = query(
         userPostsRef,
         orderByChild('Headline'),
@@ -60,11 +59,13 @@ export function searchCommunityJournalEntry(inputString) {
             snapshot.forEach((postSnapshot) => {
                 const post = postSnapshot.val();
                 const headline = post.Headline;
+                const username = post.Username;
 
                 const lowercaseHeadline = headline.toLowerCase();
+                const lowercaseUsername = username.toLowerCase();
 
-                if (lowercaseHeadline.includes(lowercaseInputString)) {
-                    const resultString = "Headline: " + headline + " | Username: " + post.Username + " | Date: " + post.date;
+                if (lowercaseHeadline.includes(stringWithoutExtraSpaces) || lowercaseUsername.includes(stringWithoutExtraSpaces)) {
+                    const resultString = "Headline: " + headline + " | Username: " + username + " | Date: " + post.date;
                     searchResults.push(resultString);
                 }
             });
@@ -95,5 +96,119 @@ export function userAccountCommunityDelete(username) {
         });
 
         return Promise.all(deletePromises);
+    });
+}
+
+export function increaseFlagCounter(headline, date, username) {
+    const dbRef = ref(db, 'community/posts');
+
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+
+            if (
+                childData.Headline.trim() === headline.trim() &&
+                childData.Username.trim() === username.trim() &&
+                childData.date.trim() === date.trim()
+            ) {
+                const updatedFlagCount = childData.flagCount + 1;
+
+                const updates = {};
+                updates[`/community/posts/${childSnapshot.key}/flagCount`] = updatedFlagCount;
+                console.log('flag count', updatedFlagCount);
+                return update(ref(db), updates);
+            }
+        });
+    });
+}
+
+export function getFlagCount(headline, date, username) {
+    const dbRef = ref(db, 'community/posts');
+    var flagCount = 0;
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            if (
+                childData.Headline.trim() === headline.trim() &&
+                childData.Username.trim() === username.trim() &&
+                childData.date.trim() === date.trim()
+            ) {
+                flagCount = childData.flagCount;
+            }
+        })
+        return flagCount;
+    })
+}
+
+export function flaggedUserList(headline, date, username) {
+    const dbRef = ref(db, 'community/posts');
+
+    let postFound = false; // Variable to track if the post was found
+
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            if (
+                childData.Headline.trim() === headline.trim() &&
+                childData.Username.trim() === username.trim() &&
+                childData.date.trim() === date.trim()
+            ) {
+                postFound = true; // Set the variable to true
+                const postKey = encodeURIComponent(childSnapshot.key);
+
+                // Check if excludedUsers exists
+                const excludedUsersExists = 'excludedUsers' in childData && childData.excludedUsers !== null;
+
+                // Update or set excludedUsers based on its existence
+                if (excludedUsersExists) {
+                    const updatedExcludedUsers = childData.excludedUsers || [];
+                    updatedExcludedUsers.push(username);
+
+                    const updates = {
+                        [`community/posts/${postKey}/excludedUsers`]: updatedExcludedUsers,
+                    };
+
+                    return update(ref(db), updates);
+                } else {
+                    const newExcludedUsers = [localStorage.getItem('Username')];
+                    return set(ref(db, `community/posts/${postKey}/excludedUsers`), newExcludedUsers);
+                }
+            }
+        });
+
+        // After the loop, check if the post was found
+        if (!postFound) {
+            // Handle the case when the post is not found
+            return Promise.reject(new Error('Post not found'));
+        }
+
+        return Promise.resolve();
+    });
+}
+
+export function checkExclusionList(headline, date, username) {
+    const dbRef = ref(db, 'community/posts');
+    var userExcluded = false;
+    const currentUser = localStorage.getItem('Username');
+
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+
+            if (
+                childData.Headline.trim() === headline.trim() &&
+                childData.Username.trim() === username.trim() &&
+                childData.date.trim() === date.trim()
+            ) {
+                const excludedUsers = childData.excludedUsers || [];
+                console.log("excluded users: ", excludedUsers, ' current username', currentUser);
+                const isUserExcluded = excludedUsers.includes(currentUser);
+
+                if (isUserExcluded) {
+                    userExcluded = true;
+                } 
+            }
+        });
+        return userExcluded;
     });
 }
