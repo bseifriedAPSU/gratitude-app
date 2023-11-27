@@ -24,15 +24,18 @@
 .journalEntryView {
     background-color: #f5f5f5;
     padding: 20px;
-    margin: 30px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    max-width:80vh;
-    display:flex;
-    flex-direction:column;
+    max-width: 80vh;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    margin: 15px;
+
+   
 }
+
 
 .journalEntryViewContainer {
     word-wrap: break-word;
