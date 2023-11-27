@@ -79,7 +79,7 @@ export default function HomepageJournalEntryView() {
                     <div className="articleBottomContainer">
                         <div className="usernameDisplay">
                             {username ? (
-                                <h3>Username: {username}</h3>
+                                <h3>Author: {username}</h3>
                             ) : (
                                 <h3>Loading...</h3>
                             )}

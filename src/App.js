@@ -17,9 +17,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-do
 import { useState } from 'react';
 
 
-
-
-
 function App() {
 
     const [isUser, setIsUser] = useState(localStorage.getItem("isUser"));
@@ -27,11 +24,11 @@ function App() {
     return (
         <Router>
             <Routes>
-                {!isUser ? (
+              
                     
                 <Route path="/" element={<Login isUser={setIsUser} />} />                   
-                ) : (
-                    <>
+           
+                
                 <Route path="/home" element={<Home isUser={isUser} />} />
                 <Route path="/community" element={<Community isUser={isUser} />} />
                 <Route path="/settings" element={<Settings isUser={isUser} />} />
@@ -44,7 +41,7 @@ function App() {
                 <Route path="/communitySearchResults" element={<CommunitySearchResults isUser={isUser} />} />
                 <Route path="/newUser" element={<NewUser isUser={isUser} />} />
                 <Route path="/about" element={<About isUser={isUser} />} />
-                    </>
+               
                 )}
           
             </Routes>
