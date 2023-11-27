@@ -383,7 +383,7 @@ a {
         position: fixed;
         top: 0;
         right: 0;
-        width: 60%;
+        width: 35%;
         height: 100%;
         display: flex;
         justify-content: flex-start;
@@ -434,6 +434,8 @@ a {
     cursor: pointer;
     min-width: 60vh;
     box-shadow: #414141 1px 1px 1px 1px;
+    background-color: #666;
+    color: #fff;
 }
 
     .resource-button:hover {
