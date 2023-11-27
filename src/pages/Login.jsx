@@ -39,9 +39,11 @@ export default function Login() {
                             getUserImage().then((data) => {
                                 localStorage.setItem('UserImage', data);
                             });
-                            localStorage.setItem('isAuth', true);
+                            localStorage.setItem('isAuth', true.toString());
                             window.location.href = '/home'
                         } else {
+                            localStorage.removeItem('wordCloudList');
+                            localStorage.setItem('isAuth', true.toString());
                             localStorage.setItem('isUser', false.toString());
                             window.location.href = '/newUser'
                         }

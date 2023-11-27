@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom';
 
 
 export default function HomeArticlesSearch() {
+
+    //item array for homepage article render 
     const [items, setItems] = useState([]);
+    //current page number for pagination
     const [currentPage, setCurrentPage] = useState(1);
     const articlesPerPage = 5;
 
     const uid = localStorage.getItem('uid');
 
+    //gets the list of all articles from the user and displays them on the homepage with 5 articles per page 
     useEffect(() => {
         homepageJournalList(uid)
             .then((data) => {
@@ -21,6 +25,7 @@ export default function HomeArticlesSearch() {
 
     }, [uid]);
 
+    //gets the result of the user clicking on an item to view on the homepage 
     const getLinkValue = (item) => {
         localStorage.removeItem('inputString');
         localStorage.setItem('inputString', item);

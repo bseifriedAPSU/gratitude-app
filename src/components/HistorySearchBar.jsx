@@ -4,14 +4,17 @@ import { searchJournalEntry } from '../firebase/databaseHomepage';
 import { FaSearch } from "react-icons/fa";
 
 export default function HistorySearchBar() {
+    //set the initial search value to an empty string
     const [input, setInput] = useState("");
 
+    //clicks the search button if the user clicks enter 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             getSearchInput();
         }
     };
-
+    //gets the result of the users search and sets all items that match to local storage
+    //send the user to the search results page to display all items that match the search 
     const getSearchInput = async () => {
         try {
             const data = await searchJournalEntry(input);

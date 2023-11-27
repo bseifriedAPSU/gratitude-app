@@ -17,12 +17,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);//initialization of the firebase app 
 export const auth = getAuth(app);//initialization of the firebase authentication
-
-setPersistence(auth, browserSessionPersistence).then(() => {
-    console.log("Setting session persistence");
-}).catch((error) => {
-    console.log('Error setting persistence', error);
-})
-
 export const db = getDatabase(app);//initialize the firebase database
-export const provider = new GoogleAuthProvider(app);
+export const provider = new GoogleAuthProvider(app);//initialize the google auth provider for the google login

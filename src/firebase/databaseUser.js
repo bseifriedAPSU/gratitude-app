@@ -69,7 +69,7 @@ export function entryDate(inputString) {
 
 //gets the entry headline from the community input string 
 export function getCommunityHeadline(inputString) {
-    const match = inputString.match(/Headline: ([^|]+)\s*\|/);
+    const match = inputString.match(/Title: ([^|]+)\s*\|/);
 
     if (match && match[1]) {
         const extractedText = match[1].trim();
@@ -79,11 +79,12 @@ export function getCommunityHeadline(inputString) {
 
 //gets the entry headline from the hompepage input string 
 export function entryHeadline(inputString) {
-    var splitArray = inputString.split(/Headline:|[*]/);
+    const match = inputString.match(/Title: ([^|]+)\s*\|/);
 
-    var extractedText = splitArray[1].trim();
-
-    return extractedText;
+    if (match && match[1]) {
+        const extractedText = match[1].trim();
+        return extractedText;
+    }
 }
 
 //gets the username from the input string 
@@ -170,6 +171,7 @@ export function deleteUserAccount() {
     });
 }
 
+//allows admins to delete an account from the admin settings menu in the user settings 
 export function adminAccountDelete(username) {
     const dbRef = ref(db, 'users');
 
@@ -189,6 +191,7 @@ export function adminAccountDelete(username) {
     });
 }
 
+//displays the list of account usernames on the user settings page for the admin functions 
 export function displayAccountUsernames() {
     const dbRef = ref(db, 'users');
 
@@ -205,6 +208,7 @@ export function displayAccountUsernames() {
     });
 }
 
+//checks to see if the username already exists in the database 
 export function usernameCheck(username) {
     const dbRef = ref(db, 'users');
 
@@ -215,7 +219,7 @@ export function usernameCheck(username) {
             const childData = childSnapshot.val();
             const storedUsername = childData.Username;
 
-            if (username === storedUsername) {
+            if (username.toLower() === storedUsername.toLower()) {
                 exists = true;
             }
         });
