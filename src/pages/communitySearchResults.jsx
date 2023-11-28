@@ -37,7 +37,7 @@ export default function CommunitySearchResults() {
                             ))}
                         </ul>
                     ) : (
-                        <p>Loading...</p>
+                        <p>No Results Found</p>
                     )
                 }
             </div>

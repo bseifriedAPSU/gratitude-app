@@ -219,7 +219,7 @@ export function usernameCheck(username) {
             const childData = childSnapshot.val();
             const storedUsername = childData.Username;
 
-            if (username.toLower() === storedUsername.toLower()) {
+            if (username.toLowerCase() === storedUsername.toLowerCase()) {
                 exists = true;
             }
         });

@@ -47,7 +47,7 @@ export default function SearchResults() {
                             ))}
                         </ul>
                     ) : (
-                        <p>Loading...</p>
+                        <p>No Results Found</p>
                     )
                 }
                 <div className="pagination">

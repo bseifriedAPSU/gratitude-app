@@ -55,7 +55,7 @@ export default function HomeArticlesSearch() {
                             </ul>
                         </>
                     ) : (
-                        <p>Loading...</p>
+                        <p>No Entries</p>
                     )
                 }
             </div>
