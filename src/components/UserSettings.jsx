@@ -29,10 +29,11 @@ export default function UserSettings() {
     //checks if the username meets certain criteria before allowing the user to submit 
     const isUsernameValid = () => {
         // Check for spaces and minimum length
-        return currentUsername.length >= 5 && !/\s/.test(currentUsername) && currentUsername.length <= 20;
+        const username = currentUsername.trim();
+        return username.length >= 5 && !/\s/.test(username) && username.length <= 20;
     };
 
-
+    //sets the current image 
     const handleClick = () => {
         setCurrentImage(currentImage === 4 ? 1 : currentImage + 1);
     };
@@ -42,7 +43,7 @@ export default function UserSettings() {
     const openModal = () => {
         setIsModalOpen(true);
     };
-
+    //account deletion modal 
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     const openDeleteModal = () => {
         setIsDeleteModalOpen(true);
@@ -79,6 +80,7 @@ export default function UserSettings() {
                 setUserExists(true);
                 setIsModalOpen(false);
 
+                //closes the dialog boxes after 3 seconds 
                 setTimeout(() => {
                     setUserExists(false);
                 }, 3000);
@@ -90,6 +92,7 @@ export default function UserSettings() {
 
     //updates the current user's profile picture
     const updateCurrentUser = () => {
+        //updates the current profile picture for the user 
         updateUserAccount(currentImage, localStorage.getItem('uid'));
         localStorage.setItem('UserImage', currentImage);
 
@@ -120,19 +123,23 @@ export default function UserSettings() {
         }
     }
 
+    //handles the user clicking on the delete account button 
+    //deletes the user's current account and 
     const handleDelete = () => {
         setIsModalOpen(false);
         deleteUserAccount().then(() => { 
 
         setDeletedAccount(true)
 
+        //deletes the user account, clears the local storage and returns the user to the login page 
         setTimeout(() => {
             setDeletedAccount(false);
+            localStorage.clear();
             window.location.href = "/";
         }, 3000);
         })
     }
-
+    //closes the modal 
     const handleDeleteCancel = () => {
         setIsDeleteModalOpen(false);
     }
@@ -190,7 +197,7 @@ export default function UserSettings() {
             )}
             <MessageDialogue isOpen={userExists} message="Username already exists please try again." />
             <MessageDialogue isOpen={isMessageOpen} message="Your Selection has been SAVED!" />
-            <MessageDialogue isOpen={invalidUser} message="Invalid username. Username must be at least 5 characters without spaces." />
+            <MessageDialogue isOpen={invalidUser} message="Invalid username. Username must be at least 5 characters without spaces and less than 20 characters." />
             <MessageDialogue isOpen={deletedAccount} message="Account Successfully Deleted" />
         </div>
     );

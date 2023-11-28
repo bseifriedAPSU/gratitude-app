@@ -6,15 +6,20 @@ import { admin, adminAccountDelete, displayAccountUsernames } from '../firebase/
 import { userAccountCommunityDelete } from '../firebase/databaseCommunity'
 
 export default function UserSettings() {
+    //sets the user to admin by default 
     const [isAdmin, setIsAdmin] = useState(false);
+    //creates an empty array for the list of usernames 
     const [usernames, setUsernames] = useState([]);
+    //sets the selected username for the admin account delete to null by default 
     const [selectedUsername, setSelectedUsername] = useState(null);
 
+    //calls the admin function and updates the value of admin to check if they are an admin or not 
     useEffect(() => {
         admin().then((data) => {
             setIsAdmin(data);
         });
 
+        //displays the list of usernames under the admin settings 
         displayAccountUsernames().then((data) => {
             setUsernames(data);
             console.log(data);
@@ -30,6 +35,7 @@ export default function UserSettings() {
     // Message Dialogue 
     const [isMessageOpen, setIsMessageOpen] = useState(false);
 
+    //deletes the user account through the admin delete component 
     const handleConfirm = () => {
         if (selectedUsername) {
             userAccountCommunityDelete(selectedUsername);
@@ -47,13 +53,9 @@ export default function UserSettings() {
         setIsModalOpen(false);
     };
 
-
-
-    ///Here 
     return isAdmin && (
         <div className="adminContainer">
             <h2>ADMIN ONLY</h2>
-            {/* Render list of username and button*/}
             <div className="accountListContainer">
                 <ul>
                     {usernames.map((username, index) => (

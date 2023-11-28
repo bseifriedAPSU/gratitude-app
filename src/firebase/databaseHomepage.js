@@ -45,7 +45,7 @@ export function historyJournalList(userId) {
                     var { Headline, date } = childData;
                     Headline.trim();
                     date.trim();
-                    var inputString = "Headline: " + Headline + "   *****   Date: " + date;
+                    var inputString = "Title: " + Headline + "   *****   Date: " + date;
                     data.push(inputString);
                 }
             });
@@ -71,7 +71,7 @@ export function homepageJournalList(userId) {
                     var { Headline, date } = childData;
                     Headline.trim();
                     date.trim();
-                    var inputString = "Headline: " + Headline + "   *****   Date: " + date;
+                    var inputString = "Title: " + Headline + " | Date: " + date;
                     data.push(inputString);
                 }
             });
@@ -248,8 +248,7 @@ export async function deleteJournalEntry(headline, date) {
     }
 }
 
-
-
+//search results for the user history page 
 export function searchJournalEntry(inputString) {
     const userID = localStorage.getItem('uid');
     const userPostsRef = ref(db, `users/${userID}/posts`);
@@ -276,7 +275,7 @@ export function searchJournalEntry(inputString) {
 
             // Check if the lowercaseHeadline includes the lowercaseInputString
             if (lowercaseHeadline.includes(lowercaseInputString)) {
-                const resultString = `Headline: ${headline}   *****   Date: ${post.date}`;
+                const resultString = `Title: ${headline} | Date: ${post.date}`;
                 searchResults.push(resultString);
             }
         });
@@ -290,7 +289,7 @@ export function searchJournalEntry(inputString) {
 }
 
 
-
+//deletes the entries from the community page as well if the user deletes it from their account 
 export function deleteFromCommunity(headline, username, date) {
     const dbRef = ref(db, 'community/posts');
 
@@ -298,7 +297,9 @@ export function deleteFromCommunity(headline, username, date) {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
 
-            if (childData.Headline.trim() === headline.trim() && childData.Username.trim() === username.trim() && childData.date === date.trim()) {
+            if (childData.Headline.trim() ===
+                headline.trim() && childData.Username.trim() ===
+                username.trim() && childData.date === date.trim()) {
                 console.log('community snapshot', childData);
                 const removeRef = ref(db, `community/posts/${childSnapshot.key}`);
 
