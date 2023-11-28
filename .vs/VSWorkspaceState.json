@@ -3,8 +3,8 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\components"
+    "\\src\\css"
   ],
-  "SelectedNode": "\\src\\components\\HomeArticlesSearch.jsx",
+  "SelectedNode": "\\src\\css\\pages.css",
   "PreviewInSolutionExplorer": false
 }
