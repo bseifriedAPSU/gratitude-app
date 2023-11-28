@@ -127,7 +127,9 @@ export default function Wordcloud() {
                 'you',
                 'your',
                 'a',
-                'i']);
+                'i',
+                'm',
+                'I']);
 
             //list of words so that there aren't duplicates in the word cloud 
             const uniqueWords = new Set();
