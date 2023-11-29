@@ -1,5 +1,6 @@
 import "../css/pages.css";
 import CommunityArticlesSearch from "../components/CommunityArticlesSearch";
+import CommunityWordCloud from "../components/CommunityWordCloud";
 import TopBar from "../components/TopBar";
 import { useNavigate } from 'react-router-dom';
 export default function Community() {
@@ -14,7 +15,7 @@ export default function Community() {
             <div className="community">
 
                 <h1>Community</h1>
-                <h3>Short Description Here</h3>
+                <CommunityWordCloud />
                 <CommunityArticlesSearch />   
                 <div className="bottomPageContainer">
                     <button className="backButton" onClick={goBack}>Previous Page</button>
