@@ -1,4 +1,4 @@
-import './topbar.css'
+import '../css/components.css';
 import { useNavigate } from 'react-router-dom';
 import Nav from './Nav';
 
@@ -6,22 +6,33 @@ import Nav from './Nav';
 
 export default function TopBar() {
     const navigate = useNavigate();
+    const usernameQuotes = JSON.stringify(localStorage.getItem('Username'));
+    const imagenumber = JSON.parse(localStorage.getItem('UserImage'));
 
-
+    //gets rid of quotes from JSON to render correctly
+    const username = usernameQuotes.replace(/"/g, '');
 
     return (
-        <div className="top">
+        <div className="navContainer">
             <div className="topLeft">
-              
+             
                 <div className="userInfo" onClick={() => navigate('/settings')}>
-                   <img className="userBannerImage" src="images/avatarImage1.png" alt="UserBannerImage" />
-                    <div className="userInfoUsername">Username</div>
+
+                   {/* Need to update with local storage*/}
+                    <img
+                        className="userBannerImage"
+                        src={`./images/avatarImage${imagenumber}.png`}
+                        alt="UserBannerImage"
+                    />
+
+
+                    <div className="userInfoUsername">{username}</div>
                 </div>
             </div>
             
             <div className="topCenter"> 
                 <div className="topCenter-flex-container" onClick={() => navigate('/home')} >
-                    {/* /<img className="topBarLogo" src="/images/gratitudeLogoHorizontal.svg" alt="Gratitide Logo"></img> */}
+                    <img className="topBarLogo" src="/images/gratitudeLogoIcon.svg" alt="Gratitide Icon"></img>
                 </div>
             </div>
             <div className="topRight"><Nav /></div>

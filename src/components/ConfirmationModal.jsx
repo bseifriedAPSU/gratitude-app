@@ -1,5 +1,7 @@
+import '../css/components.css';
+
 import React from 'react';
-import './confirmationModal.css';
+
 
 const ConfirmationModal = ({ isOpen, message, onConfirm, onCancel }) => {
     if (!isOpen) return null;
