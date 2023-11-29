@@ -1,9 +1,6 @@
 # Dependencies need to deploy
 
-npm install reac-wordcloud
-
 npm install --legacy-peer-deps 
-
 
 # Getting Started with Create React App
 

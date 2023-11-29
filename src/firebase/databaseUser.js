@@ -1,9 +1,10 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
-import { ref, remove, onValue, set, update, get, query, orderByChild } from 'firebase/database';
+import { ref, remove, onValue, set, update, get, push } from 'firebase/database';
 
 //calls firebase google sign in function 
 export function signIn() {
+    provider.setCustomParameters({ prompt: 'select_account' });
     signInWithRedirect(auth, provider);
 }
 
@@ -115,6 +116,8 @@ export function createUserAccount(profile_pic, username, userID) {
         profilePicture: profile_pic,
         isAdmin: false
     });
+    const usernamesRef = ref(db, 'usernames');
+    push(usernamesRef, username);
 }
 
 //checks to see if the user account exist or not 
@@ -210,15 +213,15 @@ export function displayAccountUsernames() {
 
 //checks to see if the username already exists in the database 
 export function usernameCheck(username) {
-    const dbRef = ref(db, 'users');
+    const dbRef = ref(db, 'usernames');
 
     return get(dbRef).then((snapshot) => {
         let exists = false;
 
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
-            const storedUsername = childData.Username;
-
+            const storedUsername = childData;
+            console.log("Username", username, "Stored Username", storedUsername)
             if (username.toLowerCase() === storedUsername.toLowerCase()) {
                 exists = true;
             }

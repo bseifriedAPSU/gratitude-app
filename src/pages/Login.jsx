@@ -54,13 +54,21 @@ export default function Login() {
         return () => unsubscribe();
     }, []);
 
+    const handleSignIn = async () => {
+        try {
+            await signIn();
+            // The sign-in result will be handled by the onAuthStateChanged listener
+        } catch (error) {
+            console.error("Error signing in", error.message);
+        }
+    };
 
     return (
         <div className="login-Container">
 
             <Header />
 
-            <button className="loginButton" onClick={signIn}>
+            <button className="loginButton" onClick={handleSignIn}>
                 Sign in with Google
             </button>
 
