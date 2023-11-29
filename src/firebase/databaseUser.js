@@ -16,7 +16,7 @@ export async function getUsernameLocation(username) {
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
-                if (childData.Username === username) {
+                if (childData.Username.trim() === username.trim()) {
                     const userKey = childSnapshot.key;
                     resolve(userKey);
                 }
