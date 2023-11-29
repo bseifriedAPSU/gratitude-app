@@ -9,7 +9,6 @@ export default function Wordcloud() {
 
     useEffect(() => {
         const wordCloudArray = localStorage.getItem('wordCloudList');
-        console.log('word cloud list', localStorage.getItem('wordCloudList'));
 
         if (wordCloudArray) {
             //split the array for the word cloud 
