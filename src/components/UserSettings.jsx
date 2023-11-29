@@ -4,6 +4,7 @@ import ConfirmationModal from './ConfirmationModal';
 import { createUserAccount, updateUserAccount, usernameCheck, deleteUserAccount } from '../firebase/databaseUser';
 import { useNavigate } from 'react-router-dom';
 import MessageDialogue from './MessageDialogue';
+import { auth } from '../firebase/firebaseConfig'
 
 export default function UserSettings() {
     const isUser = JSON.parse(localStorage.getItem('isUser'));
@@ -58,8 +59,9 @@ export default function UserSettings() {
     const createNewUser = async () => {
         try {
             //get the result of the username check to determine if the username already exists or not 
+            console.log(auth.currentUser);
             const exists = await usernameCheck(currentUsername);
-
+            console.log('testing');
             //if the username does not exist create a new user account 
             if (!exists) {
                 createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));

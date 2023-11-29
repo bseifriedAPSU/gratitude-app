@@ -128,7 +128,7 @@ export default function Wordcloud() {
                 'a',
                 'i',
                 'm',
-                'I']);
+                ]);
 
             //list of words so that there aren't duplicates in the word cloud 
             const uniqueWords = new Set();
@@ -138,7 +138,7 @@ export default function Wordcloud() {
                 .map(word => word.trim())
                 //Can we filter stopwords here?
                 .filter(word => /^[a-zA-Z]+$/.test(word))
-                .filter(word => !stopWords.has(word))
+                .filter(word => !stopWords.has(word.toLowerCase()))
                 .filter(word => {
                     if (!uniqueWords.has(word.toLowerCase())) {
                         uniqueWords.add(word.toLowerCase());
