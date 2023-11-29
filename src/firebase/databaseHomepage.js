@@ -91,8 +91,10 @@ export function getUserEntryContent(headline, date) {
         onValue(dbRef, (snapshot) => {
             snapshot.forEach((childSnapshot) => {
                 const childData = childSnapshot.val();
-                if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
-                    content = childData.content;
+                if (childData && childData.Headline && childData.date && headline && date) {
+                    if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
+                        content = childData.content;
+                    }
                 }
             });
             resolve(content);
