@@ -7,14 +7,14 @@ export function displayCommunityEntryContent(headline, date) {
  
         const userLocation = localStorage.getItem('RefLocation');
         const dbRef = ref(db, 'users/' + userLocation + '/posts');
-        var content = "Placeholder";
-
+        var content = "No Content";
     return get(dbRef).then((snapshot) => {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
-            if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
-                content = childData.content;
-                return;
+            if (childData && childData.Headline && childData.date && headline && date) {
+                if (childData.Headline.trim() === headline.trim() && childData.date.trim() === date.trim()) {
+                    content = childData.content;
+                }
             }
         });
         return content;
@@ -33,7 +33,7 @@ export function communityPageDisplay() {
                 const childData = childSnapshot.val();
 
                 const { Headline, date, Username } = childData;
-                posts.push("Headline: " + Headline + " | Username: " + Username + " | Date: " + date);
+                posts.push("Title: " + Headline + " | Username: " + Username + " | Date: " + date);
             });
             resolve(posts);
         }, (error) => {
@@ -65,7 +65,7 @@ export function searchCommunityJournalEntry(inputString) {
                 const lowercaseUsername = username.toLowerCase();
 
                 if (lowercaseHeadline.includes(stringWithoutExtraSpaces) || lowercaseUsername.includes(stringWithoutExtraSpaces)) {
-                    const resultString = "Headline: " + headline + " | Username: " + username + " | Date: " + post.date;
+                    const resultString = "Title: " + headline + " | Username: " + username + " | Date: " + post.date;
                     searchResults.push(resultString);
                 }
             });
@@ -210,5 +210,22 @@ export function checkExclusionList(headline, date, username) {
             }
         });
         return userExcluded;
+    });
+}
+
+export function communityWordCloudList() {
+    const dbRef = ref(db, `community/posts`);
+
+    return get(dbRef).then((snapshot) => {
+        const wordCloud = [];
+
+        snapshot.forEach((postSnapshot) => {
+            const post = postSnapshot.val();
+            wordCloud.push(post.Headline);
+        });
+        return wordCloud;
+    }).catch((error) => {
+        console.error('Error getting data:', error);
+        throw error;
     });
 }

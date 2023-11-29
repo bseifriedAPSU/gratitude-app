@@ -3,7 +3,7 @@ import FilteredResults from "../components/FilteredResults";
 import TopBar from "../components/TopBar";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom';
-
+import { getUsernameLocation, getUsernameFromString } from '../firebase/databaseUser'
 export default function CommunitySearchResults() {
     const [items, setItems] = useState([]);
 
@@ -18,7 +18,12 @@ export default function CommunitySearchResults() {
     const getLinkValue = (item) => {
         localStorage.removeItem('inputString');
         localStorage.setItem('inputString', item);
-    }
+        getUsernameLocation(getUsernameFromString(item)).then((data) => {
+            localStorage.setItem('flagUsername', getUsernameFromString(item));
+            localStorage.setItem('RefLocation', data);
+        });
+    };
+
   
     //Back Button function
     const navigate = useNavigate();
