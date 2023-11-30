@@ -17,8 +17,16 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.jfm
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 /.vs/gratitude-app/FileContentIndex/be7c5413-d4ef-4cb7-b674-5e3661b90ffa.vsidx
+/.vs/gratitude-app/FileContentIndex/60a9308c-bc46-4806-b0be-715c441cc2d1.vsidx
+/.vs/gratitude-app/FileContentIndex/bf792317-55dd-4966-84fa-8427ae8c5a97.vsidx
+/.vs/gratitude-app/FileContentIndex/92afc4b4-91ea-4c96-a659-14a779a075ae.vsidx
+/.vs/gratitude-app/FileContentIndex/65d6e0ee-2988-45ec-8ca2-a8f72c53b4ff.vsidx
+/.vs/gratitude-app/FileContentIndex/c9514547-c10b-434e-9ea7-b56c17adcbdc.vsidx
+/.vs/gratitude-app/FileContentIndex/6ab36813-9926-473a-983f-f0140c2400da.vsidx
+/.vs/gratitude-app/FileContentIndex/b9149caa-94c6-4507-9a01-dfbae50535dc.vsidx

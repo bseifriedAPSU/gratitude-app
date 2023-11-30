@@ -55,6 +55,7 @@ export default function UserSettings() {
 
     return isAdmin && (
         <div className="adminContainer">
+       <hr />
             <h2>ADMIN ONLY</h2>
             <div className="accountListContainer">
                 <ul>
