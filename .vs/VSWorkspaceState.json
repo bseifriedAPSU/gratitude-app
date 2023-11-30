@@ -1,16 +1,12 @@
 {
   "ExpandedNodes": [
-<<<<<<< HEAD
     "",
+    "\\documents",
     "\\src",
     "\\src\\components",
+    "\\src\\firebase",
     "\\src\\pages"
   ],
   "SelectedNode": "\\src\\components\\UserSettings.jsx",
-=======
-    ""
-  ],
-  "SelectedNode": "\\C:\\Users\\Joel\\Source\\Repos\\gratitude-app-fork",
->>>>>>> 500558611ff3af43f44b7e9c3bfc9ac447c2b458
   "PreviewInSolutionExplorer": false
 }

@@ -148,7 +148,12 @@ export default function CommunityWordCloud() {
                             return false;
                         });
 
-                    const wordsWithValues = filteredWords.map(word => ({
+                    const shuffledWords = filteredWords.sort(() => Math.random() - 0.5);
+
+                    const selectedWords = shuffledWords.slice(0, Math.min(75, shuffledWords.length));
+
+
+                    const wordsWithValues = selectedWords.map(word => ({
                         enableTooltip: false,
                         text: word.trim(),
                         value: Math.round((Math.random() * (100 - 50) + 50) / 5) * 5,

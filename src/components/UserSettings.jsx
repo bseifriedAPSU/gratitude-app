@@ -64,11 +64,11 @@ export default function UserSettings() {
             console.log('testing');
             //if the username does not exist create a new user account 
             if (!exists) {
-                createUserAccount(currentImage, currentUsername, localStorage.getItem('uid'));
+                createUserAccount(currentImage, currentUsername.trim(), localStorage.getItem('uid'));
 
                 //DO NOT REMOVE 
                 //This sets localStorage for TopBar so user does NOT need to log out to see changes made
-                localStorage.setItem('Username', currentUsername);
+                localStorage.setItem('Username', currentUsername.trim());
                 localStorage.setItem('UserImage', currentImage);
 
                 setIsModalOpen(false);
