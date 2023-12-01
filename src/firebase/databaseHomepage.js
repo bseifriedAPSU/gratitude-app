@@ -56,8 +56,7 @@ export function historyJournalList(userId) {
     });
 }
 
-//displays the user's five most recent journal entries on the homepage 
-//removed 5 article limit as it was affecting total articles available to display thorugh pagination
+//displays a list of the user's journal entries from most recent to least recent 
 export function homepageJournalList(userId) {
     return new Promise((resolve, reject) => {
         const data = [];
@@ -230,7 +229,6 @@ export async function deleteJournalEntry(headline, date) {
                         .catch((error) => {
                             console.error('Error deleting from community:', error);
                         });
-                    console.log("Completed");
                 }
 
                 const dataRemoveRef = ref(db, `users/${localStorage.getItem('uid')}/posts/${childSnapshot.key}`);

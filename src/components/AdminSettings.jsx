@@ -2,8 +2,7 @@ import '../css/components.css';
 import ConfirmationModal from "./ConfirmationModal";
 import MessageDialogue from './MessageDialogue';
 import React, { useState, useEffect } from 'react';
-import { admin, adminAccountDelete, displayAccountUsernames } from '../firebase/databaseUser'
-import { userAccountCommunityDelete } from '../firebase/databaseCommunity'
+import { admin, adminAccountDelete, displayAccountUsernames, deleteEntriesFromCommunity } from '../firebase/databaseUser'
 
 export default function UserSettings() {
     //sets the user to admin by default 
@@ -36,17 +35,20 @@ export default function UserSettings() {
     const [isMessageOpen, setIsMessageOpen] = useState(false);
 
     //deletes the user account through the admin delete component 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         if (selectedUsername) {
-            userAccountCommunityDelete(selectedUsername);
-            adminAccountDelete(selectedUsername);
+            //deletes entries from the community of the user account that is deleted
+            await deleteEntriesFromCommunity(selectedUsername);
+            //deletes the user account from the database
+            await adminAccountDelete(selectedUsername);
             setIsModalOpen(false);
             setIsMessageOpen(true);
             setTimeout(() => {
                 setIsMessageOpen(false);
 
             }, 3000);
-            window.location.href = "/home";
+          //returns the admin to their homepage once the action has finished 
+          window.location.href = "/home";
         }
     };
     const handleCancel = () => {

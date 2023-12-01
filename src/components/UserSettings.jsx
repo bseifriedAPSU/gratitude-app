@@ -1,7 +1,7 @@
 import '../css/components.css';
 import React, { useState } from 'react';
 import ConfirmationModal from './ConfirmationModal';
-import { createUserAccount, updateUserAccount, usernameCheck, deleteUserAccount } from '../firebase/databaseUser';
+import { createUserAccount, updateUserAccount, usernameCheck, deleteUserAccount, deleteEntriesFromCommunity } from '../firebase/databaseUser';
 import { useNavigate } from 'react-router-dom';
 import MessageDialogue from './MessageDialogue';
 import { auth } from '../firebase/firebaseConfig'
@@ -128,19 +128,25 @@ export default function UserSettings() {
 
     //handles the user clicking on the delete account button 
     //deletes the user's current account and 
-    const handleDelete = () => {
-        setIsModalOpen(false);
-        deleteUserAccount().then(() => { 
-        setDeletedAccount(true)
+    const handleDelete = async () => {
+        try {
+            setIsModalOpen(false);
+            await deleteEntriesFromCommunity(localStorage.getItem('Username'));
+            await deleteUserAccount();
 
-        //deletes the user account, clears the local storage and returns the user to the login page 
-        setTimeout(() => {
-            setDeletedAccount(false);
-            localStorage.clear();
-            window.location.href = "/";
-        }, 3000);
-        })
+            setDeletedAccount(true)
+
+            //deletes the user account, clears the local storage and returns the user to the login page 
+            setTimeout(() => {
+                setDeletedAccount(false);
+                localStorage.clear();
+                window.location.href = "/";
+            }, 3000);
+        } catch (error) {
+            console.log(error);
+        }
     }
+
     //closes the modal 
     const handleDeleteCancel = () => {
         setIsDeleteModalOpen(false);
