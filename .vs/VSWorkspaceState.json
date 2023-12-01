@@ -2,11 +2,19 @@
   "ExpandedNodes": [
     "",
     "\\documents",
+<<<<<<< HEAD
+=======
     "\\public",
+>>>>>>> 1679cac4b0871277551acd35de8c1ddecc247b86
     "\\src",
     "\\src\\components",
+    "\\src\\firebase",
     "\\src\\pages"
   ],
-  "SelectedNode": "\\documents\\Gratitude\u002B\u002B  Block Diagram.drawio",
+<<<<<<< HEAD
+  "SelectedNode": "\\src\\components\\UserSettings.jsx",
+=======
+  "SelectedNode": "\\.gitignore",
+>>>>>>> 1679cac4b0871277551acd35de8c1ddecc247b86
   "PreviewInSolutionExplorer": false
 }

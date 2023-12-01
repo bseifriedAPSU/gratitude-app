@@ -103,6 +103,7 @@ export function signOutOfAccount() {
     signOut(auth).then(() => {
         window.location = "/";
         localStorage.clear();
+        sessionStorage.clear();
     }).catch((error) => {
         alert("There was an error signing out");
     });
@@ -112,12 +113,12 @@ export function signOutOfAccount() {
 export function createUserAccount(profile_pic, username, userID) {
 
     set(ref(db, 'users/' + userID), {
-        Username: username,
+        Username: username.trim(),
         profilePicture: profile_pic,
         isAdmin: false
     });
     const usernamesRef = ref(db, 'usernames');
-    push(usernamesRef, username);
+    push(usernamesRef, username.trim());
 }
 
 //checks to see if the user account exist or not 
@@ -159,20 +160,28 @@ export function admin() {
 }
 
 //deletes user account when they press the delete button 
-export function deleteUserAccount() {
-    return new Promise((resolve, reject) => {
+export async function deleteUserAccount() {
+    try {
         const userID = localStorage.getItem('uid');
         const removeRef = ref(db, `users/${userID}`);
+        const username = localStorage.getItem('Username').trim();
 
-        remove(removeRef)
-            .then(() => {
-                resolve("User account deleted successfully");
-            })
-            .catch((error) => {
-                reject(error);
-            });
-    });
+        // Wait for removeUsername to complete before proceeding
+        await removeUsername(username);
+
+        // After the username is removed, delete the user account
+        await remove(removeRef);
+
+        // Clear sessionStorage after successful deletion
+        sessionStorage.clear();
+
+        return "User account deleted successfully";
+    } catch (error) {
+        console.error('Error deleting user account:', error);
+        throw error;
+    }
 }
+
 
 //allows admins to delete an account from the admin settings menu in the user settings 
 export function adminAccountDelete(username) {
@@ -182,6 +191,7 @@ export function adminAccountDelete(username) {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
             if (childData.Username === username) {
+                removeUsername(username);
                 const removeRef = ref(db, `users/${childSnapshot.key}`);
                 console.log(removeRef);
                 return remove(removeRef).then(() => {
@@ -229,4 +239,31 @@ export function usernameCheck(username) {
 
         return exists;
     });
+}
+
+function removeUsername(username) {
+    const dbRef = ref(db, 'usernames');
+
+    return get(dbRef)
+        .then((snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+                const storedUsername = childSnapshot.val().trim();
+                console.log(childSnapshot.val().trim());
+                console.log(childSnapshot.key);
+                console.log('Username', username.trim(), 'stored username', storedUsername);
+
+                // Check if the current child node has the username you want to remove
+                if (storedUsername === username.trim()) {
+                    const usernameKey = childSnapshot.key;
+
+                    // Remove the username from the 'usernames' node
+                    const usernameRef = ref(db, `usernames/${usernameKey}`);
+                    return remove(usernameRef);
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('Error removing username:', error);
+            throw error;
+        });
 }
