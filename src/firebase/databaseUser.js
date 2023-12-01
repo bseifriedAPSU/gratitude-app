@@ -3,7 +3,7 @@ import { signInWithRedirect, signOut } from 'firebase/auth';
 import { ref, remove, onValue, set, update, get, push } from 'firebase/database';
 import { Children } from "react";
 
-//calls firebase google sign in function 
+//calls firebase google sign in function, prompts the user to select an account on every login  
 export function signIn() {
     provider.setCustomParameters({ prompt: 'select_account' });
     signInWithRedirect(auth, provider);
@@ -150,6 +150,7 @@ export function updateUserAccount(profilePic, userID) {
     return update(dbRef, updates);
 }
 
+//displays a list of usernames for the admin functions 
 export function admin() {
     const userID = localStorage.getItem('uid');
     const dbRef = ref(db, `users/${userID}`);
@@ -233,7 +234,7 @@ export function usernameCheck(username) {
         snapshot.forEach((childSnapshot) => {
             const childData = childSnapshot.val();
             const storedUsername = childData;
-            console.log("Username", username, "Stored Username", storedUsername)
+            //retruns true if the username currently exists 
             if (username.toLowerCase() === storedUsername.toLowerCase()) {
                 exists = true;
             }
@@ -243,6 +244,7 @@ export function usernameCheck(username) {
     });
 }
 
+//removes the username from the usernames node when the account is deleted 
 function removeUsername(username) {
     const dbRef = ref(db, 'usernames');
 
@@ -254,7 +256,7 @@ function removeUsername(username) {
                 console.log(childSnapshot.key);
                 console.log('Username', username.trim(), 'stored username', storedUsername);
 
-                // Check if the current child node has the username you want to remove
+                // Check if the current child node has the username to remove
                 if (storedUsername === username.trim()) {
                     const usernameKey = childSnapshot.key;
 
@@ -270,6 +272,7 @@ function removeUsername(username) {
         });
 }
 
+//deletes all entries from the community page if the user account is deleted 
 export function deleteEntriesFromCommunity(username){
     const dbRef = ref(db, 'community/posts');
 

@@ -9,11 +9,15 @@ import MessageDialogue from "../components/MessageDialogue";
 import { useNavigate } from 'react-router-dom';
 
 export default function CommunityJournalEntryView() {
-
+    //content variables for the entry content
     const [content, setContent] = useState(null);
+    //username variables to display when viewing the entry
     const [username, setUsername] = useState(null);
+    //gets the passed input string to display the current entry
     const inputString = localStorage.getItem('inputString');
+    //gets the headline from the input string
     var headline = getCommunityHeadline(inputString);
+    //gets the date from the input string 
     var date = entryDate(inputString);
     date = date.slice(0, -1);
 
@@ -39,22 +43,28 @@ export default function CommunityJournalEntryView() {
     const goBack = () => {
         navigate(-1);
     }
+
+    //handles the user clicking on the flag button 
     const handleConfirm = async () => {
         try {
             const username = localStorage.getItem('flagUsername');
+            //checks to see if the user has flagged this posts before 
             const userExcluded = await checkExclusionList(headline, date, username);
             setIsUserExcluded(userExcluded);
 
             if (!userExcluded) {
-                // User is not on the exclusion list, proceed with the actions
+                //increases the flag counter by one 
                 await increaseFlagCounter(headline, date, username);
+                //adds the user to the flagged user list 
                 await flaggedUserList(headline, date, username);
+                //gets the number of times a post has been flagged 
                 const flagCount = parseInt(await getFlagCount(headline, date, username));
 
+                //deletes the entry from the community page if it has been flagged at least 5 times 
+                //returns the user to the community page afterwards
                 if (flagCount >= 5) {
-                    deleteFromCommunity(headline, username, date).then(() => {
+                    await deleteFromCommunity(headline, username, date);
                         window.location.href = '/community';
-                    });
                 }
 
             } else {
@@ -79,7 +89,8 @@ export default function CommunityJournalEntryView() {
         setIsModalOpen(false);
     };
 
-
+    //displays the content for the entry when it become available
+    //displays updates the username as well 
     useEffect(() => {
         displayCommunityEntryContent(headline, date)
             .then(data => {

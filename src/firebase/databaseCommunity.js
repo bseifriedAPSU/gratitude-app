@@ -78,27 +78,6 @@ export function searchCommunityJournalEntry(inputString) {
     });
 }
 
-export function userAccountCommunityDelete(username) {
-    const dbRef = ref(db, 'community/posts');
-
-    return get(dbRef).then((snapshot) => {
-        const deletePromises = [];
-
-        snapshot.forEach((childSnapshot) => {
-            const childData = childSnapshot.val();
-            const communityUsername = childData.Username;
-
-            if (username === communityUsername) {
-                const removeRef = ref(db, `community/posts/${childSnapshot.key}`);
-                const deletePromise = remove(removeRef);
-                deletePromises.push(deletePromise);
-            }
-        });
-
-        return Promise.all(deletePromises);
-    });
-}
-
 export function increaseFlagCounter(headline, date, username) {
     const dbRef = ref(db, 'community/posts');
 

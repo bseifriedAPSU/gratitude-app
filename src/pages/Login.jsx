@@ -7,10 +7,13 @@ import Header from "../components/Header"
 export default function Login() {
 
     useEffect(() => {
+        //listens for changes in the auth state
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
+                //sets the users uid in the local storage once the user is authorized
                 localStorage.setItem('uid', auth.currentUser.uid);
 
+                //checks if the user has an existing account in the database
                 userAccountCheck(localStorage.getItem('uid'))
                     .then((accountExists) => {
                         if (accountExists) {
@@ -22,25 +25,29 @@ export default function Login() {
                             //get the username for the user and set it to local storage 
                             getUsername().then((data) => {
                                 localStorage.removeItem('Username');
-                            localStorage.setItem('Username', data); 
+                                localStorage.setItem('Username', data); 
                             });
 
                             // getting user image # and setting to localstorage
                             getUserImage().then((data) => {
                                 localStorage.setItem('UserImage', data);
                             });
+                            //sets the users auth state to true to allow them to naviagte the site 
                             localStorage.setItem('isAuth', true.toString());
+                            //sends the user to their homepage
                             window.location.href = '/home'
                         } else {
-                            localStorage.removeItem('wordCloudList');
+                            //sets the users auth state to true
                             localStorage.setItem('isAuth', true.toString());
+                            //sets isUser to false, forcing them to create an account
                             localStorage.setItem('isUser', false.toString());
+                            //sends the user to the newUser page 
                             window.location.href = '/newUser'
                         }
                     })
             }
         });
-
+        
         return () => unsubscribe();
     }, []);
 
