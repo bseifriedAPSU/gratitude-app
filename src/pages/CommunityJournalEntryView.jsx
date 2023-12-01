@@ -43,7 +43,6 @@ export default function CommunityJournalEntryView() {
         try {
             const username = localStorage.getItem('flagUsername');
             const userExcluded = await checkExclusionList(headline, date, username);
-            console.log('user excluded', userExcluded);
             setIsUserExcluded(userExcluded);
 
             if (!userExcluded) {
@@ -53,7 +52,6 @@ export default function CommunityJournalEntryView() {
                 const flagCount = parseInt(await getFlagCount(headline, date, username));
 
                 if (flagCount >= 5) {
-                    console.log('headline', headline, 'date', date, 'username', username)
                     deleteFromCommunity(headline, username, date).then(() => {
                         window.location.href = '/community';
                     });

@@ -230,7 +230,6 @@ export async function deleteJournalEntry(headline, date) {
                         .catch((error) => {
                             console.error('Error deleting from community:', error);
                         });
-                    console.log("Completed");
                 }
 
                 const dataRemoveRef = ref(db, `users/${localStorage.getItem('uid')}/posts/${childSnapshot.key}`);

@@ -1,5 +1,4 @@
 import "../css/pages.css";
-import FilteredResults from "../components/FilteredResults";
 import TopBar from "../components/TopBar";
 import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
@@ -42,7 +41,7 @@ export default function SearchResults() {
                 {
                     items.length > 0 ? (
                         <ul>
-                            {items.map((item, index) => (
+                            {currentArticles.map((item, index) => (
                                 <Link to={`/homepageJournalEntryView`} onClick={() => getLinkValue(JSON.stringify(item))}><li className="articleItem" key={index}>{item}</li></Link>
                             ))}
                         </ul>

@@ -36,17 +36,17 @@ export default function UserSettings() {
     const [isMessageOpen, setIsMessageOpen] = useState(false);
 
     //deletes the user account through the admin delete component 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         if (selectedUsername) {
-            userAccountCommunityDelete(selectedUsername);
-            adminAccountDelete(selectedUsername);
+            await userAccountCommunityDelete(selectedUsername);
+            await adminAccountDelete(selectedUsername);
             setIsModalOpen(false);
             setIsMessageOpen(true);
             setTimeout(() => {
                 setIsMessageOpen(false);
 
             }, 3000);
-            window.location.href = "/home";
+          window.location.href = "/home";
         }
     };
     const handleCancel = () => {

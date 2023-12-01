@@ -1,7 +1,6 @@
 import "../css/pages.css";
 import React, { useEffect } from 'react'
 import { signIn, userAccountCheck, getUsername, getUserImage } from "./../firebase/databaseUser"
-import { wordCloudList } from '../firebase/databaseHomepage'
 import { auth } from '../firebase/firebaseConfig'
 import Header from "../components/Header"
 
@@ -25,15 +24,6 @@ export default function Login() {
                                 localStorage.removeItem('Username');
                             localStorage.setItem('Username', data); 
                             });
-
-                            //set the word cloud list to local storage 
-                            wordCloudList(localStorage.getItem('uid'))
-                                .then((data) => {
-                                    localStorage.setItem('wordCloudList', JSON.stringify(data));
-                                    console.log("Data from login setStorage:",data);
-                                }).catch((error) => {
-                                    console.log(error);
-                                });
 
                             // getting user image # and setting to localstorage
                             getUserImage().then((data) => {

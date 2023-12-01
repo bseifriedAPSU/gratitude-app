@@ -1,20 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\documents",
-<<<<<<< HEAD
-=======
-    "\\public",
->>>>>>> 1679cac4b0871277551acd35de8c1ddecc247b86
     "\\src",
     "\\src\\components",
     "\\src\\firebase",
     "\\src\\pages"
   ],
-<<<<<<< HEAD
-  "SelectedNode": "\\src\\components\\UserSettings.jsx",
-=======
-  "SelectedNode": "\\.gitignore",
->>>>>>> 1679cac4b0871277551acd35de8c1ddecc247b86
+  "SelectedNode": "\\src\\components\\Wordcloud.jsx",
   "PreviewInSolutionExplorer": false
 }

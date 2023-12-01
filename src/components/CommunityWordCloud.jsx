@@ -1,6 +1,5 @@
 import '../css/components.css';
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import ReactWordcloud from 'react-wordcloud';
 import { communityWordCloudList, searchCommunityJournalEntry } from '../firebase/databaseCommunity'
 
@@ -10,8 +9,8 @@ export default function CommunityWordCloud() {
         const fetchData = async () => {
             try {
                 const wordCloudArray = await communityWordCloudList();
-
                 if (wordCloudArray && Array.isArray(wordCloudArray)) {
+
                     const words = wordCloudArray
                         .flatMap(item => item.match(/\b\w+\b/g) || []) // Split each string into words
                         .filter(Boolean);
@@ -150,7 +149,7 @@ export default function CommunityWordCloud() {
 
                     const shuffledWords = filteredWords.sort(() => Math.random() - 0.5);
 
-                    const selectedWords = shuffledWords.slice(0, Math.min(75, shuffledWords.length));
+                    const selectedWords = shuffledWords.slice(0, Math.min(50, shuffledWords.length));
 
 
                     const wordsWithValues = selectedWords.map(word => ({

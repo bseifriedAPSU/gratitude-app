@@ -1,6 +1,7 @@
 import { auth, provider, db } from "./firebaseConfig";
 import { signInWithRedirect, signOut } from 'firebase/auth';
 import { ref, remove, onValue, set, update, get, push } from 'firebase/database';
+import { Children } from "react";
 
 //calls firebase google sign in function 
 export function signIn() {
@@ -198,6 +199,7 @@ export function adminAccountDelete(username) {
                     console.log("Account successfully deleted");
                 }).catch((error) => {
                     console.log('Error reomoving account', error);
+                    removeUsername(username);
                 });
             }
         });
@@ -266,4 +268,25 @@ function removeUsername(username) {
             console.error('Error removing username:', error);
             throw error;
         });
+}
+
+export function deleteEntriesFromCommunity(username){
+    const dbRef = ref(db, 'community/posts');
+
+    return get(dbRef).then((snapshot) => {
+        snapshot.forEach((childSnapshot) => {
+            const childData = childSnapshot.val();
+            if (username.trim() === childData.Username.trim()) {
+                const childKey = childSnapshot.key;
+                const removeRef = ref(db, `community/posts/${childKey}`);
+                remove(removeRef)
+                    .then(() => {
+                        console.log('Data removed successfully.');
+                    })
+                    .catch((error) => {
+                        console.error('Error removing data:', error);
+                    });
+            }
+        })
+    })
 }
