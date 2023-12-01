@@ -102,6 +102,7 @@ export default function UserSettings() {
         setIsMessageOpen(true);
         setTimeout(() => {
             setIsMessageOpen(false);
+            window.location.href = '/settings';
 
         }, 3000);
     };
