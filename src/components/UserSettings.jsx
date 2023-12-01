@@ -131,7 +131,6 @@ export default function UserSettings() {
     const handleDelete = () => {
         setIsModalOpen(false);
         deleteUserAccount().then(() => { 
-
         setDeletedAccount(true)
 
         //deletes the user account, clears the local storage and returns the user to the login page 
