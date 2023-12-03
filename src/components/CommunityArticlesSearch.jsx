@@ -1,4 +1,5 @@
 import '../css/components.css';
+import '../css/pages.css';
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getUsernameLocation, getUsernameFromString, getUsername } from '../firebase/databaseUser';
@@ -42,6 +43,7 @@ export default function CommunityArticlesSearch() {
     return (
         <>
             <CommunitySearchBar />
+            <div className="pageContainer">
             <div className="communityArticleContainer">
                 {communityList.length === 0 ? (
                     <p>No Community Entries</p>
@@ -61,6 +63,8 @@ export default function CommunityArticlesSearch() {
                         </div>
                     </>
                 )}
+            </div>
+           
             </div>
         </>
     );
