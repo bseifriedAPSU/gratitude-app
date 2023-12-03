@@ -498,7 +498,7 @@ a {
     .topCenter-flex-container img {
         height: 100%;
         width: auto;
-        margin: 15px 5vh 10px 5vh;
+        margin: 15px 0 10px 0;
     }
 
 .userInfo {

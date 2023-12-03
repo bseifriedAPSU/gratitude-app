@@ -3,7 +3,7 @@
 /*about*/
 .aboutContainer {
     width: 60vw;
-    height: 50vh;
+    height: auto;
     margin: 15%;
     display: flex;
     flex-direction: column;
