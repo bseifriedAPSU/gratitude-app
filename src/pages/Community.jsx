@@ -11,7 +11,8 @@ export default function Community() {
     }
     return (
         <>
-           <TopBar />
+            <TopBar />
+           <div className="pageContainer">
             <div className="community">
 
                 <h1>Community</h1>
@@ -20,7 +21,8 @@ export default function Community() {
                 <div className="bottomPageContainer">
                     <button className="backButton" onClick={goBack}>Previous Page</button>
                 </div>
-        </div>
+                </div>
+            </div>
 
 
 

@@ -3,9 +3,7 @@
     "",
     "\\src",
     "\\src\\components",
-    "\\src\\firebase",
     "\\src\\pages"
   ],
-  "SelectedNode": "\\src\\components\\Wordcloud.jsx",
   "PreviewInSolutionExplorer": false
 }

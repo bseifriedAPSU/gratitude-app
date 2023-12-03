@@ -1,4 +1,4 @@
-/*COMPONENTS CSS FILES CONDENSED*/
+/*components.css */
 
 /* Global stylings */
 button {
@@ -14,7 +14,7 @@ hr {
     width: 40vh;
     margin: 15px;
 }
-
+/******************************************/
 
 /*Admin Settings*/
 .adminContainer {
@@ -81,12 +81,12 @@ hr {
 
 /* CommunityArticleSearch*/
 .communityArticleContainer {
-    width: 80vw;
-    height: 60vh;
+    width: 75vw;
+    height: 40vh;
     margin: auto;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    justify-content: space-between;
 }
 
 .articleItem {
@@ -232,7 +232,7 @@ hr {
 
 .pageContainer {
     width: 80vw;
-    height: 60vh;
+    height: 45vh;
     margin: auto;
     display: flex;
     flex-direction: column;
