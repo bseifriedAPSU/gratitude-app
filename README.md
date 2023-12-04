@@ -2,6 +2,37 @@
 
 npm install --legacy-peer-deps 
 
+# Purpose 
+
+The Gratitude ++ application is designed to provide users a place to add, deleted and view journal article entries.
+Users are given positive focused prompts during entry creation to encourage content focused on gratitude.
+Entries are curated from both individual users as well as community users and passed into a visual appealing word cloud.
+Entries are searchable but NOT editable once created (though they may be deleted or flagged as inappropriate)
+
+# File Structure
+
+The applications files are structured lin folders as follows:
+	
+documents folder:	all documentation of the project can be found here
+	
+public folder:		publicly accessible files stored here
+	
+images folder:		all images are stored in the images folder and referenced internally
+		
+src folder:			source code stored here			
+
+components folder:	all reusable .jsx components for use across pages are organized here
+
+pages folder:		all .jsx files for rendering pages
+
+css folder:			organized into two files / one for pages and one for comonents
+
+firebase folder:	all files related to database configuration and calls are stored here organized by tasks
+
+App.js				runs application and navigation routes
+
+			
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
