@@ -60,12 +60,15 @@ export default function CommunityArticlesSearch() {
                     </>
                 )}
             </div>
+
                 <div className="pagination">
                     <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>{'<'}</button>
                     <span>{currentPage}</span>
                     <button onClick={() => paginate(currentPage + 1)} disabled={indexOfLastArticle >= communityList.length}>{'>'}</button>
                 </div>
             </div>
+             
+            
         </>
     );
 }
