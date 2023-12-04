@@ -101,7 +101,8 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin: 10px;
+    margin-bottom: 20px;
 }
 
     .pagination button {
@@ -232,7 +233,7 @@ hr {
 
 .pageContainer {
     width: 80vw;
-    height: 60vh;
+    height: 35vh;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -442,10 +443,10 @@ a {
     width: 60%;
     text-align: center;
     cursor: pointer;
-    min-width: 60vh;
+    min-width: 30vh;
     box-shadow: #414141 1px 1px 1px 1px;
-    background-color: #666;
-    color: #fff;
+    background-color: #fff;
+    color: #666;
 }
 
     .resource-button:hover {

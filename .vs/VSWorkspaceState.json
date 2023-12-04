@@ -2,8 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components",
-    "\\src\\pages"
+    "\\src\\components"
   ],
+  "SelectedNode": "\\src\\components\\CommunityArticlesSearch.jsx",
   "PreviewInSolutionExplorer": false
 }
