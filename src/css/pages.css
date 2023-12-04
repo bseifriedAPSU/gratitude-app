@@ -407,6 +407,7 @@ button:hover {
     align-items: center;
     margin: 60px auto;
     list-style: none;
+    margin-top: 100px;
 }
 
 /*Settings*/
