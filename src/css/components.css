@@ -70,7 +70,7 @@ hr {
     padding: 5px;
     margin: 35px;
     max-width: 80%;
-    width: 400px;
+    min-width: 35vh;
 }
 
 #search-icon {
@@ -431,7 +431,7 @@ a {
 /*ResourceList*/
 .buttons-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -442,7 +442,7 @@ a {
     margin: 5px;
     border: 1px solid #000;
     border-radius: 8px;
-    width: 60%;
+    width: 35vh;
     text-align: center;
     cursor: pointer;
     min-width: 30vh;
@@ -456,16 +456,6 @@ a {
         cursor: pointer;
     }
 
-@media (max-width: 768px) {
-    .buttons-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .resource-button {
-        width: 35vh;
-    }
-}
 
 /*ToggleSwitch*/
 .toggleSwitch {
