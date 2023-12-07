@@ -1,9 +1,14 @@
+/* Pages.css*/
+
 /*about*/
 .aboutContainer {
-    margin-top: 50px;
+    width: 60vw;
+    height: auto;
+    margin: 15%;
     display: flex;
     flex-direction: column;
-    align-items:center;
+    justify-content: space-between;
+    margin-top:100px;
 }
 
 /*Community*/
@@ -13,6 +18,7 @@
     align-items: center;
     margin: 60px auto;
     list-style: none;
+    margin-top:100px;
 }
 
 .communitySearchBar {
@@ -33,6 +39,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top:200px;
+    max-width:80vh;
 }
 
 
@@ -108,6 +116,7 @@ h3 {
     align-items: center;
     margin: 60px auto;
     list-style: none;
+    margin-top:100px;
 }
 
 /*History*/
@@ -115,6 +124,7 @@ h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 100px;
 }
 
 .historySearchBar {
@@ -125,6 +135,8 @@ h3 {
 .home {
     text-align: center;
     padding: 20px;
+    margin-top:50px;
+
 }
 
 .createButton {
@@ -385,6 +397,7 @@ button:hover {
     align-items: center;
     margin: 60px auto;
     list-style: none;
+    margin-top: 100px;
 }
 
 /*SearchResults*/
@@ -394,6 +407,7 @@ button:hover {
     align-items: center;
     margin: 60px auto;
     list-style: none;
+    margin-top: 100px;
 }
 
 /*Settings*/
@@ -403,5 +417,6 @@ button:hover {
     align-items: center;
     margin: 60px auto;
     list-style: none;
+    margin-top: 100px;
 }
 
