@@ -1,6 +1,5 @@
 import { db } from "./firebaseConfig";
-import { onValue, ref, query, orderByChild, remove, get, update, set } from 'firebase/database';
-import { Children } from "react";
+import { onValue, ref, query, orderByChild, get, update, set } from 'firebase/database';
 
 //displays the content for the specific community entry when the user clicks the link 
 export function displayCommunityEntryContent(headline, date) {
@@ -42,6 +41,7 @@ export function communityPageDisplay() {
     });
 };
 
+//searches for any entries or usernames that match the search input
 export function searchCommunityJournalEntry(inputString) {
     const userPostsRef = ref(db, 'community/posts');
 
@@ -78,6 +78,7 @@ export function searchCommunityJournalEntry(inputString) {
     });
 }
 
+//increases the number of flags on the selected entry by one 
 export function increaseFlagCounter(headline, date, username) {
     const dbRef = ref(db, 'community/posts');
 
@@ -101,6 +102,7 @@ export function increaseFlagCounter(headline, date, username) {
     });
 }
 
+//gets the number of flags for the specific post 
 export function getFlagCount(headline, date, username) {
     const dbRef = ref(db, 'community/posts');
     var flagCount = 0;
@@ -119,6 +121,7 @@ export function getFlagCount(headline, date, username) {
     })
 }
 
+//gets a list of all users who have flagged the post 
 export function flaggedUserList(headline, date, username) {
     const dbRef = ref(db, 'community/posts');
 
@@ -165,6 +168,7 @@ export function flaggedUserList(headline, date, username) {
     });
 }
 
+//checks to see if the user is currently on the exclusion list 
 export function checkExclusionList(headline, date, username) {
     const dbRef = ref(db, 'community/posts');
     var userExcluded = false;
@@ -192,6 +196,7 @@ export function checkExclusionList(headline, date, username) {
     });
 }
 
+//creates the listing of words for the community word cloud 
 export function communityWordCloudList() {
     const dbRef = ref(db, `community/posts`);
 

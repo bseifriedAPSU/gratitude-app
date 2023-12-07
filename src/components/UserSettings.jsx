@@ -59,9 +59,7 @@ export default function UserSettings() {
     const createNewUser = async () => {
         try {
             //get the result of the username check to determine if the username already exists or not 
-            console.log(auth.currentUser);
             const exists = await usernameCheck(currentUsername);
-            console.log('testing');
             //if the username does not exist create a new user account 
             if (!exists) {
                 createUserAccount(currentImage, currentUsername.trim(), localStorage.getItem('uid'));

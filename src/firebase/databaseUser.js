@@ -102,9 +102,9 @@ export function getUsernameFromString(inputString) {
 //signs the user of of their account 
 export function signOutOfAccount() {
     signOut(auth).then(() => {
-        window.location = "/";
         localStorage.clear();
         sessionStorage.clear();
+        window.location = "/";
     }).catch((error) => {
         alert("There was an error signing out");
     });
