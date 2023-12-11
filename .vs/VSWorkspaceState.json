@@ -1,8 +1,13 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\components"
   ],
-  "SelectedNode": "\\src",
+<<<<<<< HEAD
+  "SelectedNode": "\\src\\firebase\\databaseCommunity.js",
+=======
+  "SelectedNode": "\\src\\components\\CommunityArticlesSearch.jsx",
+>>>>>>> 5eeeadafb0119f04e80f4b6a51749fb9ff6d322b
   "PreviewInSolutionExplorer": false
 }

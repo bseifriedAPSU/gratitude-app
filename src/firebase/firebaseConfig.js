@@ -18,6 +18,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);//initialization of the firebase app 
 export const auth = getAuth(app);//initialization of the firebase authentication
 
+//sets the browser persistence to session to only keep the users information during the current session 
 setPersistence(auth, browserSessionPersistence).then(() => {
     console.log("Successfully set browser persistence");
 }).catch((error) => {
