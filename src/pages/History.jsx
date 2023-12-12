@@ -24,7 +24,8 @@ export default function History() {
             <TopBar />
             <div className="history">
                 <h1>History</h1>
-                <h3>Short Description Here</h3>
+                <h3>Here is your personal history page, where you can look back over
+                    all the entries that you have created!</h3>
                 <HistorySearchBar />
                 <FilteredResults results={ results } />
                 <HomeArticlesSearch />
