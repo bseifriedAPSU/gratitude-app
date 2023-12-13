@@ -95,7 +95,6 @@ export function increaseFlagCounter(headline, date, username) {
 
                 const updates = {};
                 updates[`/community/posts/${childSnapshot.key}/flagCount`] = updatedFlagCount;
-                console.log('flag count', updatedFlagCount);
                 return update(ref(db), updates);
             }
         });
@@ -144,7 +143,7 @@ export function flaggedUserList(headline, date, username) {
                 // Update or set excludedUsers based on its existence
                 if (excludedUsersExists) {
                     const updatedExcludedUsers = childData.excludedUsers || [];
-                    updatedExcludedUsers.push(username);
+                    updatedExcludedUsers.push(localStorage.getItem('Username'));
 
                     const updates = {
                         [`community/posts/${postKey}/excludedUsers`]: updatedExcludedUsers,
@@ -184,7 +183,6 @@ export function checkExclusionList(headline, date, username) {
                 childData.date.trim() === date.trim()
             ) {
                 const excludedUsers = childData.excludedUsers || [];
-                console.log("excluded users: ", excludedUsers, ' current username', currentUser);
                 const isUserExcluded = excludedUsers.includes(currentUser);
 
                 if (isUserExcluded) {

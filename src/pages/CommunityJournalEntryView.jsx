@@ -48,6 +48,7 @@ export default function CommunityJournalEntryView() {
     const handleConfirm = async () => {
         try {
             const username = localStorage.getItem('flagUsername');
+            const flagUsername = localStorage.getItem('Username');
             //checks to see if the user has flagged this posts before 
             const userExcluded = await checkExclusionList(headline, date, username);
             setIsUserExcluded(userExcluded);
